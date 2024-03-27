@@ -86,5 +86,6 @@ const submit = () => {
                 </PrimaryButton>
             </div>
         </form>
+        {{ $page }}
     </GuestLayout>
 </template>

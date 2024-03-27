@@ -1,0 +1,43 @@
+// ==============================
+// ブレークポイント 定義
+// ==============================
+// マップ型変数を使うと便利
+// ＊＊＊＊＊SP・PCファーストについて、この設定を変更します＊＊＊＊＊
+$break-flg: 0 !default; //0:SPファースト、1：PCファースト
+
+$breakpoints: null;
+@if $break-flg == 0 {
+  $breakpoints: (
+    "sm": "screen and (min-width: 400px)",
+    "md": "screen and (min-width: 768px)",
+    "lg": "screen and (min-width: 1000px)",
+    "xl": "screen and (min-width: 1200px)",
+  );
+} @else {
+  // ブレイクポイントの設定
+  $breakpoints: (
+    "sm": "screen and (max-width: 399px)",
+    "md": "screen and (max-width: 767px)",
+    "lg": "screen and (max-width: 999px)",
+    "xl": "screen and (max-width: 1199px)",
+  );
+}
+
+// inner
+$inner: 1200px;
+
+
+// メディアクエリのブレークポイント設定
+
+//@media screen and (max-width: 414px){
+//  .btn{
+//    font-size: .7em;
+//  }
+//}
+
+// 通常、変数として設定しておくと後々変更しやすくて便利
+//  !defaultはすでに変数に値が入っていた場合は何もせず、変数に値が入っていない時に割り当てられるもの
+// https://hail2u.net/blog/webdesign/how-to-use-bang-default-flag-in-sass-and-how-it-works.html
+//$breakpoint-sm: 400px !default;
+//$breakpoint-md: 768px !default;
+//$breakpoint-lg: 1000px !default;

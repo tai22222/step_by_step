@@ -1,4 +1,4 @@
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -11,10 +11,12 @@ module.exports = {
     },
     module: {
         rules: [
+            // vueのtemplateセクションをコンパイル
             {
                 test: /\.vue$/,
                 loader: 'vue-loader'
             },
+            // sass,vueのstyleセクションをコンパイル(ファイルやurlは未処理)
             {
                 test: /\.scss$/,
                 use: [
@@ -23,6 +25,7 @@ module.exports = {
                     'sass-loader'
                 ]
             },
+            // vueのscriptセクションをコンパイル
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
@@ -43,8 +46,9 @@ module.exports = {
     ],
     resolve: {
         alias: {
-            vue$: 'vue/dist/vue.esm.js'
+          '@': path.resolve(__dirname, 'resources/js'),
+          vue$: 'vue/dist/vue.esm-bundler.js'
         },
-        extensions: ['*', '.js', '.vue', '.json']
+        extensions: ['.js', '.vue', '.json']
     },
 };

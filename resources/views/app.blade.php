@@ -10,12 +10,24 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+        <!-- Style -->
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
         <!-- Scripts -->
         @routes
-        @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
+        {{-- @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"]) --}}
+        {{-- <script>
+          window.Ziggy = {
+            baseUrl: '{{ config('app.url') }}',
+            ...Ziggy,
+          };
+          console.log(window.Ziggy,baseUrl);
+        </script> --}}
         @inertiaHead
     </head>
     <body class="font-sans antialiased">
+      {{ config('app.url') }}
         @inertia
+        <script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>
