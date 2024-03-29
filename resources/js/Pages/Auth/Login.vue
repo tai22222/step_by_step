@@ -86,6 +86,12 @@ const submit = () => {
                 </PrimaryButton>
             </div>
         </form>
-        {{ $page }}
+        page【{{ $page }}】
+        <p>-------------</p>
+        props.ziggy【{{ $page.props.ziggy }}】
+        <p>-------------</p>
+        location【{{ $page.location }}】
+        <p>-------------</p>
+        url【{{ $page.url }}
     </GuestLayout>
 </template>

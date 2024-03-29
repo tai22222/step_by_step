@@ -16,17 +16,9 @@
         <!-- Scripts -->
         @routes
         {{-- @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"]) --}}
-        {{-- <script>
-          window.Ziggy = {
-            baseUrl: '{{ config('app.url') }}',
-            ...Ziggy,
-          };
-          console.log(window.Ziggy,baseUrl);
-        </script> --}}
         @inertiaHead
     </head>
     <body class="font-sans antialiased">
-      {{ config('app.url') }}
         @inertia
         <script src="{{ asset('js/app.js') }}"></script>
     </body>
