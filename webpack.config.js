@@ -51,4 +51,9 @@ module.exports = {
         },
         extensions: ['.js', '.vue', '.json']
     },
+    // ビルドのタイミングを調整
+    watchOptions: {
+      ignored: /node_modules/, // 監視しないディレクトリ
+      poll: 15000 // 監視間隔（ミリ秒）
+  }
 };

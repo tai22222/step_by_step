@@ -1,0 +1,13 @@
+@use "../global/" as *;
+
+.c-text_input{
+  border-radius: 0.375rem;
+  border-color: $color-gray-300;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.c-text_input:focus-visible{
+  border-color: $color-indigo-500;
+  outline: $color-indigo-500;
+  box-shadow: 0 0 0 3px rgba(103, 114, 229, 0.5);
+}
