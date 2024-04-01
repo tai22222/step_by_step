@@ -36,48 +36,48 @@ const submit = () => {
                 <TextInput
                     id="email"
                     type="email"
-                    class="mt-1 block w-full"
+                    class="c-text-input__full-width"
                     v-model="form.email"
                     required
                     autofocus
                     autocomplete="username"
                 />
 
-                <InputError class="mt-2" :message="form.errors.email" />
+                <InputError class="c-text-input__error" :message="form.errors.email" />
             </div>
 
-            <div class="mt-4">
+            <div class="c-text-input__between">
                 <InputLabel for="password" value="Password" />
 
                 <TextInput
                     id="password"
                     type="password"
-                    class="mt-1 block w-full"
+                    class="c-text-input__full-width"
                     v-model="form.password"
                     required
                     autocomplete="new-password"
                 />
 
-                <InputError class="mt-2" :message="form.errors.password" />
+                <InputError class="c-text-input__error" :message="form.errors.password" />
             </div>
 
-            <div class="mt-4">
+            <div class="c-text-input__between">
                 <InputLabel for="password_confirmation" value="Confirm Password" />
 
                 <TextInput
                     id="password_confirmation"
                     type="password"
-                    class="mt-1 block w-full"
+                    class="c-text-input__full-width"
                     v-model="form.password_confirmation"
                     required
                     autocomplete="new-password"
                 />
 
-                <InputError class="mt-2" :message="form.errors.password_confirmation" />
+                <InputError class="c-text-input__error" :message="form.errors.password_confirmation" />
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+            <div class="c-btn__position-end c-text-input__between">
+                <PrimaryButton :class="{ 'p-btn__opacity-25': form.processing }" :disabled="form.processing">
                     Reset Password
                 </PrimaryButton>
             </div>

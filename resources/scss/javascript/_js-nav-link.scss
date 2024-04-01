@@ -1,0 +1,40 @@
+// ==========================================================================
+// JavaScript(変化ではなく状態を記載)
+// ==========================================================================
+@use "../global/" as *;
+
+.is-nav-link__active {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  border-bottom: 2px solid #667eea;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  color: $color-gray-900;
+  outline: none;
+  border-color: $color-indigo-700;
+  transition: color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+
+  &:hover {
+    color: $color-gray-700;
+  }
+}
+
+.is-nav-link__inactive {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  border-bottom: 2px solid transparent;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  color: $color-gray-500;
+  outline: none;
+  transition: color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+
+  &:hover {
+    color: $color-gray-700;
+    border-color: $color-gray-300;
+  }
+}

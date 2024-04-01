@@ -1,0 +1,50 @@
+// ==========================================================================
+// JavaScript(変化ではなく状態を記載)
+// ==========================================================================
+@use "../global/" as *;
+
+.is-responsible-nav-link__active {
+  display: block;
+  width: 100%;
+  padding-left: 0.75rem; /* pl-3 */
+  padding-right: 1rem; /* pr-4 */
+  padding-top: 0.5rem; /* py-2 */
+  padding-bottom: 0.5rem; /* py-2 */
+  border-left: 4px solid #667eea; /* border-l-4 border-indigo-400 */
+  text-align: left; /* text-left */
+  font-size: 1rem; /* text-base */
+  font-weight: 500; /* font-medium */
+  color: #4f46e5; /* text-indigo-700 */
+  background-color: #edf2ff; /* bg-indigo-50 */
+  outline: none; /* focus:outline-none */
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out; /* transition duration-150 ease-in-out */
+
+  &:hover,
+  &:focus{
+    color: #5a67d8; /* hover:text-indigo-800 focus:text-indigo-800 */
+    background-color: #e2e8f0; /* hover:bg-indigo-100 focus:bg-indigo-100 */
+    border-color: #667eea; /* hover:border-indigo-700 focus:border-indigo-700 */
+  }
+}
+
+.is-responsible-nav-link__inactive {
+  display: block;
+  width: 100%;
+  padding-left: 0.75rem; /* pl-3 */
+  padding-right: 1rem; /* pr-4 */
+  padding-top: 0.5rem; /* py-2 */
+  padding-bottom: 0.5rem; /* py-2 */
+  border-left: 4px solid transparent; /* border-l-4 border-transparent */
+  text-align: left; /* text-left */
+  font-size: 1rem; /* text-base */
+  font-weight: 500; /* font-medium */
+  color: #4b5563; /* text-gray-600 */
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out; /* transition duration-150 ease-in-out */
+
+  &:hover,
+  &:focus {
+    color: #2d3748; /* hover:text-gray-800 focus:text-gray-800 */
+    background-color: #f7fafc; /* hover:bg-gray-50 focus:bg-gray-50 */
+    border-color: #cbd5e0; /* hover:border-gray-300 focus:border-gray-300 */
+  }
+}

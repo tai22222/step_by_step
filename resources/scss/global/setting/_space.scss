@@ -1,14 +1,9 @@
 // ==============================
-// 余白 定義
+// 余白 定義(marginやpadding,space betweenで使用)
 // ==============================
-$space_s: 5px;
-$space_m: 10px;
-$space_l: 15px;
-$space_xl: 20px;
-$space_xxl: 30px;
-$space_3l: 40px;
-
-
-// 余白
-$padding-pc: 25px; // PC用余白設定
-$padding-sp: 20px; // スマホ用余白設定
+$space-xs: 0.25rem; // Extra small (通常は10px)
+$space-s: 0.5rem;   // Small (通常は20px)
+$space-m: 1rem;     // Medium / Default (通常は40px)
+$space-lg: 1.5rem;  // Large (通常は60px)
+$space-xl: 2rem;    // Extra large (通常は80px)
+$space-2xl: 3rem;   // Double extra large (通常は120px)

@@ -21,7 +21,7 @@ const submit = () => {
     <GuestLayout>
         <Head title="Confirm Password" />
 
-        <div class="mb-4 text-sm text-gray-600">
+        <div class="c-description">
             This is a secure area of the application. Please confirm your password before continuing.
         </div>
 
@@ -31,17 +31,19 @@ const submit = () => {
                 <TextInput
                     id="password"
                     type="password"
-                    class="mt-1 block w-full"
+                    class="c-text-input__full-width"
                     v-model="form.password"
                     required
                     autocomplete="current-password"
                     autofocus
                 />
-                <InputError class="mt-2" :message="form.errors.password" />
+                <InputError class="c-text-input__error" :message="form.errors.password" />
             </div>
 
-            <div class="flex justify-end mt-4">
-                <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+            <div class="c-btn__position-end c-text-input__between">
+                <PrimaryButton class="p-btn__margin-left" 
+                               :class="{ 'p-btn__opacity-25': form.processing }" 
+                               :disabled="form.processing">
                     Confirm
                 </PrimaryButton>
             </div>

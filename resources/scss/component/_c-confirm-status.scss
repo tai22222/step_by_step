@@ -1,0 +1,9 @@
+@use '../global' as *;
+
+.c-confirm-status {
+  margin-bottom: 1rem;
+  font-size: 0.875rem/* 14px */;
+  line-height: 1.25rem/* 20px */;
+  font-weight: $medium;
+  color: $color-success;
+}

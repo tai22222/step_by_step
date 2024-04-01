@@ -1,0 +1,8 @@
+// 最低限の高さの確保
+
+@use '../global' as *;
+
+.l-wrapper {
+  min-height: 100vh;
+  background-color: $color-gray-300;
+}

@@ -1,13 +1,27 @@
 @use "../global/" as *;
 
-.c-text_input{
+.c-text-input{
   border-radius: 0.375rem;
   border-color: $color-gray-300;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
 
-.c-text_input:focus-visible{
+.c-text-input:focus-visible{
   border-color: $color-indigo-500;
   outline: $color-indigo-500;
   box-shadow: 0 0 0 3px rgba(103, 114, 229, 0.5);
+}
+
+.c-text-input__full-width {
+  margin-top: 0.25rem;
+  display: block;
+  width: 100%;
+}
+
+.c-text-input__between {
+  margin-top: 1rem;
+}
+
+.c-text-input__error {
+  margin-top: 0.5rem;
 }

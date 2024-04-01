@@ -1,0 +1,9 @@
+@use '../global' as *;
+
+.p-btn__margin-left {
+  margin-left: 1rem;
+}
+
+.p-btn__opacity-25 {
+  opacity: $opacity-25;
+}

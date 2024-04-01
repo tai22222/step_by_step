@@ -1,6 +1,15 @@
 @use "c-btn";
 @use "c-flex";
-@use "c-links";
+
+// ステータスチェック
+@use "c-confirm-status";
+
+@use "c-description";
+
+// vueファイル(components単位)
 @use "c-checkbox";
-@use "c-text_input";
+@use "c-text-input";
 @use "c-application_logo";
+@use "c-dropdown";
+@use "c-dropdown_link";
+@use "c-guest_layout";

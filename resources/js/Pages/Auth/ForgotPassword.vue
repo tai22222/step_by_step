@@ -23,12 +23,12 @@ const submit = () => {
     <GuestLayout>
         <Head title="Forgot Password" />
 
-        <div class="mb-4 text-sm text-gray-600">
+        <div class="c-description">
             Forgot your password? No problem. Just let us know your email address and we will email you a password reset
             link that will allow you to choose a new one.
         </div>
 
-        <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
+        <div v-if="status" class="c-confirm-status">
             {{ status }}
         </div>
 
@@ -39,18 +39,20 @@ const submit = () => {
                 <TextInput
                     id="email"
                     type="email"
-                    class="mt-1 block w-full"
+                    class="c-text-input__full-width"
                     v-model="form.email"
                     required
                     autofocus
                     autocomplete="username"
                 />
 
-                <InputError class="mt-2" :message="form.errors.email" />
+                <InputError class="c-input-text__error" :message="form.errors.email" />
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+            <div class="c-btn__position-end c-text-input__between">
+                <PrimaryButton :class="{ 'p-btn__opacity-25': 
+                               form.processing }"
+                               :disabled="form.processing">
                     Email Password Reset Link
                 </PrimaryButton>
             </div>

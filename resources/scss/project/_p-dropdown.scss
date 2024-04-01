@@ -1,0 +1,17 @@
+@use '../global' as *;
+
+.p-dropdown__authenticated-layout {
+  &__width {
+    width: 12rem;
+  }
+  &__align {
+    right: 0;
+    transform-origin: top right;
+  }
+  &__contentClasses {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    background-color: white;
+  }
+}
+

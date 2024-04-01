@@ -1,0 +1,47 @@
+@use "../global/" as *;
+
+.c-dropdown {
+  position: relative;
+}
+
+.c-dropdown__screen {
+position: fixed;
+inset: 0px;
+z-index: 40;
+}
+
+.c-dropdown__screen-open {
+  position: absolute;
+  z-index: 50;
+  margin-top: 0.5rem;
+  border-radius: 0.375rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.c-dropdown__content{
+  border-radius: 0.375rem;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  background-color: white;
+}
+
+
+// vueで親コンポーネントから渡ってきた値で付け替え(scssのjavasctiptに記述しようとしたが記述場所が複数になるため、componentに記述)
+.c-dropdown__width {
+  width: 12rem;
+}
+
+.c-dropdown__align-left {
+  left: 0;
+  transform-origin: top left;
+}
+
+.c-dropdown__align-right {
+  right: 0;
+  transform-origin: top right;
+}
+
+.c-dropdown__align-else {
+  transform-origin: top;
+}

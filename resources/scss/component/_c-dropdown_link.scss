@@ -1,0 +1,23 @@
+@use "../global/" as *;
+
+.c-dropdown_link {
+  display: block;
+  width: 100%;
+  padding: 1rem 0.5rem;
+  text-align: left;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: $color-gray-700;
+
+  transition: color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+
+  &:hover {
+    background-color: $color-gray-100;
+  }
+
+  &:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  background-color: $color-gray-100;
+  }
+}
