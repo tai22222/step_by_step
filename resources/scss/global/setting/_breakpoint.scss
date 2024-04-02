@@ -25,19 +25,3 @@ $breakpoints: null;
 
 // inner
 $inner: 1200px;
-
-
-// メディアクエリのブレークポイント設定
-
-//@media screen and (max-width: 414px){
-//  .btn{
-//    font-size: .7em;
-//  }
-//}
-
-// 通常、変数として設定しておくと後々変更しやすくて便利
-//  !defaultはすでに変数に値が入っていた場合は何もせず、変数に値が入っていない時に割り当てられるもの
-// https://hail2u.net/blog/webdesign/how-to-use-bang-default-flag-in-sass-and-how-it-works.html
-//$breakpoint-sm: 400px !default;
-//$breakpoint-md: 768px !default;
-//$breakpoint-lg: 1000px !default;

@@ -1,52 +1,55 @@
 <script setup>
-import GuestLayout from '@/Layouts/GuestLayout.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
-import { Head, useForm } from '@inertiajs/vue3';
+import GuestLayout from "@/Layouts/GuestLayout.vue";
+import InputError from "@/Components/InputError.vue";
+import InputLabel from "@/Components/InputLabel.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import TextInput from "@/Components/TextInput.vue";
+import { Head, useForm } from "@inertiajs/vue3";
 
 const form = useForm({
-    password: '',
+  password: "",
 });
 
 const submit = () => {
-    form.post(route('password.confirm'), {
-        onFinish: () => form.reset(),
-    });
+  form.post(route("password.confirm"), {
+    onFinish: () => form.reset(),
+  });
 };
 </script>
 
 <template>
-    <GuestLayout>
-        <Head title="Confirm Password" />
+  <GuestLayout>
+    <Head title="Confirm Password" />
 
-        <div class="c-description">
-            This is a secure area of the application. Please confirm your password before continuing.
-        </div>
+    <div class="c-description">
+      This is a secure area of the application. Please confirm your password
+      before continuing.
+    </div>
 
-        <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="password" value="Password" />
-                <TextInput
-                    id="password"
-                    type="password"
-                    class="c-text-input__full-width"
-                    v-model="form.password"
-                    required
-                    autocomplete="current-password"
-                    autofocus
-                />
-                <InputError class="c-text-input__error" :message="form.errors.password" />
-            </div>
+    <form @submit.prevent="submit">
+      <div>
+        <InputLabel for="password" value="Password" />
+        <TextInput
+          id="password"
+          type="password"
+          class="c-text-input__full-width"
+          v-model="form.password"
+          required
+          autocomplete="current-password"
+          autofocus
+        />
+        <InputError class="u-margin__top-s" :message="form.errors.password" />
+      </div>
 
-            <div class="c-btn__position-end c-text-input__between">
-                <PrimaryButton class="p-btn__margin-left" 
-                               :class="{ 'p-btn__opacity-25': form.processing }" 
-                               :disabled="form.processing">
-                    Confirm
-                </PrimaryButton>
-            </div>
-        </form>
-    </GuestLayout>
+      <div class="p-form__btn-position-end u-margin__top-lg">
+        <PrimaryButton
+          class="u-margin__left-m"
+          :class="{ 'u-opacity-25': form.processing }"
+          :disabled="form.processing"
+        >
+          Confirm
+        </PrimaryButton>
+      </div>
+    </form>
+  </GuestLayout>
 </template>

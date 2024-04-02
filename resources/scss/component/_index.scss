@@ -1,10 +1,10 @@
 @use "c-btn";
-@use "c-flex";
+@use "c-form";
 
-// ステータスチェック
-@use "c-confirm-status";
-
+@use "c-confirm";
 @use "c-description";
+@use "c-contents";
+
 
 // vueファイル(components単位)
 @use "c-checkbox";
@@ -13,3 +13,5 @@
 @use "c-dropdown";
 @use "c-dropdown_link";
 @use "c-guest_layout";
+@use "c-header";
+@use "c-modal";

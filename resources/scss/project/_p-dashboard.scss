@@ -1,0 +1,25 @@
+@use '../global' as *;
+
+.p-dashboard {
+  @include mq(sm){
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @include mq(lg){
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+.p-dashboard__inner {
+  background-color: white;
+  overflow: hidden;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  border-radius: 0.375rem;
+}
+
+.p-dashboard__inner-text {
+  padding: 1.5rem;
+  color: $color-gray-900;
+}

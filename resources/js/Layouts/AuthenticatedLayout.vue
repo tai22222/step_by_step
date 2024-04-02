@@ -44,7 +44,8 @@ const showingNavigationDropdown = ref(false);
                             <div class="p-nav__right-dropdown">
                                 <Dropdown align="right" width="48">
                                     <template #trigger>
-                                        <span class="inline-flex rounded-md">
+
+                                        <span class="p-nav__icon">
                                             <button type="button" class="p-nav__dropdown-text">
                                                 {{ $page.props.auth.user.name }}
                                                 <svg
@@ -131,8 +132,8 @@ const showingNavigationDropdown = ref(false);
             </nav>
 
             <!-- ヘッダー(現在のページ情報) -->
-            <header class="l-header p-header p-header__box-shadow" v-if="$slots.header">
-                <div class="l-container p-header__title">
+            <header class="l-header p-header" v-if="$slots.header">
+                <div class="l-container c-header__title">
                     <slot name="header" />
                 </div>
             </header>

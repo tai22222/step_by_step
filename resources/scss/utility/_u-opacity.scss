@@ -1,0 +1,17 @@
+@use "../global/" as *;
+
+.u-opacity-0 {
+  opacity: $opacity-0;
+}
+.u-opacity-25 {
+  opacity: $opacity-25;
+}
+.u-opacity-50 {
+  opacity: $opacity-50;
+}
+.u-opacity-75 {
+  opacity: $opacity-75;
+}
+.u-opacity-100 {
+  opacity: $opacity-100;
+}

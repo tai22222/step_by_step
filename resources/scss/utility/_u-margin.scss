@@ -1,0 +1,132 @@
+@use "../global/" as *;
+
+// margin
+.u-margin-xs {
+  margin: $space-xs;
+}
+.u-margin-s {
+margin: $space-s;
+}
+.u-margin-m {
+margin: $space-m;
+}
+.u-margin-lg {
+margin: $space-lg;
+}
+.u-margin-xl {
+margin: $space-xl;
+}
+.u-margin-2xl {
+margin: $space-2xl;
+}
+.u-margin-3xl {
+margin: $space-3xl;
+}
+.u-margin-4xl {
+margin: $space-4xl;
+}
+
+
+// margin top
+.u-margin__top-xs {
+margin-top: $space-xs;
+}
+.u-margin__top-s {
+margin-top: $space-s;
+}
+.u-margin__top-m {
+margin-top: $space-m;
+}
+.u-margin__top-lg {
+margin-top: $space-lg;
+}
+.u-margin__top-xl {
+margin-top: $space-xl;
+}
+.u-margin__top-2xl {
+margin-top: $space-2xl;
+}
+.u-margin__top-3xl {
+margin-top: $space-3xl;
+}
+.u-margin__top-4xl {
+margin-top: $space-4xl;
+}
+
+// margin left
+.u-margin__left-xs {
+margin-left: $space-xs;
+}
+.u-margin__left-s {
+margin-left: $space-s;
+}
+.u-margin__left-m {
+margin-left: $space-m;
+}
+.u-margin__left-lg {
+margin-left: $space-lg;
+}
+.u-margin__left-xl {
+margin-left: $space-xl;
+}
+.u-margin__left-2xl {
+margin-left: $space-2xl;
+}
+.u-margin__left-3xl {
+margin-left: $space-3xl;
+}
+.u-margin__left-4xl {
+margin-left: $space-4xl;
+}
+
+// margin bottom
+.u-margin__bottom-xs {
+margin-bottom: $space-xs;
+}
+.u-margin__bottom-s {
+margin-bottom: $space-s;
+}
+.u-margin__bottom-m {
+margin-bottom: $space-m;
+}
+.u-margin__bottom-lg {
+margin-bottom: $space-lg;
+}
+.u-margin__bottom-xl {
+margin-bottom: $space-xl;
+}
+.u-margin__bottom-2xl {
+margin-bottom: $space-2xl;
+}
+.u-margin__bottom-3xl {
+margin-bottom: $space-3xl;
+}
+.u-margin__bottom-4xl {
+margin-bottom: $space-4xl;
+}
+
+// margin right
+.u-margin__right-xs {
+margin-right: $space-xs;
+}
+.u-margin__right-s {
+margin-right: $space-s;
+}
+.u-margin__right-m {
+margin-right: $space-m;
+}
+.u-margin__right-lg {
+margin-right: $space-lg;
+}
+.u-margin__right-xl {
+margin-right: $space-xl;
+}
+.u-margin__right-2xl {
+margin-right: $space-2xl;
+}
+.u-margin__right-3xl {
+margin-right: $space-3xl;
+}
+.u-margin__right-4xl {
+margin-right: $space-4xl;
+}

@@ -36,14 +36,14 @@ const updatePassword = () => {
 <template>
     <section>
         <header>
-            <h2 class="text-lg font-medium text-gray-900">Update Password</h2>
+            <h2 class="c-header__title">Update Password</h2>
 
-            <p class="mt-1 text-sm text-gray-600">
+            <p class="c-header__description">
                 Ensure your account is using a long, random password to stay secure.
             </p>
         </header>
 
-        <form @submit.prevent="updatePassword" class="mt-6 space-y-6">
+        <form @submit.prevent="updatePassword" class="u-margin__top-2xl u-margin__bottom-2xl">
             <div>
                 <InputLabel for="current_password" value="Current Password" />
 
@@ -52,14 +52,14 @@ const updatePassword = () => {
                     ref="currentPasswordInput"
                     v-model="form.current_password"
                     type="password"
-                    class="mt-1 block w-full"
+                    class="c-text-input__full-width"
                     autocomplete="current-password"
                 />
 
-                <InputError :message="form.errors.current_password" class="mt-2" />
+                <InputError :message="form.errors.current_password" class="u-margin__top-s" />
             </div>
 
-            <div>
+            <div class="u-margin__top-lg">
                 <InputLabel for="password" value="New Password" />
 
                 <TextInput
@@ -67,32 +67,34 @@ const updatePassword = () => {
                     ref="passwordInput"
                     v-model="form.password"
                     type="password"
-                    class="mt-1 block w-full"
+                    class="c-text-input__full-width"
                     autocomplete="new-password"
                 />
 
-                <InputError :message="form.errors.password" class="mt-2" />
+                <InputError :message="form.errors.password" class="u-margin__top-s" />
             </div>
 
-            <div>
+            <div class="u-margin__top-lg">
                 <InputLabel for="password_confirmation" value="Confirm Password" />
 
                 <TextInput
                     id="password_confirmation"
                     v-model="form.password_confirmation"
                     type="password"
-                    class="mt-1 block w-full"
+                    class="c-text-input__full-width"
                     autocomplete="new-password"
                 />
 
-                <InputError :message="form.errors.password_confirmation" class="mt-2" />
+                <InputError :message="form.errors.password_confirmation" class="u-margin__top-s" />
             </div>
 
-            <div class="flex items-center gap-4">
+            <div class="p-form__btn-save u-margin__top-lg">
                 <PrimaryButton :disabled="form.processing">Save</PrimaryButton>
 
-                <Transition enter-from-class="opacity-0" leave-to-class="opacity-0" class="transition ease-in-out">
-                    <p v-if="form.recentlySuccessful" class="text-sm text-gray-600">Saved.</p>
+                <Transition enter-from-class="u-opacity-0" 
+                            leave-to-class="u-opacity-0" 
+                            class="p-transition__btn">
+                    <p v-if="form.recentlySuccessful" class="p-form__btn-saved">Saved.</p>
                 </Transition>
             </div>
         </form>

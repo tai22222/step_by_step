@@ -1,0 +1,17 @@
+@use '../global' as *;
+
+.p-login__checkbox {
+  display: block;
+  margin-top: 1rem;
+}
+
+.p-login__checkbox-label {
+  display: flex;
+  align-items: center;
+}
+
+.p-login__checkbox-text {
+  margin-left: 0.5rem;
+  font-size: small;
+  color: $color-gray-600;
+}

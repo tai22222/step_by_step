@@ -27,6 +27,25 @@ z-index: 40;
 }
 
 
+// アニメーション
+.c-dropdown__transition-enter-active {
+  transition: opacity 200ms ease-out, transform 200ms ease-out;
+}
+
+.c-dropdown__transition-leave-active {
+  transition: opacity 75ms ease-in, transform 75ms ease-in;
+}
+
+.c-dropdown__transition-enter-from, .c-dropdown__transition-leave-to {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.c-dropdown__transition-enter-to, .c-dropdown__transition-leave-from {
+  opacity: 1;
+  transform: scale(1);
+}
+
 // vueで親コンポーネントから渡ってきた値で付け替え(scssのjavasctiptに記述しようとしたが記述場所が複数になるため、componentに記述)
 .c-dropdown__width {
   width: 12rem;

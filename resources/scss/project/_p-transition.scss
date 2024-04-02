@@ -1,0 +1,5 @@
+@use '../global' as *;
+
+.p-transition__btn {
+  transition: all 0.3s ease-in-out;
+}

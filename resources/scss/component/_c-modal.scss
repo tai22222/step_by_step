@@ -1,0 +1,81 @@
+@use "../global/" as *;
+
+.c-modal {
+  position: fixed;
+  inset: 0;
+  overflow-y: auto;
+  padding: $space-2xl $space-lg;
+  z-index: 50;
+}
+
+.c-modal__close {
+  position: fixed;
+  inset: 0;
+  transform: translate(0, 0);
+  transition: all 0.3s ease;
+}
+
+.c-modal__close-background {
+  position: absolute;
+  inset: 0;
+  background-color: $color-gray-500;
+  opacity: $opacity-75;
+}
+
+.c-modal__show {
+  margin-bottom: $space-2xl;
+  background-color: white;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); 
+  transform: translate(0, 0);
+  transition: all 0.3s ease; 
+
+  @include mq(md){
+    width: 100%; 
+    margin-left: auto; 
+    margin-right: auto; 
+  };
+}
+
+.c-modal__position {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+// トランジションのベーススタイル
+.c-modal__transition {
+  &-enter-active {
+    transition: opacity 300ms ease-out, transform 300ms ease-out;
+  }
+  &-leave-active {
+    transition: opacity 200ms ease-in, transform 200ms ease-in;
+  }
+  &-enter-from, &-leave-to {
+    opacity: 0;
+    transform: translateY(1rem) scale(0.95); // Tailwindのtranslate-y-4とscale-95に相当
+  }
+  &-enter-to, &-leave-from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+// スマホ画面での特定のトランジションスタイル
+@media (min-width: 640px) {
+  .c-modal__transition-base {
+    &-enter-from, &-leave-to {
+      transform: scale(0.95); // スマホ画面ではY軸移動を無効化
+    }
+    &-enter-to, &-leave-from {
+      transform: scale(1);
+    }
+  }
+}

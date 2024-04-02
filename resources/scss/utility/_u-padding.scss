@@ -1,0 +1,138 @@
+@use "../global/" as *;
+
+// padding
+.u-padding-xs {
+  padding: $space-xs;
+}
+.u-padding-s {
+padding: $space-s;
+}
+.u-padding-m {
+padding: $space-m;
+}
+.u-padding-lg {
+padding: $space-lg;
+}
+.u-padding-xl {
+padding: $space-xl;
+}
+.u-padding-2xl {
+padding: $space-2xl;
+}
+.u-padding-3xl {
+padding: $space-3xl;
+}
+.u-padding-4xl {
+padding: $space-4xl;
+}
+
+
+// padding top
+.u-padding__top-xs {
+padding-top: $space-xs;
+}
+.u-padding__top-s {
+padding-top: $space-s;
+}
+.u-padding__top-m {
+padding-top: $space-m;
+}
+.u-padding__top-lg {
+padding-top: $space-lg;
+}
+.u-padding__top-xl {
+padding-top: $space-xl;
+}
+.u-padding__top-2xl {
+padding-top: $space-2xl;
+}
+.u-padding__top-3xl {
+padding-top: $space-3xl;
+}
+.u-padding__top-4xl {
+padding-top: $space-4xl;
+}
+.u-padding__top-5xl {
+padding-top: $space-5xl;
+}
+
+// padding left
+.u-padding__left-xs {
+padding-left: $space-xs;
+}
+.u-padding__left-s {
+padding-left: $space-s;
+}
+.u-padding__left-m {
+padding-left: $space-m;
+}
+.u-padding__left-lg {
+padding-left: $space-lg;
+}
+.u-padding__left-xl {
+padding-left: $space-xl;
+}
+.u-padding__left-2xl {
+padding-left: $space-2xl;
+}
+.u-padding__left-3xl {
+padding-left: $space-3xl;
+}
+.u-padding__left-4xl {
+padding-left: $space-4xl;
+}
+
+// padding bottom
+.u-padding__bottom-xs {
+padding-bottom: $space-xs;
+}
+.u-padding__bottom-s {
+padding-bottom: $space-s;
+}
+.u-padding__bottom-m {
+padding-bottom: $space-m;
+}
+.u-padding__bottom-lg {
+padding-bottom: $space-lg;
+}
+.u-padding__bottom-xl {
+padding-bottom: $space-xl;
+}
+.u-padding__bottom-2xl {
+padding-bottom: $space-2xl;
+}
+.u-padding__bottom-3xl {
+padding-bottom: $space-3xl;
+}
+.u-padding__bottom-4xl {
+padding-bottom: $space-4xl;
+}
+.u-padding__bottom-5xl {
+padding-bottom: $space-5xl;
+}
+
+// padding right
+.u-padding__right-xs {
+padding-right: $space-xs;
+}
+.u-padding__right-s {
+padding-right: $space-s;
+}
+.u-padding__right-m {
+padding-right: $space-m;
+}
+.u-padding__right-lg {
+padding-right: $space-lg;
+}
+.u-padding__right-xl {
+padding-right: $space-xl;
+}
+.u-padding__right-2xl {
+padding-right: $space-2xl;
+}
+.u-padding__right-3xl {
+padding-right: $space-3xl;
+}
+.u-padding__right-4xl {
+padding-right: $space-4xl;
+}

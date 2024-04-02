@@ -1,0 +1,28 @@
+@use '../global' as *;
+
+.p-max-width-sm {
+  @include mq(sm) {
+    max-width: 24rem/* 384px */;
+  }
+}
+
+.p-max-width-md {
+  @include mq(sm) {
+    max-width: 28rem/* 448px */;
+  }
+}
+.p-max-width-lg {
+  @include mq(sm) {
+    max-width: 32rem/* 512px */;
+  }
+}
+.p-max-width-xl {
+  @include mq(sm) {
+    max-width: 36rem/* 576px */;
+  }
+}
+.p-max-width-2xl {
+  @include mq(sm) {
+    max-width: 42rem/* 672px */;
+  }
+}

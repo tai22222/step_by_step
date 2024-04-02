@@ -1,0 +1,27 @@
+@use '../global' as *;
+
+.p-form__btn-save {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.p-form__btn-saved {
+  font-size: 0.875rem/* 14px */;
+  line-height: 1.25rem/* 20px */;
+  color: $color-gray-600;
+}
+
+.p-form__btn-position-end {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-left: $space-lg;
+}
+
+.p-form__btn-position-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: $space-lg;
+}

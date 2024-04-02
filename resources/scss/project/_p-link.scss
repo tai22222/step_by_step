@@ -17,5 +17,25 @@
   }
 }
 
+// UpdateProfileInformationForm VerifyEmail
+.p-link__verify-email {
+  text-decoration: underline;
+  font-size: 0.875rem;
+  color: $color-gray-600;
+  border-radius: 0.375rem;
+  &:hover {
+      color: $color-gray-900;
+  }
+  &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+      outline-offset: 2px;
+  }
+}
 
-
+.p-link__text {
+  font-size: 0.875rem/* 14px */;
+  line-height: 1.25rem/* 20px */;
+  margin-top: 0.5rem;
+  color: $color-gray-800;
+}

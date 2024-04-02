@@ -49,12 +49,13 @@ const open = ref(false);
 
         <!-- todo アニメーションをcss対応 -->
           <transition
-              enter-active-class="transition ease-out duration-200"
-              enter-from-class="transform opacity-0 scale-95"
-              enter-to-class="transform opacity-100 scale-100"
-              leave-active-class="transition ease-in duration-75"
-              leave-from-class="transform opacity-100 scale-100"
-              leave-to-class="transform opacity-0 scale-95"
+              :name="c-dropdown"
+              enter-active-class="c-dropdown__transition-enter-active"
+              enter-from-class="c-dropdown__transition-enter-from"
+              enter-to-class="c-dropdown__transition-enter-to"
+              leave-active-class="c-dropdown__transition-leave-active"
+              leave-from-class="c-dropdown__transition-leave-from"
+              leave-to-class="c-dropdown__transition-leave-to"
           >
               <div
                   v-show="open"
