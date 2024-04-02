@@ -69,7 +69,6 @@ return [
     |
     */
 
-    // 'timezone' => 'UTC',
     'timezone' => 'Asia/Tokyo',
 
     /*
@@ -83,7 +82,6 @@ return [
     |
     */
 
-    // 'locale' => 'en',
     'locale' => 'ja',
 
     /*
@@ -110,7 +108,7 @@ return [
     |
     */
 
-    'faker_locale' => 'en_US',
+    'faker_locale' => 'ja_JP',
 
     /*
     |--------------------------------------------------------------------------
