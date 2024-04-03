@@ -11,49 +11,44 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
+// 未ログイン時のルーティング(ログイン画面、新規登録画面、パスワードリマインダー、パスワード変更)
 Route::middleware('guest')->group(function () {
-    Route::get('register', [RegisteredUserController::class, 'create'])
-                ->name('register');
-
+    // 新規登録画面の表示
+    Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
+    // ユーザの新規登録
     Route::post('register', [RegisteredUserController::class, 'store']);
-
-    Route::get('login', [AuthenticatedSessionController::class, 'create'])
-                ->name('login');
-
+    //ログイン画面の表示
+    Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
+    // ユーザのログイン
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
-
-    Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
-                ->name('password.request');
-
-    Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
-                ->name('password.email');
-
-    Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
-                ->name('password.reset');
-
-    Route::post('reset-password', [NewPasswordController::class, 'store'])
-                ->name('password.store');
+    // パスワードリマインダー画面表示
+    Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])->name('password.request');
+    // パスワードリマインダーのメール送信
+    Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])->name('password.email');
+    // パスワードリセット画面表示
+    Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])->name('password.reset');
+    // 新パスワードの入力
+    Route::post('reset-password', [NewPasswordController::class, 'store'])->name('password.store');
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('verify-email', EmailVerificationPromptController::class)
-                ->name('verification.notice');
-
+    // email認証の画面表示
+    Route::get('verify-email', EmailVerificationPromptController::class)->name('verification.notice');
+    // ログインユーザのemail認証の画面表示
     Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)
                 ->middleware(['signed', 'throttle:6,1'])
                 ->name('verification.verify');
-
+    // email認証のためのメール送信
     Route::post('email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
                 ->middleware('throttle:6,1')
                 ->name('verification.send');
-
+    // パスワード認証画面の表示
     Route::get('confirm-password', [ConfirmablePasswordController::class, 'show'])
                 ->name('password.confirm');
-
+    // パスワード認証の送信
     Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
-
+    // パスワード変更の更新処理
     Route::put('password', [PasswordController::class, 'update'])->name('password.update');
-
-    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
-                ->name('logout');
+    //ログアウト処理
+    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 });

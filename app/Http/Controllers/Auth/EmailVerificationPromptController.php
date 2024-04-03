@@ -12,7 +12,7 @@ use Inertia\Response;
 class EmailVerificationPromptController extends Controller
 {
     /**
-     * Display the email verification prompt.
+     * email認証の画面表示
      */
     public function __invoke(Request $request): RedirectResponse|Response
     {

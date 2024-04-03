@@ -14,7 +14,7 @@ use Inertia\Response;
 class ConfirmablePasswordController extends Controller
 {
     /**
-     * Show the confirm password view.
+     * パスワード認証画面の表示
      */
     public function show(): Response
     {
@@ -22,7 +22,7 @@ class ConfirmablePasswordController extends Controller
     }
 
     /**
-     * Confirm the user's password.
+     * パスワード認証の送信
      */
     public function store(Request $request): RedirectResponse
     {
