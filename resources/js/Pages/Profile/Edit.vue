@@ -16,7 +16,7 @@ defineProps({
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="c-header__main-title">Profile</h2>
+            <h2 class="c-header__main-title">{{ $t('Profile') }}</h2>
         </template>
 
         <div class="u-padding__top-5xl u-padding__bottom-5xl">

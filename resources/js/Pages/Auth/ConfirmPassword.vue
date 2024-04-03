@@ -22,8 +22,7 @@ const submit = () => {
     <Head title="Confirm Password" />
 
     <div class="c-description">
-      This is a secure area of the application. Please confirm your password
-      before continuing.
+      {{ $t('This is a secure area of the application. Please confirm your password before continuing.') }}
     </div>
 
     <form @submit.prevent="submit">
@@ -47,7 +46,7 @@ const submit = () => {
           :class="{ 'u-opacity-25': form.processing }"
           :disabled="form.processing"
         >
-          Confirm
+          {{ $t('Confirm') }}
         </PrimaryButton>
       </div>
     </form>

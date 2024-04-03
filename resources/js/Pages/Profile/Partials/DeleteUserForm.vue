@@ -41,28 +41,24 @@ const closeModal = () => {
   <!-- todo -->
   <section class="u-margin__top-2xl u-margin__bottom-2xl">
     <header>
-      <h2 class="c-header__title">Delete Account</h2>
+      <h2 class="c-header__title">{{ $t('Delete Account') }}</h2>
 
       <p class="c-header__description">
-        Once your account is deleted, all of its resources and data will be
-        permanently deleted. Before deleting your account, please download any
-        data or information that you wish to retain.
+        {{ $t('Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.') }}
       </p>
     </header>
 
-    <DangerButton @click="confirmUserDeletion" class="u-margin__top-2xl">Delete Account</DangerButton>
+    <DangerButton @click="confirmUserDeletion" class="u-margin__top-2xl">{{ $t('Delete Account') }}</DangerButton>
 
     <!-- クリック後のモーダル表示 -->
     <Modal :show="confirmingUserDeletion" @close="closeModal">
       <div class="u-padding-2xl">
         <h2 class="c-header__title">
-          Are you sure you want to delete your account?
+          {{ $t('Are you sure you want to delete your account?') }}
         </h2>
 
         <p class="c-header__description">
-          Once your account is deleted, all of its resources and data will be
-          permanently deleted. Please enter your password to confirm you would
-          like to permanently delete your account.
+          {{ $t('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
         </p>
 
         <div class="u-margin__top-2xl">
@@ -82,7 +78,7 @@ const closeModal = () => {
         </div>
 
         <div class="p-form__btn-position-end u-margin__top-2xl">
-          <SecondaryButton @click="closeModal"> Cancel </SecondaryButton>
+          <SecondaryButton @click="closeModal"> {{ $t('Cancel') }} </SecondaryButton>
 
           <DangerButton
             class="u-margin__left-m"
@@ -90,7 +86,7 @@ const closeModal = () => {
             :disabled="form.processing"
             @click="deleteUser"
           >
-            Delete Account
+            {{ $t('Delete Account') }}
           </DangerButton>
         </div>
       </div>

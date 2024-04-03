@@ -8,11 +8,21 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 
 import { InertiaProgress } from '@inertiajs/progress';
+import { createI18n } from 'vue-i18n'
+import ja from './locales/ja.json';
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 
 // './Pages' ディレクトリ内のすべての `.vue` ファイルを解決するための関数を定義
 const pages = require.context('./Pages', true, /\.vue$/);
+
+const i18n = createI18n({
+  locale: window.App.locale,
+  fallbackLocale: 'en',
+  messages: {
+    ja,
+  },
+});
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
@@ -24,6 +34,7 @@ createInertiaApp({
         return createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue, Ziggy)
+            .use(i18n)
             .mount(el);
     },
 });

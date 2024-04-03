@@ -21,10 +21,10 @@ const form = useForm({
 <template>
     <section>
         <header>
-            <h2 class="c-header__title">Profile Information</h2>
+            <h2 class="c-header__title">{{ $t('Profile Information') }}</h2>
 
             <p class="c-header__description">
-                Update your account's profile information and email address.
+                {{ $t("Update your account's profile information and email address.") }}
             </p>
         </header>
 
@@ -62,14 +62,14 @@ const form = useForm({
 
             <div v-if="props.mustVerifyEmail && user.email_verified_at === null">
                 <p class="p-link__text">
-                    Your email address is unverified.
+                    {{ $t('Your email address is unverified.') }}
                     <Link
                         :href="route('verification.send')"
                         method="post"
                         as="button"
                         class="p-link__verify-email"
                     >
-                        Click here to re-send the verification email.
+                        {{ $t('Your email address is unverified.') }}
                     </Link>
                 </p>
 
@@ -77,18 +77,18 @@ const form = useForm({
                     v-show="props.status === 'verification-link-sent'"
                     class="c-confirm-message"
                 >
-                    A new verification link has been sent to your email address.
+                    {{ $t('Your email address is unverified.') }}
                 </div>
             </div>
 
             <div class="p-form__btn-save u-margin__top-lg">
-                <PrimaryButton :disabled="form.processing">Save</PrimaryButton>
+                <PrimaryButton :disabled="form.processing">{{ $t('Save') }}</PrimaryButton>
 
                         <Transition 
                             enter-from-class="u-opacity-0" 
                             leave-to-class="u-opacity-0" 
                             class="p-transition__btn">
-                    <p v-if="form.recentlySuccessful" class="p-form__btn-saved">Saved.</p>
+                    <p v-if="form.recentlySuccessful" class="p-form__btn-saved">{{ $t('Saved.') }}</p>
                 </Transition>
             </div>
         </form>

@@ -68,7 +68,7 @@ const submit = () => {
       <div class="p-login__checkbox">
         <label class="p-login__checkbox-label">
           <Checkbox name="remember" v-model:checked="form.remember" />
-          <span class="p-login__checkbox-text">Remember me</span>
+          <span class="p-login__checkbox-text">{{ $t('Remember me') }} </span>
         </label>
       </div>
 
@@ -78,7 +78,7 @@ const submit = () => {
           :href="route('password.request')"
           class="p-link"
         >
-          Forgot your password?
+          {{ $t('Forgot your password?') }}
         </Link>
 
         <PrimaryButton
@@ -86,7 +86,7 @@ const submit = () => {
           :class="{ 'u-opacity-25': form.processing }"
           :disabled="form.processing"
         >
-          Log in
+          {{ $t('Log in') }}
         </PrimaryButton>
       </div>
     </form>

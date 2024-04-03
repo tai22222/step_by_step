@@ -36,10 +36,10 @@ const updatePassword = () => {
 <template>
     <section>
         <header>
-            <h2 class="c-header__title">Update Password</h2>
+            <h2 class="c-header__title">{{ $t('Update Password') }}</h2>
 
             <p class="c-header__description">
-                Ensure your account is using a long, random password to stay secure.
+                {{ $t('Ensure your account is using a long, random password to stay secure.') }}
             </p>
         </header>
 
@@ -89,12 +89,12 @@ const updatePassword = () => {
             </div>
 
             <div class="p-form__btn-save u-margin__top-lg">
-                <PrimaryButton :disabled="form.processing">Save</PrimaryButton>
+                <PrimaryButton :disabled="form.processing">{{ $t('Save') }}</PrimaryButton>
 
                 <Transition enter-from-class="u-opacity-0" 
                             leave-to-class="u-opacity-0" 
                             class="p-transition__btn">
-                    <p v-if="form.recentlySuccessful" class="p-form__btn-saved">Saved.</p>
+                    <p v-if="form.recentlySuccessful" class="p-form__btn-saved">{{ $t('Saved.') }}</p>
                 </Transition>
             </div>
         </form>

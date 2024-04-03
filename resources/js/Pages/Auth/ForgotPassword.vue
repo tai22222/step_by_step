@@ -24,9 +24,7 @@ const submit = () => {
     <Head title="Forgot Password" />
 
     <div class="c-description">
-      Forgot your password? No problem. Just let us know your email address and
-      we will email you a password reset link that will allow you to choose a
-      new one.
+      {{ $t('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
     </div>
 
     <div v-if="status" class="c-confirm-message">
@@ -55,7 +53,7 @@ const submit = () => {
           :class="{ 'u-opacity-25': form.processing }"
           :disabled="form.processing"
         >
-          Email Password Reset Link
+          {{ $t('Email Password Reset Link') }}
         </PrimaryButton>
       </div>
     </form>

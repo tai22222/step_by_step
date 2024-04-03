@@ -22,18 +22,17 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
         <Head title="Email Verification" />
 
         <div class="c-description">
-            Thanks for signing up! Before getting started, could you verify your email address by clicking on the link
-            we just emailed to you? If you didn't receive the email, we will gladly send you another.
+            {{ $t("Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn't receive the email, we will gladly send you another.") }}
         </div>
 
         <div class="c-confirm-message" v-if="verificationLinkSent">
-            A new verification link has been sent to the email address you provided during registration.
+            {{ $t('A new verification link has been sent to the email address you provided during registration.') }}
         </div>
 
         <form @submit.prevent="submit">
             <div class="p-form__btn-position-between">
                 <PrimaryButton :class="{ 'u-opacity-25': form.processing }" :disabled="form.processing">
-                    Resend Verification Email
+                    {{ $t('Resend Verification Email') }}
                 </PrimaryButton>
 
                 <Link
@@ -41,7 +40,7 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
                     method="post"
                     as="button"
                     class="p-link__verify-email"
-                    >Log Out</Link
+                    >{{ $t('Log Out') }}</Link
                 >
             </div>
         </form>

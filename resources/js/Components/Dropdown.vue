@@ -47,9 +47,7 @@ const open = ref(false);
         <!-- Full Screen Dropdown Overlay -->
         <div v-show="open" class="c-dropdown__screen" @click="open = false"></div>
 
-        <!-- todo アニメーションをcss対応 -->
           <transition
-              :name="c-dropdown"
               enter-active-class="c-dropdown__transition-enter-active"
               enter-from-class="c-dropdown__transition-enter-from"
               enter-to-class="c-dropdown__transition-enter-to"

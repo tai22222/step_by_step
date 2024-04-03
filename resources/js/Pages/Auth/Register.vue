@@ -91,14 +91,14 @@ const submit = () => {
       </div>
 
       <div class="p-form__btn-position-end u-margin__top-lg">
-        <Link :href="route('login')" class="p-link"> Already registered? </Link>
+        <Link :href="route('login')" class="p-link"> {{ $t('Already registered?') }} </Link>
 
         <PrimaryButton
           class="u-margin__left-m"
           :class="{ 'u-opacity-25': form.processing }"
           :disabled="form.processing"
         >
-          Register
+          {{ $t('Register') }}
         </PrimaryButton>
       </div>
     </form>

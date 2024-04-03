@@ -65,8 +65,8 @@ const showingNavigationDropdown = ref(false);
                                     </template>
 
                                     <template #content>
-                                        <DropdownLink :href="route('profile.edit')"> Profile </DropdownLink>
-                                        <DropdownLink :href="route('logout')" method="post" as="button">Log Out</DropdownLink>
+                                        <DropdownLink :href="route('profile.edit')"> {{ $t('Profile') }} </DropdownLink>
+                                        <DropdownLink :href="route('logout')" method="post" as="button">{{ $t('Log Out') }}</DropdownLink>
                                     </template>
                                 </Dropdown>
                             </div>
@@ -124,8 +124,8 @@ const showingNavigationDropdown = ref(false);
                         </div>
 
                         <div class="p-nav__responsible-routing">
-                            <ResponsiveNavLink :href="route('profile.edit')"> Profile </ResponsiveNavLink>
-                            <ResponsiveNavLink :href="route('logout')" method="post" as="button">Log Out</ResponsiveNavLink>
+                            <ResponsiveNavLink :href="route('profile.edit')"> {{ $t('Profile') }} </ResponsiveNavLink>
+                            <ResponsiveNavLink :href="route('logout')" method="post" as="button">{{ $t('Log Out') }}</ResponsiveNavLink>
                         </div>
                     </div>
                 </div>
