@@ -1,4 +1,3 @@
-// import './bootstrap';
 import '../scss/style.scss';
 
 import { createApp, h } from 'vue';
@@ -16,6 +15,7 @@ const appName = window.document.getElementsByTagName('title')[0]?.innerText || '
 // './Pages' ディレクトリ内のすべての `.vue` ファイルを解決するための関数を定義
 const pages = require.context('./Pages', true, /\.vue$/);
 
+// i18nでの多言語化対応のための定義
 const i18n = createI18n({
   locale: window.App.locale,
   fallbackLocale: 'en',
@@ -39,6 +39,7 @@ createInertiaApp({
     },
 });
 
+// プログレスバーのカラー定義
 InertiaProgress.init({
   color: '#4B5563', // ここでプログレスバーの色を設定
 });

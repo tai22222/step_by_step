@@ -11,11 +11,14 @@ import { Head } from '@inertiajs/vue3';
             <h2 class="c-header__main-title">{{ $t('Dashboard') }}</h2>
         </template>
 
-        <div class="py-12">
+        <div class="u-padding__top-5xl u-padding__bottom-5xl py-12">
             <div class="l-container p-dashboard">
-              <!-- todo -->
-                <div class="p-dashboard__inner bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-dashboard__inner-text">TOPページの作成</div>
+
+              <!-- todo(Mypage作成) -->
+                <div class="p-dashboard__inner">
+                    <div class="p-dashboard__inner-text">
+                      TOPページの作成
+                    </div>
                 </div>
             </div>
         </div>

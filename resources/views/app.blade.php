@@ -18,9 +18,7 @@
         <script>
           // 多言語化対応するためにlocaleを定義
           window.App = {!! json_encode(['locale' => app()->getLocale()]) !!};
-          // var __locale = '{{ app()->getLocale() }}'
         </script>
-        {{-- @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"]) --}}
         @inertiaHead
     </head>
     <body class="font-sans antialiased">
