@@ -15,9 +15,17 @@ class ProfileUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
+      logger("==========ProfileUpdateRequest=============");
+      logger($this->all());
+      logger("==========ProfileUpdateRequest=============");
+
         return [
             'name' => ['string', 'max:255'],
             'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
+            'icon_image' => ['nullable', 'mimetypes:image/jpeg,image/png', 'max:1024'],
+            'introduction' => ['nullable', 'string'],
         ];
     }
+
+
 }

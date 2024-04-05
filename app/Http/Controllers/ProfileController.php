@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -29,15 +30,29 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $user = $request->user();
+        $user->fill($request->validated());
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
         }
 
-        $request->user()->save();
+        // 画像をstorageに保存する処理(publicディレクトリの中のprofileディレクトリに保存)
+        if ($request->hasFile('icon_image')) {
+            // 過去の画像が存在する場合は削除
+            if ($user->icon_image && Storage::disk('public')->exists($user->icon_image)) {
+              Storage::disk('public')->delete($user->icon_image);
+            }
+          $imagePath = $request->file('icon_image')->store('profile', 'public');
+          $user->icon_image = $imagePath;
+        }
+        
+        logger('$request');
+        logger($request);
+        $user->save();
 
-        return Redirect::route('profile.edit');
+        return Redirect::route('profile.edit')->with('success', 'プロフィールが更新されました。');
     }
 
     /**
