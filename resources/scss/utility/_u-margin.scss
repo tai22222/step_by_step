@@ -130,3 +130,71 @@ margin-right: $space-3xl;
 .u-margin__right-4xl {
 margin-right: $space-4xl;
 }
+
+// margin 上下
+.u-margin__y-xs {
+margin-top: $space-xs;
+margin-bottom: $space-xs;
+}
+.u-margin__y-s {
+margin-top: $space-s;
+margin-bottom: $space-s;
+}
+.u-margin__y-m {
+margin-top: $space-m;
+margin-bottom: $space-m;
+}
+.u-margin__y-lg {
+margin-top: $space-lg;
+margin-bottom: $space-lg;
+}
+.u-margin__y-xl {
+margin-top: $space-xl;
+margin-bottom: $space-xl;
+}
+.u-margin__y-2xl {
+margin-top: $space-2xl;
+margin-bottom: $space-2xl;
+}
+.u-margin__y-3xl {
+margin-top: $space-3xl;
+margin-bottom: $space-3xl;
+}
+.u-margin__y-4xl {
+margin-top: $space-4xl;
+margin-bottom: $space-4xl;
+}
+
+// margin 左右
+.u-margin__x-xs {
+margin-left: $space-xs;
+margin-right: $space-xs;
+}
+.u-margin__x-s {
+margin-left: $space-s;
+margin-right: $space-s;
+}
+.u-margin__x-m {
+margin-left: $space-m;
+margin-right: $space-m;
+}
+.u-margin__x-lg {
+margin-left: $space-lg;
+margin-right: $space-lg;
+}
+.u-margin__x-xl {
+margin-left: $space-xl;
+margin-right: $space-xl;
+}
+.u-margin__x-2xl {
+margin-left: $space-2xl;
+margin-right: $space-2xl;
+}
+.u-margin__x-3xl {
+margin-left: $space-3xl;
+margin-right: $space-3xl;
+}
+.u-margin__x-4xl {
+margin-left: $space-4xl;
+margin-right: $space-4xl;
+}

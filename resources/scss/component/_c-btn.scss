@@ -88,3 +88,10 @@
       outline-offset: 2px; /* focus:ring-offset-2 */
   }
 }
+
+// 削除ボタン
+.c-btn__delete {
+  margin: $space-m $space-m 0 $space-m;
+  background-color: #c53030;
+  color: white;
+}

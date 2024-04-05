@@ -15,6 +15,7 @@ const form = useForm({
     password_confirmation: '',
 });
 
+// パスワード変更のメソッド
 const updatePassword = () => {
     form.put(route('password.update'), {
         preserveScroll: true,
@@ -45,7 +46,7 @@ const updatePassword = () => {
 
         <form @submit.prevent="updatePassword" class="u-margin__top-2xl u-margin__bottom-2xl">
             <div>
-                <InputLabel for="current_password" value="Current Password" />
+                <InputLabel for="current_password" :value="$t('Current Password')" />
 
                 <TextInput
                     id="current_password"
@@ -60,7 +61,7 @@ const updatePassword = () => {
             </div>
 
             <div class="u-margin__top-lg">
-                <InputLabel for="password" value="New Password" />
+                <InputLabel for="password" :value="$t('New Password')" />
 
                 <TextInput
                     id="password"
@@ -75,7 +76,7 @@ const updatePassword = () => {
             </div>
 
             <div class="u-margin__top-lg">
-                <InputLabel for="password_confirmation" value="Confirm Password" />
+                <InputLabel for="password_confirmation" :value="$t('Confirm Password')" />
 
                 <TextInput
                     id="password_confirmation"
@@ -89,12 +90,12 @@ const updatePassword = () => {
             </div>
 
             <div class="p-form__btn-save u-margin__top-lg">
-                <PrimaryButton :disabled="form.processing">{{ $t('Save') }}</PrimaryButton>
+                <PrimaryButton :disabled="form.processing">{{ $t('Change') }}</PrimaryButton>
 
                 <Transition enter-from-class="u-opacity-0" 
                             leave-to-class="u-opacity-0" 
                             class="p-transition__btn">
-                    <p v-if="form.recentlySuccessful" class="p-form__btn-saved">{{ $t('Saved.') }}</p>
+                    <p v-if="form.recentlySuccessful" class="p-form__btn-saved">{{ $t('Changed.') }}</p>
                 </Transition>
             </div>
         </form>

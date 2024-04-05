@@ -1,0 +1,15 @@
+@use "../global/" as *;
+
+.c-image__preview {
+  border-radius: 100%;
+  border-color: black;
+  border: 3px;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+
+  @include mq(sm) {
+    height: 10rem;
+    width: 10rem;
+  }
+}
