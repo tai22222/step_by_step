@@ -48,12 +48,12 @@ const validEmail = () => {
   }
 }
 
-const validPassword = ( field ) => {
-  const { isValid, errorMessage} = isValidPassword(form[field]);
+const validPassword = ( ) => {
+  const { isValid, errorMessage} = isValidPassword(form.password);
   if(!isValid) {
-    form.errors[field] = errorMessage;
+    form.errors.password = errorMessage;
   } else {
-    form.errors[field] = "";
+    form.errors.password = "";
   }
 }
 
@@ -73,7 +73,7 @@ const confirmPassword = () => {
 
     <form @submit.prevent="submit">
       <div>
-        <InputLabel for="name" value="Name" />
+        <InputLabel for="name" :value="$t('Name')" />
 
         <TextInput
           id="name"
@@ -89,7 +89,7 @@ const confirmPassword = () => {
       </div>
 
       <div class="u-margin__top-l">
-        <InputLabel for="email" value="Email" />
+        <InputLabel for="email" :value="$t('Email')" />
 
         <TextInput
           id="email"
@@ -104,7 +104,7 @@ const confirmPassword = () => {
       </div>
 
       <div class="u-margin__top-lg">
-        <InputLabel for="password" value="Password" />
+        <InputLabel for="password" :value="$t('Password')" />
 
         <TextInput
           id="password"
@@ -119,7 +119,7 @@ const confirmPassword = () => {
       </div>
 
       <div class="u-margin__top-lg">
-        <InputLabel for="password_confirmation" value="Confirm Password" />
+        <InputLabel for="password_confirmation" :value="$t('Confirm Password')" />
 
         <TextInput
           id="password_confirmation"

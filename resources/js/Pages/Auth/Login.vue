@@ -60,7 +60,7 @@ const validPassword = ( ) => {
 
     <form @submit.prevent="submit">
       <div>
-        <InputLabel for="email" value="Email" />
+        <InputLabel for="email" :value="$t('Email')" />
         <TextInput
           id="email"
           type="email"
@@ -75,7 +75,7 @@ const validPassword = ( ) => {
       </div>
 
       <div class="u-margin__top-lg">
-        <InputLabel for="password" value="Password" />
+        <InputLabel for="password" :value="$t('Password')" />
         <TextInput
           id="password"
           type="password"
