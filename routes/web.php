@@ -29,7 +29,8 @@ Route::get('/', function () {
 // ログイン時にResources/Pages/Dashboard.vueを表示
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware('auth')->name('dashboard');
 
 // ログイン時のルーティング
 Route::middleware('auth')->group(function () {
