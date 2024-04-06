@@ -746,7 +746,7 @@ a {
 .p-nav__right {
   display: none;
 }
-@media screen and (min-width: 400px) {
+@media screen and (min-width: 768px) {
   .p-nav__right {
     display: flex;
     align-items: center;
@@ -791,7 +791,7 @@ a {
   width: 1rem;
 }
 
-@media screen and (min-width: 400px) {
+@media screen and (min-width: 768px) {
   .p-nav__responsible {
     display: none;
   }
@@ -931,7 +931,7 @@ a {
   display: flex;
   align-items: center;
 }
-@media screen and (min-width: 400px) {
+@media screen and (min-width: 768px) {
   .p-hamburger {
     display: none;
   }

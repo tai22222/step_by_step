@@ -4,7 +4,7 @@
   margin-right: -0.5rem;
   display: flex;
   align-items: center;
-  @include mq(sm) {
+  @include mq(md) {
     display: none;
   }
 }

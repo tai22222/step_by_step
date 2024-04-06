@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -37,10 +38,25 @@ Route::middleware('auth')->group(function () {
     // プロフィール画面表示
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     // プロフィール情報更新
-    // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
     // ユーザ削除
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // プロジェクト一覧画面
+    Route::get('/project', [ProjectController::class, 'index'])->name('project.index');
+    // プロジェクト作成画面
+    Route::get('/project/create', [ProjectController::class, 'create'])->name('project.create');
+    // プロジェクト作成
+    Route::post('/project/create', [ProjectController::class, 'store'])->name('project.store');
+    // プロジェクト詳細画面
+    Route::get('/project/{id}', [ProjectController::class, 'show'])->name('project.show');
+    // プロジェクト編集画面
+    Route::get('/project/edit/{id}', [ProjectController::class, 'edit'])->name('project.edit');
+    // プロジェクト編集
+    Route::put('/project/edit/{id}', [ProjectController::class, 'update'])->name('project.update');
+    // プロジェクト編集
+    Route::delete('/project/{id}', [ProjectController::class, 'destroy'])->name('project.destroy');
+
 });
 
 require __DIR__.'/auth.php';

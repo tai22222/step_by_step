@@ -48,7 +48,7 @@
 // ヘッダー部分のナビゲーションのライト側の要素
 .p-nav__right {
   display: none;
-  @include mq(sm) {
+  @include mq(md) {
     display: flex;
     align-items: center;
     margin-left: 1.5rem;
@@ -96,7 +96,7 @@
 
 // レスポンシブ(スマホでの表示)のナビゲーション メニュー
 .p-nav__responsible {
-  @include mq(sm) {
+  @include mq(md) {
     display: none;
   }
 }

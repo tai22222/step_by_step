@@ -94,7 +94,10 @@ onMounted(() => {
                             <!-- ナビゲーションリンク(スマホは非表示) -->
                             <div class="p-nav__left-link">
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                                    Dashboard
+                                    {{ $t('My Page') }}
+                                </NavLink>
+                                <NavLink :href="route('project.create')" :active="route().current('project.create')">
+                                    {{ $t('create steps') }}
                                 </NavLink>
                             </div>
                         </div>
@@ -127,6 +130,7 @@ onMounted(() => {
 
                                     <template #content>
                                         <DropdownLink :href="route('profile.edit')"> {{ $t('Profile') }} </DropdownLink>
+                                        <DropdownLink :href="route('project.create')"> {{ $t('create steps') }} </DropdownLink>
                                         <DropdownLink :href="route('logout')" method="post" as="button">{{ $t('Log Out') }}</DropdownLink>
                                     </template>
                                 </Dropdown>
@@ -173,7 +177,7 @@ onMounted(() => {
                 >
                     <div class="p-nav__responsible-title">
                         <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                            Dashboard
+                            {{ $t('My Page') }}
                         </ResponsiveNavLink>
                     </div>
 
@@ -186,6 +190,7 @@ onMounted(() => {
 
                         <div class="p-nav__responsible-routing">
                             <ResponsiveNavLink :href="route('profile.edit')"> {{ $t('Profile') }} </ResponsiveNavLink>
+                            <ResponsiveNavLink :href="route('project.index')"> {{ $t('Step') }} </ResponsiveNavLink>
                             <ResponsiveNavLink :href="route('logout')" method="post" as="button">{{ $t('Log Out') }}</ResponsiveNavLink>
                         </div>
                     </div>
