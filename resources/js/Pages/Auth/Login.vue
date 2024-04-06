@@ -7,6 +7,12 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
 import { Head, Link, useForm } from "@inertiajs/vue3";
 
+// バリデーション
+import {
+  isValidEmail,
+  isValidPassword,
+} from "@/Utils/validators";
+
 defineProps({
   canResetPassword: Boolean,
   status: String,
@@ -23,6 +29,25 @@ const submit = () => {
     onFinish: () => form.reset("password"),
   });
 };
+
+// バリデーション
+const validEmail = () => {
+  const { isValid, errorMessage } = isValidEmail(form.email);
+  if(!isValid) {
+    form.errors.email = errorMessage;
+  } else {
+    form.errors.email = "";
+  }
+}
+
+const validPassword = ( ) => {
+  const { isValid, errorMessage} = isValidPassword(form.password);
+  if(!isValid) {
+    form.errors.password = errorMessage;
+  } else {
+    form.errors.password = "";
+  }
+}
 </script>
 
 <template>
@@ -36,7 +61,6 @@ const submit = () => {
     <form @submit.prevent="submit">
       <div>
         <InputLabel for="email" value="Email" />
-
         <TextInput
           id="email"
           type="email"
@@ -45,14 +69,13 @@ const submit = () => {
           required
           autofocus
           autocomplete="username"
+          @blur="validEmail"
         />
-
         <InputError class="u-margin__top-s" :message="form.errors.email" />
       </div>
 
       <div class="u-margin__top-lg">
         <InputLabel for="password" value="Password" />
-
         <TextInput
           id="password"
           type="password"
@@ -60,8 +83,8 @@ const submit = () => {
           v-model="form.password"
           required
           autocomplete="current-password"
+          @blur="validEmail"
         />
-
         <InputError class="u-margin__top-s" :message="form.errors.password" />
       </div>
 

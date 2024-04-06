@@ -12,12 +12,11 @@ import { Inertia } from '@inertiajs/inertia'
 import { ref } from 'vue';
 
 // バリデーション
-// import {
-//   isValidText,
-//   isValidMax,
-//   isValidImageSize,
-//   isValidImageType,
-// } from "@/utils/validators";
+import {
+  isValidEmail,
+  isValidImageSize,
+  isValidImageType,
+} from "@/Utils/validators";
 
 const props = defineProps({
     mustVerifyEmail: Boolean,
@@ -49,20 +48,19 @@ const updatePhotoPreview = () => {
   if(!photo) return;
 
   // サイズのバリデーション
-  // let validationResult = isValidImageSize(photo);
-  // if (!validationResult.isValid) {
-  //   form.errors[icon_image] = validationResult.errorMessage;
-  //   return;
-  // }
-
+  let validationResult = isValidImageSize(photo);
+  if (!validationResult.isValid) {
+    form.errors.icon_image = validationResult.errorMessage;
+    return;
+  }
   // 形式のバリデーション
-  // validationResult = isValidImageType(photo);
-  // if (!validationResult.isValid) {
-  //   form.errors[icon_image] = validationResult.errorMessage;
-  //   return;
-  // }
+  validationResult = isValidImageType(photo);
+  if (!validationResult.isValid) {
+    form.errors.icon_image = validationResult.errorMessage;
+    return;
+  }
 
-  // form.errors[icon_image] = ""; // エラーをクリア
+  form.errors.icon_image = ""; // エラーをクリア
   
   const reader = new FileReader();
   reader.onload = (e) => {
@@ -80,17 +78,31 @@ const deleteImage = () => {
   photoPreview.value = null;
 }
 
-// アイコン画像をpost、その他情報をputで更新
-// フォームデータにファイルデータを入れ込む(送信時に入れ込む)
-// form.icon_image = photo;
-// form.icon_imageがphotoPreviewと異なる場合post送信
-// その他はformの内容と差異がある場合は
+// プロフィール情報の変更をDB更新
 const updateProfileInformation = () => {
   if(photoInput.value) {
     form.icon_image = photoInput.value.files[0];
   }
   Inertia.post(route('profile.update'), form);
 }
+
+// 入力文字のカウント(keyup)
+const initialCountLength = form.introduction.length; // 初期値
+const countInput = ref(initialCountLength);
+const textCount = () => {
+  countInput.value = form.introduction.length;
+}
+
+// バリデーション
+const validEmail = () => {
+  const { isValid, errorMessage } = isValidEmail(form.email);
+  if(!isValid) {
+    form.errors.email = errorMessage;
+  } else {
+    form.errors.email = "";
+  }
+}
+
 </script>
 
 <template>
@@ -187,6 +199,7 @@ const updateProfileInformation = () => {
                     v-model="form.email"
                     required
                     autocomplete="username"
+                    @blur="validEmail"
                 />
                 <InputError class="u-margin__top-s" :message="form.errors.email" />
             </div>
@@ -221,8 +234,13 @@ const updateProfileInformation = () => {
                     v-model="form.introduction"
                     placeholder="例）英語の学習を6年ほど独学でやっています。
 多言語にも共通する勉強方法もあると思うのでぜひチャレンジしてみてください"
+                    @keyup="textCount"
                 />
-                <InputError class="u-margin__top-s" :message="form.errors.name" />
+                <!-- カウントアップと500文字を超えたら赤字 -->
+                <div class="u-align__right">
+                 ( <span :class="{ 'c-text__danger': countInput >= 500 }">{{ countInput }}</span> / 500 文字 )
+                </div>
+                <InputError class="u-margin__top-s" :message="form.errors.introduction" />
             </div>
             <!-- 保存ボタン -->
             <div class="p-form__btn-save u-margin__top-lg">

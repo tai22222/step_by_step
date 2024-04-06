@@ -35,22 +35,6 @@ export const doPasswordsMatch = (password, confirmPassword) => {
   }
 };
 
-// 電話番号のバリデーション
-export const isValidPhone = phoneNumber => {
-  // ハイフンを削除
-  const digits = phoneNumber.replace(/-/g, '');
-  const re = /^\d{10,11}$/; // 日本の電話番号を想定
-  if( re.test(digits)){
-    return { isValid: true}
-  } else {
-    return {
-      isValid: false,
-      errorMessage: "正式な電話番号を入力してください。"
-    }
-  }
-};
-
-
 // テキスト入力のバリデーション(最低文字数&最大文字)
 export const isValidText = (text, max, min) => {
   if(text.trim().length > min && text.trim().length <= max) {

@@ -6,6 +6,12 @@ import TextInput from '@/Components/TextInput.vue';
 import { useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
+// バリデーション
+import {
+  isValidPassword,
+  doPasswordsMatch,
+} from "@/Utils/validators";
+
 const passwordInput = ref(null);
 const currentPasswordInput = ref(null);
 
@@ -32,6 +38,26 @@ const updatePassword = () => {
         },
     });
 };
+
+// バリデーション
+const validPassword = ( field ) => {
+  const { isValid, errorMessage} = isValidPassword(form[field]);
+  if(!isValid) {
+    form.errors[field] = errorMessage;
+  } else {
+    form.errors[field] = "";
+  }
+}
+
+const confirmPassword = () => {
+  const { isValid, errorMessage } = doPasswordsMatch(form.password ,form.password_confirmation);
+  if(!isValid){
+    form.errors.password_confirmation = errorMessage;
+  } else {
+    form.errors.password_confirmation = "";
+  }
+}
+
 </script>
 
 <template>
@@ -55,6 +81,7 @@ const updatePassword = () => {
                     type="password"
                     class="c-text-input__full-width"
                     autocomplete="current-password"
+                    @blur="validPassword('current_password')"
                 />
 
                 <InputError :message="form.errors.current_password" class="u-margin__top-s" />
@@ -70,6 +97,7 @@ const updatePassword = () => {
                     type="password"
                     class="c-text-input__full-width"
                     autocomplete="new-password"
+                    @blur="validPassword('password')"
                 />
 
                 <InputError :message="form.errors.password" class="u-margin__top-s" />
@@ -84,6 +112,7 @@ const updatePassword = () => {
                     type="password"
                     class="c-text-input__full-width"
                     autocomplete="new-password"
+                    @blur="confirmPassword"
                 />
 
                 <InputError :message="form.errors.password_confirmation" class="u-margin__top-s" />

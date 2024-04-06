@@ -6,6 +6,14 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
 import { Head, Link, useForm } from "@inertiajs/vue3";
 
+// バリデーション
+import {
+  isValidEmail,
+  isValidText,
+  isValidPassword,
+  doPasswordsMatch,
+} from "@/Utils/validators";
+
 const form = useForm({
   name: "",
   email: "",
@@ -14,11 +22,49 @@ const form = useForm({
   terms: false,
 });
 
+// フォームの送信
 const submit = () => {
   form.post(route("register"), {
     onFinish: () => form.reset("password", "password_confirmation"),
   });
 };
+
+// バリデーション
+const validText = (max, min) => {
+  const { isValid, errorMessage } = isValidText(form.name, max, min);
+  if(!isValid){
+    form.errors.name = errorMessage;
+  } else {
+    form.errors.name = "";
+  }
+}
+
+const validEmail = () => {
+  const { isValid, errorMessage } = isValidEmail(form.email);
+  if(!isValid) {
+    form.errors.email = errorMessage;
+  } else {
+    form.errors.email = "";
+  }
+}
+
+const validPassword = ( field ) => {
+  const { isValid, errorMessage} = isValidPassword(form[field]);
+  if(!isValid) {
+    form.errors[field] = errorMessage;
+  } else {
+    form.errors[field] = "";
+  }
+}
+
+const confirmPassword = () => {
+  const { isValid, errorMessage } = doPasswordsMatch(form.password ,form.password_confirmation);
+  if(!isValid){
+    form.errors.password_confirmation = errorMessage;
+  } else {
+    form.errors.password_confirmation = "";
+  }
+}
 </script>
 
 <template>
@@ -37,8 +83,8 @@ const submit = () => {
           required
           autofocus
           autocomplete="name"
+          @blur="validText(50, 0)"
         />
-
         <InputError class="u-margin__top-s" :message="form.errors.name" />
       </div>
 
@@ -52,8 +98,8 @@ const submit = () => {
           v-model="form.email"
           required
           autocomplete="username"
+          @blur="validEmail"
         />
-
         <InputError class="u-margin__top-s" :message="form.errors.email" />
       </div>
 
@@ -67,8 +113,8 @@ const submit = () => {
           v-model="form.password"
           required
           autocomplete="new-password"
+          @blur="validPassword"
         />
-
         <InputError class="u-margin__top-s" :message="form.errors.password" />
       </div>
 
@@ -82,14 +128,14 @@ const submit = () => {
           v-model="form.password_confirmation"
           required
           autocomplete="new-password"
+          @blur="confirmPassword"
         />
-
         <InputError
           class="u-margin__top-s"
           :message="form.errors.password_confirmation"
         />
       </div>
-
+      
       <div class="p-form__btn-position-end u-margin__top-lg">
         <Link :href="route('login')" class="p-link"> {{ $t('Already registered?') }} </Link>
 
