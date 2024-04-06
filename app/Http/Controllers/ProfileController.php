@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
@@ -30,10 +31,12 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
+      //トランザクション開始
+      DB::beginTransaction();
+      try{
         $user = $request->user();
         $user->fill($request->validated());
 
-        
         if ($user->isDirty('email')) {
             $user->email_verified_at = null;
         }
@@ -47,12 +50,16 @@ class ProfileController extends Controller
           $imagePath = $request->file('icon_image')->store('profile', 'public');
           $user->icon_image = $imagePath;
         }
-        
-        logger('$request');
-        logger($request);
         $user->save();
+        // トランザクションのコミット
+        DB::commit();
 
         return Redirect::route('profile.edit')->with('success', 'プロフィールが更新されました。');
+      } catch (\Exception $e) {
+        // エラーハンドリング
+        DB::rollBack();
+        return back()->withInput()->with('error', '登録中にエラーが発生しました。');
+      }
     }
 
     /**
@@ -64,6 +71,8 @@ class ProfileController extends Controller
             'password' => ['required', 'current-password'],
         ]);
 
+      DB::beginTransaction();
+      try{
         $user = $request->user();
 
         Auth::logout();
@@ -74,5 +83,9 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+      } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect()->back()->with('error', '退会処理中にエラーが発生しました。');
+       }
     }
 }

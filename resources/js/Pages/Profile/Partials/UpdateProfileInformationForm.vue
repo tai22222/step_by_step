@@ -89,14 +89,8 @@ const updateProfileInformation = () => {
   if(photoInput.value) {
     form.icon_image = photoInput.value.files[0];
   }
-  console.log('form');
-  console.log(form);
-
   Inertia.post(route('profile.update'), form);
 }
-
-
-// console.log(form).errors;
 </script>
 
 <template>
@@ -110,8 +104,6 @@ const updateProfileInformation = () => {
         </header>
 
         <form @submit.prevent="updateProfileInformation" class="c-form">
-        <!-- <form @submit.prevent="form.put(route('profile.update'))" class="c-form"> -->
-
             <!-- アイコン画像 -->
             <div>
               <div @click="selectPhoto" style="display: inline-block;">

@@ -1,18 +1,79 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
-import { Link } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3';
 
 const showingNavigationDropdown = ref(false);
+
+const props = defineProps({
+  flash: Object,
+});
+
+const { flash } = usePage().props;
+// フラッシュメッセージに関する定義
+const successMessage = ref('');
+const errorMessage = ref('');
+const isShowMessage = ref(false);
+
+// フラッシュメッセージをセットアップする関数
+const setupFlashMessages = () => {
+  if (flash.success) {
+    successMessage.value = flash.success;
+    isShowMessage.value = true; // 成功メッセージを表示
+  }
+  
+  if (flash.error) {
+    errorMessage.value = flash.error;
+    isShowMessage.value = true; // エラーメッセージを表示
+  }
+
+  // 一定時間後にメッセージを非表示にする
+  setTimeout(() => {
+    isShowMessage.value = false;
+  }, 3000);
+};
+
+// コンポーネントがマウントされた時にフラッシュメッセージをセットアップする
+onMounted(() => {
+  if (flash.success || flash.error) {
+    setupFlashMessages();
+  }
+});
 </script>
 
 <template>
     <div>
         <div class="l-wrapper">
+
+            <!-- フラッシュメッセージ -->
+              <!-- サクセスメッセージ -->
+            <transition 
+                  enter-active-class="c-flash__enter-active"
+                  enter-from-class="c-flash__enter-from" 
+                  leave-active-class="c-flash__leave-active"
+                  leave-to-class="c-flash__leave-to">
+              <div v-if="isShowMessage && successMessage"
+                  class="c-flash__success"
+                  role="alert">
+                {{ successMessage }}
+              </div>
+            </transition>
+              <!-- エラーメッセージ -->
+            <transition 
+                  enter-active-class="c-flash__enter-active"
+                  enter-from-class="c-flash__enter-from" 
+                  leave-active-class="c-flash__leave-active"
+                  leave-to-class="c-flash__leave-to">
+              <div v-if="isShowMessage && errorMessage"
+                  class="c-flash__error"
+                  role="alert">
+                {{ errorMessage }}
+              </div>
+            </transition>
 
             <nav class="l-header">
                 <!-- ナビゲーションメニュー -->

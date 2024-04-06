@@ -37,16 +37,21 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $user = User::create([
+        try {
+          $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-        ]);
+          ]);
 
-        event(new Registered($user));
+          event(new Registered($user));
 
-        Auth::login($user);
+          Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+          return redirect(RouteServiceProvider::HOME);
+
+        } catch (\Exception $e) {
+          return redirect()->back()->withInput($request->only('name', 'email'))->with('error', '登録処理中にエラーが発生しました。');
+      }
     }
 }

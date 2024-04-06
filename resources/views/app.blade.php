@@ -24,5 +24,6 @@
     <body class="font-sans antialiased">
         @inertia
         <script src="{{ asset('js/app.js') }}"></script>
+        
     </body>
 </html>
