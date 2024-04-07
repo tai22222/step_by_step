@@ -8,7 +8,7 @@ import { Head } from '@inertiajs/vue3';
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="c-header__main-title">{{ $t('Dashboard') }}</h2>
+            <h2 class="c-header__main-title">{{ $t('My Page') }}</h2>
         </template>
 
         <div class="u-padding__top-5xl u-padding__bottom-5xl py-12">

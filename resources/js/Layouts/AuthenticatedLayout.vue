@@ -190,7 +190,7 @@ onMounted(() => {
 
                         <div class="p-nav__responsible-routing">
                             <ResponsiveNavLink :href="route('profile.edit')"> {{ $t('Profile') }} </ResponsiveNavLink>
-                            <ResponsiveNavLink :href="route('project.index')"> {{ $t('Step') }} </ResponsiveNavLink>
+                            <ResponsiveNavLink :href="route('project.index')"> {{ $t('Steps') }} </ResponsiveNavLink>
                             <ResponsiveNavLink :href="route('logout')" method="post" as="button">{{ $t('Log Out') }}</ResponsiveNavLink>
                         </div>
                     </div>

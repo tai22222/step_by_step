@@ -35,7 +35,7 @@
     "Are you sure you want to delete your account?": "アカウントを削除して本当に大丈夫ですか？",
     "Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.": "アカウントを削除すると、全てのデータとファイルも完全に削除されます。完全にアカウントを削除するためには、確認のために再度パスワードを入力してください。",
     "Are you sure you want to delete your account? Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.": "アカウントを削除して本当に大丈夫ですか？アカウントを削除すると、全てのデータとファイルも完全に削除されます。完全にアカウントを削除するためには、確認のために再度パスワードを入力してください。",
-    "Update your account's profile information and email address.": "アカウント情報とメールアドレスを更新できます",
+    "Update your account's profile information and email address.": "アカウント情報の変更ができます",
     "Your email address is unverified.": "メールアドレスが未確認です",
     "Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn't receive the email, we will gladly send you another.": "ご登録頂きありがとうございます。メールアドレス確認のリンクを送付しましたので、メールに記載のリンクをクリックしてください。メールが届いていない場合には、再送も可能です",
     "A new verification link has been sent to the email address you provided during registration.": "ユーザ登録時に入力頂いたメールアドレス宛にメールアドレス確認リンクを再送しました",
@@ -138,11 +138,26 @@
     "results": "件",
     "to": "から",
     "Showing": "表示中：",
+
     "introduction": "自己紹介",
     "Introduction": "自己紹介",
     "Change": "変更",
     "Changed": "変更完了",
     "Steps": "ステップ一覧",
     "create steps": "ステップ作成",
-    "My Page": "マイページ"
+    "My Page": "マイページ",
+
+    "Create Project": "プロジェクトの作成",
+    "This service is designed to enable individuals to share their optimal learning paths and resources based on their experiences, allowing other learners to use this information as a reference for creating their own study plans.": "個人が学習の過程で体験した最適な学習順序やリソースを共有し、他の学習者がそれを参考に自分自身の学習計画を立てることができるようにするためのものです",
+    "Project Title": "プロジェクトのタイトル",
+    "Category": "カテゴリー",
+    "category": "カテゴリー",
+    "Project Content": "プロジェクトの内容",
+
+    "Step": "ステップ",
+    "Create Steps": "ステップの作成",
+    "Step Title": "ステップのタイトル",
+    "Step Content": "ステップの内容",
+    "Estimated Time": "目安達成時間"
+
 }
