@@ -9,15 +9,30 @@ import SecondaryButton from '@/Components/SecondaryButton.vue';
 // 各モジュールの読み込み
 import { Link, useForm, usePage } from '@inertiajs/vue3';
 import { Inertia } from '@inertiajs/inertia'
-import { ref, watch, defineEmits } from 'vue';
+import { ref, watch, computed } from 'vue';
 
 // 親コンポーネントから値の受け取り
 const props = defineProps({
+  categories:Object,
   projectData: Object,
 });
 
+const errorData = usePage().props.errors;
+
+const selectedCategory = ref(0);
+
 // 親コンポーネント(Create.vueへの受け渡し)
 const emits = defineEmits(['updateProjectData']);
+
+// 合計推定時間を年月日時間に変換
+const formattedEstimatedTime = computed(() => {
+  const hours = props.projectData.estimated_time;
+  const years = Math.floor(hours / (24 * 12 * 30));
+  const months = Math.floor((hours % (24 * 12 * 30)) / (24 * 30));
+  const days = Math.floor((hours % (24 * 30)) / 24);
+  const remainingHours = hours % 24;
+  return `${years}年 ${months}ヶ月 ${days}日 ${remainingHours}時間`;
+});
 
 // 入力文字のカウント(keyup)
 const initialCountLength =props.projectData.content.length; // 初期値
@@ -26,7 +41,8 @@ const textCount = () => {
   countInput.value = props.projectData.content.length;
 }
 
-watch(props.projectData, (newVal) => {
+// データの変更を監視し、変化があればemitsで親コンポーネントに通知
+watch(props.projectData , (newVal) => {
   emits('updateProjectData', newVal );
 }, { deep: true });
 </script>
@@ -45,10 +61,7 @@ watch(props.projectData, (newVal) => {
 
             <!-- 目安達成時間 -->
             <div v-if="projectData.estimated_time">
-              {{ projectData.estimated_time }}
-            </div>
-            <div v-else>
-              未定
+              {{ $t('total estimated time') }} : {{ formattedEstimatedTime }} 
             </div>
             <!-- プロジェクト タイトル -->
             <div class="u-margin__top-lg">
@@ -61,20 +74,20 @@ watch(props.projectData, (newVal) => {
                     required
                     autofocus
                 />
-                <!-- <InputError class="u-margin__top-s" :message="projectData.errors.title" /> -->
+                <InputError class="u-margin__top-s" :message="errorData['project.title']" />
             </div>
 
-            <!-- カテゴリ todo オートコンプリート-->
+            <!-- カテゴリ -->
             <div class="u-margin__top-lg">
-                <InputLabel for="category" :value="$t('category')" />
-                <TextInput
-                    id="category"
-                    type="text"
-                    class="c-text-input__full-width"
-                    v-model="projectData.category"
-                    required
-                />
-                <!-- <InputError class="u-margin__top-s" :message="projectData.errors.category" /> -->
+                <InputLabel for="category-id" :value="$t('category')" />
+                <select name="" id="" v-model="projectData.category_id">
+                  <option value="0">選択してください</option>
+                  <option 
+                      v-for="category in $page.props.categories"
+                      :key="category.id"
+                      :value="category.sort_order"> {{ category.name }}</option>
+                </select>
+                <InputError class="u-margin__top-s" :message="errorData['project.category_id']" />
             </div>
 
             <!-- プロジェクト 内容 -->
@@ -97,7 +110,7 @@ watch(props.projectData, (newVal) => {
                 <div class="u-align__right">
                  ( <span :class="{ 'c-text__danger': countInput >= 500 }">{{ countInput }}</span> / 500 文字 )
                 </div>
-                <!-- <InputError class="u-margin__top-s" :message="projectData.errors.content" /> -->
+                <InputError class="u-margin__top-s" :message="errorData['project.content']" />
             </div>
         </form>
     </section>

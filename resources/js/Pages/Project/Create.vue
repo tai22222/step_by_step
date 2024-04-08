@@ -1,12 +1,16 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import PrimaryButton from '@/Components/PrimaryButton.vue';
+
 import CreateProject from "./Partials/CreateProject.vue";
 import CreateStep from "./Partials/CreateStep.vue";
-import { Head, usePage } from "@inertiajs/vue3";
-import { reactive } from 'vue';
+
+import { Head, usePage, } from "@inertiajs/vue3";
+import { reactive, watch } from 'vue';
+import { Inertia } from '@inertiajs/inertia'
 
 defineProps({
+  categories: Object,
   mustVerifyEmail: Boolean,
   status: String,
 });
@@ -17,7 +21,7 @@ const { flash } = usePage().props;
 const form = reactive({
   project: {
     title: '',
-    category: '',
+    category_id: '0',
     content: '',
     estimated_time: '',
   },
@@ -25,6 +29,11 @@ const form = reactive({
     { title: '', content: '', estimated_time: '' }, // 初期ステップ
   ],
 });
+
+// 子コンポーネント(Project)からデータを受け取り値を更新するメソッド
+const updateProjectData = ( data ) => {
+  form.project = data;
+};
 
 // ステップの追加・削除
 const addStep = () => {
@@ -34,34 +43,35 @@ const removeStep = (index) => {
   form.steps.splice(index, 1);
 };
 
-// 子コンポーネント(Project)からデータを受け取り値を更新するメソッド
-const updateProjectData = ( data ) => {
-  form.project = data;
-};
-
 // ステップデータの更新をハンドル
 const handleUpdateStep = ({ stepIndex, stepData }) => {
   // 配列の特定のインデックスにあるオブジェクトを更新
   form.steps[stepIndex] = stepData;
+  updateTotalEstimatedTime();
+  console.log(form);
 };
 
-// ステップの目安達成時間の合計をプロジェクトの目安達成時間に設定
+// 合計推定時間を計算
+const updateTotalEstimatedTime = () => {
+  const total = form.steps.reduce((acc, step) => acc + step.estimated_time, 0);
+  form.project.estimated_time = total;
+};
 
 // CreateProject.vueとCreateStep.vueから受け取ったデータをformにまとめてLaravel側へ送信
 const submitForm = () => {
   // ここでformデータをサーバーに送信
   console.log(form);
+  Inertia.post(route('project.store'), form);
 };
 </script>
 
 <template>
   <Head title="Profile" />
-
   <AuthenticatedLayout :flash="flash">
     <template #header>
       <h2 class="c-header__main-title">{{ $t("Profile") }}</h2>
     </template>
-
+{{ $page }}
     <div class="u-padding__top-5xl u-padding__bottom-5xl">
       <form action="">
         <div class="l-container c-contents">
@@ -70,6 +80,7 @@ const submitForm = () => {
           <div class="c-contents__inner">
             <CreateProject
               class="c-contents__width"
+              :categories="categories"
               :projectData="form.project"
               @updateProjectData="updateProjectData"
             />

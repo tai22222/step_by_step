@@ -9,7 +9,7 @@ import SecondaryButton from '@/Components/SecondaryButton.vue';
 // 各モジュールの読み込み
 import { Link, useForm, usePage } from '@inertiajs/vue3';
 import { Inertia } from '@inertiajs/inertia'
-import { ref, watch, defineProps, defineEmits } from 'vue';
+import { ref, watch, } from 'vue';
 
 // 親コンポーネントから値の受け取り
 const props = defineProps({
@@ -18,9 +18,10 @@ const props = defineProps({
   lastIndex: Number,
 });
 
-// 親コンポーネント(Create.vue)への受け渡し
-const emits = defineEmits(['updateStep', 'addStep', 'removeStep']);
+const errorData = usePage().props.errors;
 
+// 親コンポーネント(Create.vue)への受け渡し
+const emits = defineEmits(['updateStepData', 'addStep', 'removeStep']);
 
 // 入力文字のカウント(keyup)
 const initialCountLength = props.stepData.content.length; // 初期値
@@ -29,10 +30,32 @@ const textCount = () => {
   countInput.value = props.stepData.content.length;
 }
 
-// ステップデータの変更を親コンポーネントに通知
-watch(props.stepData, (newVal) => {
-  emits('updateStep', { stepIndex: props.stepIndex, stepData: newVal });
-}, { deep: true });
+const selectedUnit = ref('hours'); // 選択された単位
+const estimatedTime = ref(0); // 入力された時間
+
+// 推定時間とその単位が変更された時に親コンポーネントに通知
+const updateEstimatedTime = () => {
+  let timeInHours = estimatedTime.value; // 時間に変換
+  switch (selectedUnit.value) {
+    case 'days':
+      timeInHours *= 24;
+      break;
+    case 'months':
+      timeInHours *= 24 * 30;
+      break;
+    case 'years':
+      timeInHours *= 24 * 30 * 12;
+      break;
+  }
+
+  const updatedStepData = { ...props.stepData, estimated_time: timeInHours };
+  emits('updateStepData', { stepIndex: props.stepIndex, stepData: updatedStepData });
+};
+
+// 推定時間と単位に基づいて時間を計算し、親コンポーネントに通知
+watch([selectedUnit, estimatedTime], () => {
+  updateEstimatedTime();
+});
 </script>
 
 <template>
@@ -46,7 +69,6 @@ watch(props.stepData, (newVal) => {
 
         <form class="c-form">
             <!-- Step タイトル -->
-            {{ lastIndex }}
             <div class="u-margin__top-lg">
                 <InputLabel for="step-title" :value="$t('Step Title')" />
                 <TextInput
@@ -56,20 +78,27 @@ watch(props.stepData, (newVal) => {
                     v-model="stepData.title"
                     required
                 />
-                <!-- <InputError class="u-margin__top-s" :message="form.errors.step_title" /> -->
+                <InputError class="u-margin__top-s" :message="errorData[`steps.${stepIndex}.title`]" />
             </div>
 
+            {{ $page.props.errors.steps }}
             <!-- 目安達成時間 -->
             <div class="u-margin__top-lg">
                 <InputLabel for="estimated-time" :value="$t('Estimated Time')" />
-                <TextInput
-                    id="estimated-time"
-                    type="text"
-                    class="c-text-input__full-width"
-                    v-model="stepData.estimated_time"
-                    required
-                />
-                <!-- <InputError class="u-margin__top-s" :message="form.errors.estimated_time" /> -->
+                <input type="number" 
+                       name="" 
+                       id="" 
+                       min="0"
+                       v-model="estimatedTime">
+                <select name=""
+                        id=""
+                        v-model="selectedUnit">
+                  <option value="hours">時間</option>
+                  <option value="days">日</option>
+                  <option value="months">ヶ月</option>
+                  <option value="years">年</option>
+                </select>
+                <InputError class="u-margin__top-s" :message="errorData[`steps.${stepIndex}.estimated_time`]" />
             </div>
 
             <!-- Step 内容 -->
@@ -88,7 +117,7 @@ watch(props.stepData, (newVal) => {
                 <div class="u-align__right">
                  ( <span :class="{ 'c-text__danger': countInput >= 500 }">{{ countInput }}</span> / 500 文字 )
                 </div>
-                <!-- <InputError class="u-margin__top-s" :message="form.errors.step_content" /> -->
+                <InputError class="u-margin__top-s" :message="errorData[`steps.${stepIndex}.content`]" />
             </div>
 
             <!-- stepの繰り返し回数ボタン -->
