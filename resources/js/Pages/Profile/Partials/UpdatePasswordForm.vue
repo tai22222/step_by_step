@@ -112,7 +112,7 @@ const confirmPassword = () => {
                     type="password"
                     class="c-text-input__full-width"
                     autocomplete="new-password"
-                    @blur="confirmPassword"
+                    @input="confirmPassword"
                 />
 
                 <InputError :message="form.errors.password_confirmation" class="u-margin__top-s" />

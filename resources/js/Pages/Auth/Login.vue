@@ -69,7 +69,7 @@ const validPassword = ( ) => {
           required
           autofocus
           autocomplete="username"
-          @blur="validEmail"
+          @input="validEmail"
         />
         <InputError class="u-margin__top-s" :message="form.errors.email" />
       </div>
@@ -83,7 +83,7 @@ const validPassword = ( ) => {
           v-model="form.password"
           required
           autocomplete="current-password"
-          @blur="validEmail"
+          @input="validEmail"
         />
         <InputError class="u-margin__top-s" :message="form.errors.password" />
       </div>

@@ -14,6 +14,7 @@ import { ref } from 'vue';
 // バリデーション
 import {
   isValidEmail,
+  isValidMax,
   isValidImageSize,
   isValidImageType,
 } from "@/Utils/validators";
@@ -94,12 +95,22 @@ const textCount = () => {
 }
 
 // バリデーション
+const validationErrors = ref({});
 const validEmail = () => {
   const { isValid, errorMessage } = isValidEmail(form.email);
   if(!isValid) {
-    form.errors.email = errorMessage;
+    validationErrors.value.email = errorMessage;
   } else {
-    form.errors.email = "";
+    validationErrors.value.email = "";
+  }
+}
+
+const validMax = (max, min, column) => {
+  const { isValid, errorMessage} = isValidMax(form[column], max, min);
+  if(!isValid) {
+    validationErrors.value[column] = errorMessage;
+  } else {
+    validationErrors.value[column] = '';
   }
 }
 
@@ -185,8 +196,12 @@ const validEmail = () => {
                     required
                     autofocus
                     autocomplete="name"
+                    @input="validMax(50, 1, 'name')"
                 />
+                <!-- Laravel側のエラーメッセージ -->
                 <InputError class="u-margin__top-s" :message="form.errors.name" />
+                <!-- フロント側のエラーメッセージ -->
+                <InputError class="u-margin__top-s" :message="validationErrors['name']" />
             </div>
 
             <!-- email -->
@@ -199,12 +214,15 @@ const validEmail = () => {
                     v-model="form.email"
                     required
                     autocomplete="username"
-                    @blur="validEmail"
+                    @input="validEmail"
                 />
+                <!-- Laravel側のエラーメッセージ -->
                 <InputError class="u-margin__top-s" :message="form.errors.email" />
+                <!-- フロント側のエラーメッセージ -->
+                <InputError  class="u-margin__top-s" :message="validationErrors['email']" />
             </div>
             <!-- email認証(mustVerifyEmailがtrueで未認証の場合) -->
-            <div v-if="props.mustVerifyEmail && user.email_verified_at === null">
+            <!-- <div v-if="props.mustVerifyEmail && user.email_verified_at === null">
                 <p class="p-link__text">
                     {{ $t('Your email address is unverified.') }}
                     <Link
@@ -222,7 +240,7 @@ const validEmail = () => {
                 >
                     {{ $t('Your email address is unverified.') }}
                 </div>
-            </div>
+            </div> -->
 
             <!-- 自己紹介 -->
             <div class="u-margin__top-lg">
@@ -235,12 +253,16 @@ const validEmail = () => {
                     placeholder="例）英語の学習を6年ほど独学でやっています。
 多言語にも共通する勉強方法もあると思うのでぜひチャレンジしてみてください"
                     @keyup="textCount"
+                    @input="validMax(500, 1, 'introduction')"
                 />
                 <!-- カウントアップと500文字を超えたら赤字 -->
                 <div class="u-align__right">
                  ( <span :class="{ 'c-text__danger': countInput >= 500 }">{{ countInput }}</span> / 500 文字 )
                 </div>
+                <!-- Laravel側のエラーメッセージ -->
                 <InputError class="u-margin__top-s" :message="form.errors.introduction" />
+                <!-- フロント側のエラーメッセージ -->
+                <InputError class="u-margin__top-s" :message="validationErrors['introduction']" />
             </div>
             <!-- 保存ボタン -->
             <div class="p-form__btn-save u-margin__top-lg">

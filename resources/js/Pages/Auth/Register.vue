@@ -83,7 +83,7 @@ const confirmPassword = () => {
           required
           autofocus
           autocomplete="name"
-          @blur="validText(50, 0)"
+          @input="validText(50, 0)"
         />
         <InputError class="u-margin__top-s" :message="form.errors.name" />
       </div>
@@ -98,7 +98,7 @@ const confirmPassword = () => {
           v-model="form.email"
           required
           autocomplete="username"
-          @blur="validEmail"
+          @input="validEmail"
         />
         <InputError class="u-margin__top-s" :message="form.errors.email" />
       </div>
@@ -113,7 +113,7 @@ const confirmPassword = () => {
           v-model="form.password"
           required
           autocomplete="new-password"
-          @blur="validPassword"
+          @input="validPassword"
         />
         <InputError class="u-margin__top-s" :message="form.errors.password" />
       </div>
@@ -128,7 +128,7 @@ const confirmPassword = () => {
           v-model="form.password_confirmation"
           required
           autocomplete="new-password"
-          @blur="confirmPassword"
+          @input="confirmPassword"
         />
         <InputError
           class="u-margin__top-s"
