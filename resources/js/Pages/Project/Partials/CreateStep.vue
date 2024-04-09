@@ -9,7 +9,12 @@ import SecondaryButton from '@/Components/SecondaryButton.vue';
 // 各モジュールの読み込み
 import { Link, useForm, usePage } from '@inertiajs/vue3';
 import { Inertia } from '@inertiajs/inertia'
-import { ref, watch, } from 'vue';
+import { ref, watch, reactive,} from 'vue';
+
+// バリデーション
+import {
+  isValidText
+} from "@/Utils/validators";
 
 // 親コンポーネントから値の受け取り
 const props = defineProps({
@@ -56,6 +61,20 @@ const updateEstimatedTime = () => {
 watch([selectedUnit, estimatedTime], () => {
   updateEstimatedTime();
 });
+
+// バリデーション
+const validationErrors = reactive({});
+const validText = (max, min, column, index) => {
+  const text = props.stepData[column] ?? "";
+  const { isValid, errorMessage } = isValidText(text, max, min);
+  const key = `${index}.${column}`; // 修正: キーの生成方法
+
+  if(!isValid){
+     validationErrors[key] = errorMessage; // エラーメッセージを適切なキーに割り当てる
+  } else {
+    delete validationErrors[key]; // エラーがない場合はキーを削除
+  }
+}
 </script>
 
 <template>
@@ -77,21 +96,23 @@ watch([selectedUnit, estimatedTime], () => {
                     class="c-text-input__full-width"
                     v-model="stepData.title"
                     required
+                    @input="validText(50, 1, 'title', `${stepIndex}`)"
                 />
+                <!-- Laravel側のエラーメッセージ -->
                 <InputError class="u-margin__top-s" :message="errorData[`steps.${stepIndex}.title`]" />
+                <!-- フロント側のエラーメッセージ -->
+                <InputError class="u-margin__top-s" :message="validationErrors[`${stepIndex}.title`]" />
             </div>
 
-            {{ $page.props.errors.steps }}
             <!-- 目安達成時間 -->
             <div class="u-margin__top-lg">
                 <InputLabel for="estimated-time" :value="$t('Estimated Time')" />
                 <input type="number" 
-                       name="" 
-                       id="" 
+                       id="estimated-time" 
                        min="0"
+                       class="c-text-input c-text-input__1-2 u-margin__right-m"
                        v-model="estimatedTime">
-                <select name=""
-                        id=""
+                <select class="c-text-input c-text-input__1-2"
                         v-model="selectedUnit">
                   <option value="hours">時間</option>
                   <option value="days">日</option>
@@ -110,20 +131,27 @@ watch([selectedUnit, estimatedTime], () => {
                     class="c-text-input__full-width c-text-input__textarea"
                     v-model="stepData.content"
                     @keyup="textCount"
+                    @input="validText(1000, 1, 'content', `${stepIndex}`)"
                     placeholder="例）英語の学習を6年ほど独学でやっています。
 多言語にも共通する勉強方法もあると思うのでぜひチャレンジしてみてください"
                 />
                 <!-- カウントアップと500文字を超えたら赤字 -->
                 <div class="u-align__right">
-                 ( <span :class="{ 'c-text__danger': countInput >= 500 }">{{ countInput }}</span> / 500 文字 )
+                 ( <span :class="{ 'c-text__danger': countInput >= 500 }">{{ countInput }}</span> / 1000 文字 )
                 </div>
                 <InputError class="u-margin__top-s" :message="errorData[`steps.${stepIndex}.content`]" />
+                <!-- フロント側のエラーメッセージ -->
+                <InputError class="u-margin__top-s" :message="validationErrors[`${stepIndex}.content`]" />
             </div>
 
             <!-- stepの繰り返し回数ボタン -->
             <div>
-              <SecondaryButton v-show="stepIndex === lastIndex-1" @click="emits('addStep')">Stepを追加する</SecondaryButton>
-              <SecondaryButton v-show="lastIndex !== 1" @click="emits('removeStep', stepIndex)">Stepを削除する</SecondaryButton>
+              <SecondaryButton v-show="stepIndex === lastIndex-1" 
+                               @click="emits('addStep')"
+                               class="c-btn__register">Stepを追加する</SecondaryButton>
+              <SecondaryButton v-show="lastIndex !== 1" 
+                               @click="emits('removeStep', stepIndex)"
+                               class="c-btn__danger">Stepを削除する</SecondaryButton>
             </div>
         </form>
     </section>

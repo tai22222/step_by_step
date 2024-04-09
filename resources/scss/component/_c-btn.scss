@@ -99,3 +99,44 @@
   background-color: #c53030;
   color: white;
 }
+
+// 登録ボタン
+.c-btn__register {
+  background-color: $color-indigo-400;
+  color: white;
+
+  &:hover {
+    background-color: $color-indigo-500; /* hover:bg-red-500 */
+  }
+
+  &:active {
+      background-color: $color-indigo-700; /* active:bg-red-700 */
+  }
+
+  &:focus {
+      outline: none; /* focus:outline-none */
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.5);
+      outline-offset: 2px; /* focus:ring-offset-2 */
+  }
+}
+
+// ボタンの固定
+.p-btn__position{
+  position: relative;
+}
+.c-btn__position-fix {
+  position: absolute;
+  bottom: 25px;
+  right: 50px;
+  z-index: 950;
+  background-color: rgba(75, 85, 99, 0.5);
+  padding: 1.75rem 1rem;
+  border-radius: 100%;
+  border: solid 0.5px #4b5563;
+
+  @include mq(md) {
+    position: static;
+    border-radius: 0.375rem; /* rounded-md */
+    padding: 0.5rem 1rem; /* px-4 py-2 */
+  }
+}

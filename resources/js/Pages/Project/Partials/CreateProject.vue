@@ -11,6 +11,11 @@ import { Link, useForm, usePage } from '@inertiajs/vue3';
 import { Inertia } from '@inertiajs/inertia'
 import { ref, watch, computed } from 'vue';
 
+// バリデーション
+import {
+  isValidText
+} from "@/Utils/validators";
+
 // 親コンポーネントから値の受け取り
 const props = defineProps({
   categories:Object,
@@ -45,6 +50,19 @@ const textCount = () => {
 watch(props.projectData , (newVal) => {
   emits('updateProjectData', newVal );
 }, { deep: true });
+
+// バリデーション
+const validationErrors = ref({});
+const validText = (max, min, column) => {
+  const { isValid, errorMessage } = isValidText(props.projectData[column], max, min);
+  if(!isValid){
+    validationErrors.value[column] = errorMessage;
+  } else {
+    if (validationErrors.value[column]) {
+      delete validationErrors.value[column];
+    }
+  }
+}
 </script>
 
 <template>
@@ -73,20 +91,26 @@ watch(props.projectData , (newVal) => {
                     v-model="projectData.title"
                     required
                     autofocus
+                    @input="validText(50, 1, 'title')"
                 />
+                <!-- Laravelからのエラーメッセージ -->
                 <InputError class="u-margin__top-s" :message="errorData['project.title']" />
+                <!-- フロント側のエラーメッセージ -->
+                <InputError class="u-margin__top-s" :message="validationErrors['title']" />
             </div>
 
             <!-- カテゴリ -->
             <div class="u-margin__top-lg">
                 <InputLabel for="category-id" :value="$t('category')" />
-                <select name="" id="" v-model="projectData.category_id">
+                <select v-model="projectData.category_id"
+                        class="c-text-input c-text-input__3-4">
                   <option value="0">選択してください</option>
                   <option 
                       v-for="category in $page.props.categories"
                       :key="category.id"
                       :value="category.sort_order"> {{ category.name }}</option>
                 </select>
+                <!-- Laravelからのエラーメッセージ -->
                 <InputError class="u-margin__top-s" :message="errorData['project.category_id']" />
             </div>
 
@@ -99,6 +123,7 @@ watch(props.projectData , (newVal) => {
                     class="c-text-input__full-width c-text-input__textarea"
                     v-model="projectData.content"
                     @keyup="textCount"
+                    @input="validText(1000, 1, 'content')"
                     placeholder="例）英語を独学で最短最速で習得するための方法を5つのStepで説明。
 
 私が6年間色々な方法で英語を学び、今振り返ってよかった学習方法、悪かった学習方法を厳選しお伝えします。
@@ -108,9 +133,12 @@ watch(props.projectData , (newVal) => {
                 />
                 <!-- カウントアップと500文字を超えたら赤字 -->
                 <div class="u-align__right">
-                 ( <span :class="{ 'c-text__danger': countInput >= 500 }">{{ countInput }}</span> / 500 文字 )
+                 ( <span :class="{ 'c-text__danger': countInput >= 500 }">{{ countInput }}</span> / 1000 文字 )
                 </div>
+                <!-- Laravelからのエラーメッセージ -->
                 <InputError class="u-margin__top-s" :message="errorData['project.content']" />
+                <!-- フロント側のエラーメッセージ -->
+                <InputError class="u-margin__top-s" :message="validationErrors['content']" />
             </div>
         </form>
     </section>

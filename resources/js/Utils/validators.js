@@ -37,7 +37,7 @@ export const doPasswordsMatch = (password, confirmPassword) => {
 
 // テキスト入力のバリデーション(最低文字数&最大文字)
 export const isValidText = (text, max, min) => {
-  if(text.trim().length > min && text.trim().length <= max) {
+  if(text.trim().length >= min && text.trim().length <= max) {
     return { isValid: true};
   } else {
     return {

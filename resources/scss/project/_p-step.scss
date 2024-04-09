@@ -1,0 +1,30 @@
+@use '../global' as *;
+
+.p-step__transition {
+  &-enter-active {
+    transition: opacity 1000ms ease-out, transform 1000ms ease-out;
+  }
+  &-leave-active {
+    transition: opacity 1000ms ease-in, transform 1000ms ease-in;
+  }
+  &-enter-from, &-leave-to {
+    opacity: 0;
+    transform: translateX(100%) scale(0.95);
+  }
+  &-enter-to, &-leave-from {
+    opacity: 1;
+    transform: translateX(0%) scale(1);
+  }
+}
+
+// スマホ画面での特定のトランジションスタイル
+@media (min-width: 640px) {
+  .c-modal__transition-base {
+    &-enter-from, &-leave-to {
+      transform: scale(0.95); // スマホ画面ではY軸移動を無効化
+    }
+    &-enter-to, &-leave-from {
+      transform: scale(1);
+    }
+  }
+}

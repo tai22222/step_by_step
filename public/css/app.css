@@ -233,6 +233,44 @@ a {
   color: white;
 }
 
+.c-btn__register {
+  background-color: #818cf8;
+  color: white;
+}
+.c-btn__register:hover {
+  background-color: #6366f1; /* hover:bg-red-500 */
+}
+.c-btn__register:active {
+  background-color: #4338ca; /* active:bg-red-700 */
+}
+.c-btn__register:focus {
+  outline: none; /* focus:outline-none */
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.5);
+  outline-offset: 2px; /* focus:ring-offset-2 */
+}
+
+.p-btn__position {
+  position: relative;
+}
+
+.c-btn__position-fix {
+  position: absolute;
+  bottom: 25px;
+  right: 50px;
+  z-index: 950;
+  background-color: rgba(75, 85, 99, 0.5);
+  padding: 1.75rem 1rem;
+  border-radius: 100%;
+  border: solid 0.5px #4b5563;
+}
+@media screen and (min-width: 768px) {
+  .c-btn__position-fix {
+    position: static;
+    border-radius: 0.375rem; /* rounded-md */
+    padding: 0.5rem 1rem; /* px-4 py-2 */
+  }
+}
+
 .c-form {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
@@ -376,7 +414,15 @@ a {
   width: 75%;
 }
 
+.c-text-input__1-2 {
+  margin-top: 0.25rem;
+  display: inline-block;
+  width: 47%;
+}
+
 .c-text-input__textarea {
+  border-color: #d1d5db;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   min-height: 8rem;
   max-height: 12rem;
   overflow-y: auto; /* スクロールできるように */
@@ -1047,6 +1093,29 @@ a {
   transition: all 0.3s ease-in-out;
 }
 
+.p-step__transition-enter-active {
+  transition: opacity 1000ms ease-out, transform 1000ms ease-out;
+}
+.p-step__transition-leave-active {
+  transition: opacity 1000ms ease-in, transform 1000ms ease-in;
+}
+.p-step__transition-enter-from, .p-step__transition-leave-to {
+  opacity: 0;
+  transform: translateX(100%) scale(0.95);
+}
+.p-step__transition-enter-to, .p-step__transition-leave-from {
+  opacity: 1;
+  transform: translateX(0%) scale(1);
+}
+
+@media (min-width: 640px) {
+  .c-modal__transition-base-enter-from, .c-modal__transition-base-leave-to {
+    transform: scale(0.95);
+  }
+  .c-modal__transition-base-enter-to, .c-modal__transition-base-leave-from {
+    transform: scale(1);
+  }
+}
 .u-margin-xs {
   margin: 0.25rem;
 }

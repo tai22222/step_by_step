@@ -6,7 +6,7 @@ import CreateProject from "./Partials/CreateProject.vue";
 import CreateStep from "./Partials/CreateStep.vue";
 
 import { Head, usePage, } from "@inertiajs/vue3";
-import { reactive, watch } from 'vue';
+import { reactive, watch, nextTick } from 'vue';
 import { Inertia } from '@inertiajs/inertia'
 
 defineProps({
@@ -35,10 +35,19 @@ const updateProjectData = ( data ) => {
   form.project = data;
 };
 
-// ステップの追加・削除
+// ステップの追加・削除(todo スクロールの調整)
 const addStep = () => {
   form.steps.push({ title: '', content: '', estimated_time: '' });
+
+  // nextTick().then(() => {
+  //   scrollToBottom();
+  // });
 };
+
+// const scrollToBottom = () => {
+//   window.scrollBy({ top: 3000, behavior: 'smooth' });
+// };
+
 const removeStep = (index) => {
   form.steps.splice(index, 1);
 };
@@ -59,7 +68,8 @@ const updateTotalEstimatedTime = () => {
 
 // CreateProject.vueとCreateStep.vueから受け取ったデータをformにまとめてLaravel側へ送信
 const submitForm = () => {
-  // ここでformデータをサーバーに送信
+  // フロント部分でエラーがあった場合送信をしないように todo
+  // 送信に失敗したら値を保持してリダイレクト todo
   console.log(form);
   Inertia.post(route('project.store'), form);
 };
@@ -71,7 +81,7 @@ const submitForm = () => {
     <template #header>
       <h2 class="c-header__main-title">{{ $t("Profile") }}</h2>
     </template>
-{{ $page }}
+
     <div class="u-padding__top-5xl u-padding__bottom-5xl">
       <form action="">
         <div class="l-container c-contents">
@@ -87,22 +97,33 @@ const submitForm = () => {
           </div>
 
           <!-- ステップの作成部分 todo 追加時のアニメーション -->
-          <div class="c-contents__inner u-margin__top-lg"
+          <transition-group 
+                enter-active-class="p-step__transition-enter-active"
+                enter-from-class="p-step__transition-enter-from"
+                enter-to-class="p-step__transition-enter-to"
+                leave-active-class="p-step__transition-leave-active"
+                leave-from-class="p-step__transition-leave-from"
+                leave-to-class="p-step__transition-leave-to">
+            <div class="c-contents__inner u-margin__top-lg"
                v-for="(step, index) in form.steps" :key="index">
-            <CreateStep 
-              class="c-contents__width"
-              :stepData="step"
-              :stepIndex="index"
-              :lastIndex="form.steps.length"
-              @updateStepData="handleUpdateStep"
-              @addStep="addStep"
-              @removeStep="removeStep"
-            />
-          </div>
+              <CreateStep 
+                class="c-contents__width"
+                :stepData="step"
+                :stepIndex="index"
+                :lastIndex="form.steps.length"
+                @updateStepData="handleUpdateStep"
+                @addStep="addStep"
+                @removeStep="removeStep"
+              />
+            </div>
+          </transition-group>
         </div>
-        <PrimaryButton @click.prevent="submitForm">
-          登録する
-        </PrimaryButton>
+        <div class="l-container p-btn__position c-contents">
+          <PrimaryButton @click.prevent="submitForm"
+                        class="c-btn__position-fix">
+            登録する
+          </PrimaryButton>
+        </div>
       </form>
     </div>
   </AuthenticatedLayout>
