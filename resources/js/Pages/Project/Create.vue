@@ -5,7 +5,7 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import CreateProject from "./Partials/CreateProject.vue";
 import CreateStep from "./Partials/CreateStep.vue";
 
-import { Head, usePage, } from "@inertiajs/vue3";
+import { Head, usePage, useForm} from "@inertiajs/vue3";
 import { reactive, watch, nextTick } from 'vue';
 import { Inertia } from '@inertiajs/inertia'
 
@@ -15,10 +15,8 @@ defineProps({
   status: String,
 });
 
-const { flash } = usePage().props;
-
 // 受け取りフォーム
-const form = reactive({
+const form = useForm({
   project: {
     title: '',
     category_id: '0',
@@ -69,19 +67,19 @@ const updateTotalEstimatedTime = () => {
 // CreateProject.vueとCreateStep.vueから受け取ったデータをformにまとめてLaravel側へ送信
 const submitForm = () => {
   // フロント部分でエラーがあった場合送信をしないように todo
+
   // 送信に失敗したら値を保持してリダイレクト todo
   console.log(form);
-  Inertia.post(route('project.store'), form);
+  form.post(route('project.store'));
 };
 </script>
 
 <template>
   <Head title="Profile" />
-  <AuthenticatedLayout :flash="flash">
+  <AuthenticatedLayout :flash="$page.props.flash">
     <template #header>
       <h2 class="c-header__main-title">{{ $t("Profile") }}</h2>
     </template>
-
     <div class="u-padding__top-5xl u-padding__bottom-5xl">
       <form action="">
         <div class="l-container c-contents">
@@ -90,6 +88,7 @@ const submitForm = () => {
           <div class="c-contents__inner">
             <CreateProject
               class="c-contents__width"
+              :errors="form.errors"
               :categories="categories"
               :projectData="form.project"
               @updateProjectData="updateProjectData"
@@ -108,6 +107,7 @@ const submitForm = () => {
                v-for="(step, index) in form.steps" :key="index">
               <CreateStep 
                 class="c-contents__width"
+                :errors="form.errors"
                 :stepData="step"
                 :stepIndex="index"
                 :lastIndex="form.steps.length"
@@ -120,7 +120,7 @@ const submitForm = () => {
         </div>
         <div class="l-container p-btn__position c-contents">
           <PrimaryButton @click.prevent="submitForm"
-                        class="c-btn__position-fix">
+                         class="c-btn__position-fix">
             登録する
           </PrimaryButton>
         </div>

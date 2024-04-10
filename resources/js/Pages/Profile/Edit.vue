@@ -10,13 +10,11 @@ defineProps({
     status: String,
 });
 
-const { flash } = usePage().props;
 </script>
 
 <template>
     <Head title="Profile" />
-
-    <AuthenticatedLayout :flash="flash">
+    <AuthenticatedLayout :flash="$page.props.flash">
         <template #header>
             <h2 class="c-header__main-title">{{ $t('Profile') }}</h2>
         </template>

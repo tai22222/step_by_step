@@ -84,7 +84,8 @@ const updateProfileInformation = () => {
   if(photoInput.value) {
     form.icon_image = photoInput.value.files[0];
   }
-  Inertia.post(route('profile.update'), form);
+  // Inertia.post(route('profile.update'), form);
+  form.post(route('profile.update'));
 }
 
 // 入力文字のカウント(keyup)

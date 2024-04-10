@@ -21,9 +21,9 @@ const props = defineProps({
   stepData: Object,
   stepIndex: Number,
   lastIndex: Number,
+  errors:Object,
 });
 
-const errorData = usePage().props.errors;
 
 // 親コンポーネント(Create.vue)への受け渡し
 const emits = defineEmits(['updateStepData', 'addStep', 'removeStep']);
@@ -99,7 +99,7 @@ const validText = (max, min, column, index) => {
                     @input="validText(50, 1, 'title', `${stepIndex}`)"
                 />
                 <!-- Laravel側のエラーメッセージ -->
-                <InputError class="u-margin__top-s" :message="errorData[`steps.${stepIndex}.title`]" />
+                <InputError class="u-margin__top-s" :message="errors[`steps.${stepIndex}.title`]" />
                 <!-- フロント側のエラーメッセージ -->
                 <InputError class="u-margin__top-s" :message="validationErrors[`${stepIndex}.title`]" />
             </div>
@@ -119,7 +119,7 @@ const validText = (max, min, column, index) => {
                   <option value="months">ヶ月</option>
                   <option value="years">年</option>
                 </select>
-                <InputError class="u-margin__top-s" :message="errorData[`steps.${stepIndex}.estimated_time`]" />
+                <InputError class="u-margin__top-s" :message="errors[`steps.${stepIndex}.estimated_time`]" />
             </div>
 
             <!-- Step 内容 -->
@@ -139,7 +139,7 @@ const validText = (max, min, column, index) => {
                 <div class="u-align__right">
                  ( <span :class="{ 'c-text__danger': countInput >= 500 }">{{ countInput }}</span> / 1000 文字 )
                 </div>
-                <InputError class="u-margin__top-s" :message="errorData[`steps.${stepIndex}.content`]" />
+                <InputError class="u-margin__top-s" :message="errors[`steps.${stepIndex}.content`]" />
                 <!-- フロント側のエラーメッセージ -->
                 <InputError class="u-margin__top-s" :message="validationErrors[`${stepIndex}.content`]" />
             </div>

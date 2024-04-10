@@ -20,12 +20,10 @@ class ProfileUpdateRequest extends FormRequest
       logger("==========ProfileUpdateRequest=============");
 
         return [
-            'name' => ['string', 'max:255'],
+            'name' => ['string', 'max:50'],
             'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
             'icon_image' => ['nullable', 'mimetypes:image/jpeg,image/png', 'max:1024'],
-            'introduction' => ['nullable', 'string'],
+            'introduction' => ['nullable', 'string', 'max:500'],
         ];
     }
-
-
 }

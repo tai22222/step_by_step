@@ -7,9 +7,9 @@ import TextInput from '@/Components/TextInput.vue';
 import Textarea from '@/Components/Textarea.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 // 各モジュールの読み込み
-import { Link, useForm, usePage } from '@inertiajs/vue3';
+import { Link, useForm, usePage, } from '@inertiajs/vue3';
 import { Inertia } from '@inertiajs/inertia'
-import { ref, watch, computed } from 'vue';
+import { ref, watch, computed, } from 'vue';
 
 // バリデーション
 import {
@@ -20,9 +20,8 @@ import {
 const props = defineProps({
   categories:Object,
   projectData: Object,
+  errors:Object,
 });
-
-const errorData = usePage().props.errors;
 
 const selectedCategory = ref(0);
 
@@ -76,7 +75,6 @@ const validText = (max, min, column) => {
         </header>
 
         <form class="c-form">
-
             <!-- 目安達成時間 -->
             <div v-if="projectData.estimated_time">
               {{ $t('total estimated time') }} : {{ formattedEstimatedTime }} 
@@ -94,7 +92,9 @@ const validText = (max, min, column) => {
                     @input="validText(50, 1, 'title')"
                 />
                 <!-- Laravelからのエラーメッセージ -->
-                <InputError class="u-margin__top-s" :message="errorData['project.title']" />
+                  <InputError 
+                    class="u-margin__top-s"
+                    :message="errors['project.title']" />
                 <!-- フロント側のエラーメッセージ -->
                 <InputError class="u-margin__top-s" :message="validationErrors['title']" />
             </div>
@@ -111,7 +111,7 @@ const validText = (max, min, column) => {
                       :value="category.sort_order"> {{ category.name }}</option>
                 </select>
                 <!-- Laravelからのエラーメッセージ -->
-                <InputError class="u-margin__top-s" :message="errorData['project.category_id']" />
+                <InputError class="u-margin__top-s" :message="errors['project.category_id']" />
             </div>
 
             <!-- プロジェクト 内容 -->
@@ -136,7 +136,7 @@ const validText = (max, min, column) => {
                  ( <span :class="{ 'c-text__danger': countInput >= 500 }">{{ countInput }}</span> / 1000 文字 )
                 </div>
                 <!-- Laravelからのエラーメッセージ -->
-                <InputError class="u-margin__top-s" :message="errorData['project.content']" />
+                <InputError class="u-margin__top-s" :message="errors['project.content']" />
                 <!-- フロント側のエラーメッセージ -->
                 <InputError class="u-margin__top-s" :message="validationErrors['content']" />
             </div>
