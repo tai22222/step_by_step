@@ -55,7 +55,6 @@ const handleUpdateStep = ({ stepIndex, stepData }) => {
   // 配列の特定のインデックスにあるオブジェクトを更新
   form.steps[stepIndex] = stepData;
   updateTotalEstimatedTime();
-  console.log(form);
 };
 
 // 合計推定時間を計算
@@ -69,7 +68,6 @@ const submitForm = () => {
   // フロント部分でエラーがあった場合送信をしないように todo
 
   // 送信に失敗したら値を保持してリダイレクト todo
-  console.log(form);
   form.post(route('project.store'));
 };
 </script>
@@ -78,7 +76,7 @@ const submitForm = () => {
   <Head title="Profile" />
   <AuthenticatedLayout :flash="$page.props.flash">
     <template #header>
-      <h2 class="c-header__main-title">{{ $t("Profile") }}</h2>
+      <h2 class="c-header__main-title">{{ $t("Create Steps") }}</h2>
     </template>
     <div class="u-padding__top-5xl u-padding__bottom-5xl">
       <form action="">

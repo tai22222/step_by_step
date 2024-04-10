@@ -15,6 +15,7 @@ class Project extends Model
       'content',
       'category_id',
       'estimated_time',
+      'user_id'
     ];
 
     // プロジェクトを所有するユーザー

@@ -48,13 +48,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/project/create', [ProjectController::class, 'create'])->name('project.create');
     // プロジェクト作成
     Route::post('/project/create', [ProjectController::class, 'store'])->name('project.store');
+
     // プロジェクト詳細画面
     Route::get('/project/{id}', [ProjectController::class, 'show'])->name('project.show');
-    // プロジェクト編集画面
+
+    // プロジェクト編集画面(作成者のみ)
     Route::get('/project/edit/{id}', [ProjectController::class, 'edit'])->name('project.edit');
-    // プロジェクト編集
+    // プロジェクト編集(作成者のみ)
     Route::put('/project/edit/{id}', [ProjectController::class, 'update'])->name('project.update');
-    // プロジェクト編集
+    // プロジェクト編集(作成者のみ)
     Route::delete('/project/{id}', [ProjectController::class, 'destroy'])->name('project.destroy');
 
 });

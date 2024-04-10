@@ -145,6 +145,8 @@
     "Changed": "変更完了",
     "Steps": "ステップ一覧",
     "create steps": "ステップ作成",
+    "Create Steps": "ステップ作成",
+    "Edit Steps": "ステップ作成",
     "My Page": "マイページ",
 
     "Create Project": "プロジェクトの作成",
@@ -156,7 +158,6 @@
     "total estimated time": "目安達成時間の合計",
 
     "Step": "ステップ",
-    "Create Steps": "ステップの作成",
     "Step Title": "ステップのタイトル",
     "Step Content": "ステップの内容",
     "Estimated Time": "目安達成時間"
