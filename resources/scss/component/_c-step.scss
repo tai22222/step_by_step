@@ -1,0 +1,7 @@
+@use "../global/" as *;
+
+.c-step {
+  margin-bottom: $space-m;
+  padding-bottom: $space-s;
+  border-bottom: 1px solid $color-gray-300;
+}

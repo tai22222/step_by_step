@@ -51,6 +51,8 @@ Route::middleware('auth')->group(function () {
 
     // プロジェクト詳細画面
     Route::get('/project/{id}', [ProjectController::class, 'show'])->name('project.show');
+    // Step詳細画面
+    Route::get('/step/{id}', [ProjectController::class, 'showDetail'])->name('step.show');
 
     // プロジェクト編集画面(作成者のみ)
     Route::get('/project/edit/{id}', [ProjectController::class, 'edit'])->name('project.edit');

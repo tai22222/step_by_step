@@ -64,8 +64,36 @@ class ProjectController extends Controller
       }
     }
 
-    public function show() {
-      return Inertia::render('Project/Create');
+    public function show($id) {
+      $project = Project::with([
+        'category' => function($query){
+          $query->select('id', 'name');
+        },
+        'steps' => function($query) {
+          $query->select('id', 'title', 'content', 'estimated_time', 'project_id');
+      }])
+      ->select('id', 'title', 'category_id', 'content', 'estimated_time', 'user_id')
+      ->findOrFail($id);
+      
+      return Inertia::render('Project/ShowProject', [
+        'project' => $project
+      ]);
+    }
+
+    public function showDetail($id) {
+      $project = Project::with([
+        'category' => function($query){
+          $query->select('id', 'name');
+        },
+        'steps' => function($query) {
+          $query->select('id', 'title', 'content', 'estimated_time', 'project_id');
+      }])
+      ->select('id', 'title', 'category_id', 'content', 'estimated_time', 'user_id')
+      ->findOrFail($id);
+
+      return Inertia::render('Project/ShowStep', [
+        'project' => $project
+      ]);
     }
 
     public function edit($id) {

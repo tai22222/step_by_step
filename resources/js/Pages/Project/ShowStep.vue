@@ -21,7 +21,7 @@ console.log(props);
 </script>
 
 <template>
-  <!-- todo チャレンジトグル チャレンジ人数、お気に入り人数 -->
+  <!-- ステップ詳細画面 -->
     <Head title="Profile" />
 
     <AuthenticatedLayout >

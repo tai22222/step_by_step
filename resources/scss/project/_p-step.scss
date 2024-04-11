@@ -1,5 +1,32 @@
 @use '../global' as *;
 
+.p-step {
+  display: block;
+
+  @include mq(md) {
+    display: inline-block;
+  }
+}
+
+.p-step__title {
+  font-size: $font-size-l;
+  margin-right: $space-lg;
+}
+
+.p-step__index {
+  font-size: $font-size_xl;
+  margin-right: $space-lg;
+}
+
+.p-step__estimated_time {
+  font-size: $font-size_m;
+  margin-right: $space-lg;
+
+  @include mq(md) {
+    margin-top: $space-s;
+  }
+}
+
 .p-step__transition {
   &-enter-active {
     transition: opacity 1000ms ease-out, transform 1000ms ease-out;

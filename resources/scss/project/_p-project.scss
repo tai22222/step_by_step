@@ -1,0 +1,24 @@
+@use '../global' as *;
+
+.p-project {
+  display: block;
+
+  @include mq(md) {
+    display: inline-block;
+  }
+}
+
+.p-project__title {
+  font-size: $font-size_xl;
+}
+
+.p-project__sub-title {
+  font-size: $font-size_s;
+  margin-top: $space-xs;
+}
+
+.p-project__content {
+  border: 0.5px solid $color-gray-300;
+  padding: $space-m;
+  font-size: $font-size_s;
+}

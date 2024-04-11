@@ -53,7 +53,6 @@ watch(() => props.flash, (newVal) => {
 <template>
   <div>
     <div class="l-wrapper">
-      {{ $page }}
       <!-- フラッシュメッセージ -->
       <!-- サクセスメッセージ -->
       <transition
