@@ -37,14 +37,6 @@ const formattedEstimatedTime = computed(() => {
 </script>
 <template>
     <section>
-        <header>
-           <h2 class="c-header__title">{{ $t('Project Detail') }}</h2>
-
-            <p class="c-header__description">
-              {{ $t("A challenge allows you to incorporate this STEP into your own learning. Instead of estimating the learning process by yourself, you can proceed while adopting the optimal learning sequence that other users have already experienced. By pressing the 'Complete' button after clearing each STEP, you can check the overall progress of the learning process. Please consider incorporating it into what you are learning now or what you have already learned.") }}
-            </p>
-        </header>
-
         <form class="c-form">
             <!-- プロジェクト タイトル -->
             <div class="u-margin__top-lg p-project__title">
@@ -57,7 +49,7 @@ const formattedEstimatedTime = computed(() => {
             </div>
 
             <!-- プロジェクト 内容 -->
-            <div class="u-margin__top-lg p-project__content">
+            <div class="c-form__content-full">
               プロジェクト内容
               {{ project.content }}
             </div>

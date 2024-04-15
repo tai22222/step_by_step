@@ -21,4 +21,10 @@ class Step extends Model
     {
         return $this->belongsTo(Project::class);
     }
+
+    // プロジェクトに関連するチャレンジ(1対多)
+    public function challenges()
+    {
+        return $this->hasMany(Challenge::class);
+    }
 }

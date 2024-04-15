@@ -162,6 +162,9 @@
     "Step": "ステップ",
     "Step Title": "ステップのタイトル",
     "Step Content": "ステップの内容",
-    "Estimated Time": "目安達成時間"
+    "Estimated Time": "目安達成時間",
+
+    "Detail Project": "プロジェクト詳細",
+    "Detail Steps": "ステップ詳細"
 
 }

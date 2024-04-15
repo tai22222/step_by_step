@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Category;
 use App\Models\Project;
 use App\Models\Step;
+use App\Models\Challenge;
 
 class ProjectController extends Controller
 {
@@ -64,35 +65,76 @@ class ProjectController extends Controller
       }
     }
 
+    // プロジェクト詳細画面表示
     public function show($id) {
+      $userId = auth()->user()->id;
+
+      // プロジェクト内容
       $project = Project::with([
         'category' => function($query){
           $query->select('id', 'name');
         },
-        'steps' => function($query) {
-          $query->select('id', 'title', 'content', 'estimated_time', 'project_id');
-      }])
+        'steps' => function($query) use ($userId) {
+          $query->select('id', 'title', 'content', 'estimated_time', 'project_id')
+                ->with(['challenges' => function($query) use ($userId) {
+                  $query->where('user_id', $userId)
+                        ->whereNull('completed_time')
+                        ->select('id', 'project_id', 'step_id', 'status');
+                }]);
+        },
+      ])
       ->select('id', 'title', 'category_id', 'content', 'estimated_time', 'user_id')
       ->findOrFail($id);
-      
+
+      // ユーザがプロジェクトに対してチャレンジ中かどうかを確認
+      $isChallenging = Challenge::where('project_id', $id)
+                                ->where('user_id', $userId)
+                                ->whereNull('completed_time')
+                                ->exists();
+
+      // isChallengingがtrueなら'is_progress', falseなら空文字を設定
+      $challengeStatus = $isChallenging ? 'is_progress' : '';
+
+
       return Inertia::render('Project/ShowProject', [
-        'project' => $project
+        'project' => $project,
+        'isChallengeStatus' => $challengeStatus,
       ]);
     }
 
-    public function showDetail($id) {
+    // ステップ詳細画面表示
+    public function showDetail($projectId, $stepId) {
+      $userId = auth()->user()->id;
+
       $project = Project::with([
         'category' => function($query){
           $query->select('id', 'name');
         },
-        'steps' => function($query) {
-          $query->select('id', 'title', 'content', 'estimated_time', 'project_id');
-      }])
+        'steps' => function($query) use ($userId) {
+          $query->select('id', 'title', 'content', 'estimated_time', 'project_id')
+                ->with(['challenges' => function($query) use ($userId) {
+                  $query->where('user_id', $userId)
+                        ->whereNull('completed_time')
+                        ->select('id', 'project_id', 'step_id', 'status');
+                }]);
+        },
+      ])
       ->select('id', 'title', 'category_id', 'content', 'estimated_time', 'user_id')
-      ->findOrFail($id);
+      ->findOrFail($projectId);
 
+      // ユーザがプロジェクトに対してチャレンジ中かどうかを確認
+      $isChallenging = Challenge::where('project_id', $projectId)
+                                ->where('user_id', $userId)
+                                ->whereNull('completed_time')
+                                ->exists();
+
+      // isChallengingがtrueなら'is_progress', falseなら空文字を設定
+      $challengeStatus = $isChallenging ? 'is_progress' : '';
+logger($challengeStatus);
       return Inertia::render('Project/ShowStep', [
-        'project' => $project
+        'project' => $project,
+        'step_id' => $stepId,
+        'isChallengeStatus' => $challengeStatus,
       ]);
     }
 

@@ -73,7 +73,7 @@ const submitForm = () => {
 </script>
 
 <template>
-  <Head title="Profile" />
+  <Head title="Create Steps" />
   <AuthenticatedLayout :flash="$page.props.flash">
     <template #header>
       <h2 class="c-header__main-title">{{ $t("Create Steps") }}</h2>

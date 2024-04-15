@@ -276,6 +276,14 @@ a {
   margin-bottom: 1.5rem;
 }
 
+.c-form__content-full {
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: 15px;
+  margin-top: 0.75rem;
+  padding: 1.5rem 1rem;
+}
+
 .c-image__preview {
   border-radius: 100%;
   border-color: black;
@@ -917,6 +925,12 @@ a {
   margin-top: 1rem;
 }
 
+.p-checkbox {
+  margin-right: 1.5rem;
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+}
+
 .p-login__checkbox {
   display: block;
   margin-top: 1rem;
@@ -1151,6 +1165,52 @@ a {
     transform: scale(1);
   }
 }
+.p-step__list {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.p-step__list-link {
+  display: block;
+  flex-grow: 1;
+}
+.p-step__list-link:hover {
+  background-color: #e5e7eb;
+}
+
+.p-step__container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+
+.p-step__card {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  cursor: pointer;
+  background-color: #f3f4f6;
+  transition: background-color 0.3s;
+  /* ホバー時のスタイル */
+}
+.p-step__card:hover {
+  background-color: #e5e7eb;
+}
+
+.p-step__card-current {
+  background-color: #e0e7ff;
+  /* ホバー時のスタイル */
+}
+.p-step__card-current:hover {
+  background-color: #c7d2fe;
+}
+
+.p-step-min-height {
+  min-height: 500px;
+}
+
 .p-project {
   display: block;
 }

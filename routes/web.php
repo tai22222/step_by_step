@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ChallengeController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -52,7 +53,7 @@ Route::middleware('auth')->group(function () {
     // プロジェクト詳細画面
     Route::get('/project/{id}', [ProjectController::class, 'show'])->name('project.show');
     // Step詳細画面
-    Route::get('/step/{id}', [ProjectController::class, 'showDetail'])->name('step.show');
+    Route::get('/project/{project_id}/step/{step_id}', [ProjectController::class, 'showDetail'])->name('step.show');
 
     // プロジェクト編集画面(作成者のみ)
     Route::get('/project/edit/{id}', [ProjectController::class, 'edit'])->name('project.edit');
@@ -61,6 +62,10 @@ Route::middleware('auth')->group(function () {
     // プロジェクト編集(作成者のみ)
     Route::delete('/project/{id}', [ProjectController::class, 'destroy'])->name('project.destroy');
 
+    Route::post('/challenges/start', [ChallengeController::class, 'start'])->name('challenges.start');
+    Route::post('/challenges/stop', [ChallengeController::class, 'stop'])->name('challenges.stop');
+
+    Route::post('/challenges/toggleStatus', [ChallengeController::class, 'toggleStatus'])->name('challenges.toggleStatus');
 });
 
 require __DIR__.'/auth.php';

@@ -55,3 +55,52 @@
     }
   }
 }
+
+.p-step__list {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.p-step__list-link {
+  display: block;
+  flex-grow: 1;
+
+  &:hover {
+    background-color: $color-gray-200;
+  }
+}
+
+.p-step__container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+
+.p-step__card {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  cursor: pointer;
+  background-color: $color-gray-100;
+  transition: background-color 0.3s;
+
+  /* ホバー時のスタイル */
+  &:hover {
+    background-color: $color-gray-200;
+  }
+}
+
+.p-step__card-current {
+  background-color: $color-indigo-100;
+
+    /* ホバー時のスタイル */
+    &:hover {
+      background-color: $color-indigo-200;
+    }
+}
+
+.p-step-min-height{
+  min-height: 500px;
+}

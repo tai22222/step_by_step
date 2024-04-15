@@ -4,3 +4,11 @@
   margin-top: 1.5rem; // mt-6
   margin-bottom: 1.5rem;
 }
+
+.c-form__content-full {
+  width: 100%;
+  border: 1px solid $color-gray-300;
+  border-radius: 15px;
+  margin-top: $space-m;
+  padding: 1.5rem 1rem;
+}

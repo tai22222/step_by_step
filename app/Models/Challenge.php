@@ -12,6 +12,9 @@ class Challenge extends Model
     protected $fillable = [
       'completed_time',
       'status',
+      'user_id',
+      'project_id',
+      'step_id',
     ];
 
     // チャレンジを行うユーザー
@@ -26,4 +29,9 @@ class Challenge extends Model
         return $this->belongsTo(Project::class);
     }
     
+    // チャレンジが関連するプロジェクト
+    public function step()
+    {
+        return $this->belongsTo(Step::class);
+    }
 }
