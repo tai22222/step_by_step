@@ -15,11 +15,43 @@ use App\Models\Challenge;
 
 class ProjectController extends Controller
 {
-    public function index() {
-      $categories = Category::select('sort_order', 'name')->get();
+    public function index(Request $request) {
+      $request->validate([
+        'page' => 'integer|min:1'
+      ]);
 
-      return Inertia::render('Project/Create', [
-        'categories' => $categories
+      $userId = auth()->user()->id;
+
+      // プロジェクト内容
+      $projects = Project::with([
+        'category' => function($query){
+          $query->select('id', 'name');
+        },
+        'challenges' => function($query)use ($userId) {
+          $query->where('user_id', $userId)
+                ->whereNull('completed_time')
+                ->whereNull('step_id')
+                ->select('id', 'project_id', 'status');
+        },
+        'steps' => function($query) use ($userId) {
+          $query->select('id', 'title', 'content', 'estimated_time', 'project_id')
+                ->with(['challenges' => function($query) use ($userId) {
+                  $query->where('user_id', $userId)
+                        ->whereNull('completed_time')
+                        ->select('id', 'project_id', 'step_id', 'status');
+                }]);
+        },
+      ])
+      ->select('id', 'title', 'category_id', 'content', 'estimated_time', 'user_id')
+      ->paginate(8);
+
+      // アドレスバーに直接入力した時にpage=が不正な場合のリダイレクト
+      if ($request->has('page') && $request->page > $projects->lastPage()) {
+        return redirect()->route('project.index', ['page' => $projects->lastPage()]);
+    }
+
+      return Inertia::render('Project/Index', [
+        'projects' => $projects,
       ]);
     }
 
@@ -55,7 +87,7 @@ class ProjectController extends Controller
         }
 
         DB::commit();
-        return Redirect::route('project.create')->with('success', '登録が成功しました。');
+        return Redirect::route('project.index')->with('success', '登録が成功しました。');
 
       } catch (\Exception $e) {
         DB::rollBack();
@@ -130,7 +162,6 @@ class ProjectController extends Controller
 
       // isChallengingがtrueなら'is_progress', falseなら空文字を設定
       $challengeStatus = $isChallenging ? 'is_progress' : '';
-logger($challengeStatus);
       return Inertia::render('Project/ShowStep', [
         'project' => $project,
         'step_id' => $stepId,

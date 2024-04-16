@@ -335,6 +335,50 @@ a {
   opacity: 0;
 }
 
+.c-pagination {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.c-pagination__item {
+  margin: 0 5px;
+}
+
+.c-pagination__link {
+  display: block;
+  padding: 8px 12px;
+  text-decoration: none;
+  color: #374151;
+  border: 1px solid #6b7280;
+  border-radius: 5px;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+.c-pagination__link:hover {
+  color: #0056b3;
+  background-color: white;
+  border-color: #dee2e6;
+}
+
+/* アクティブなページネーションリンク */
+.c-pagination__item.active .c-pagination__link {
+  z-index: 1;
+  color: white;
+  background-color: #374151;
+  border-color: #374151;
+}
+
+.c-pagination__not-link {
+  display: block;
+  padding: 8px 12px;
+  text-decoration: none;
+  color: #374151;
+  border: 1px solid #6b7280;
+  border-radius: 5px;
+}
+
 .c-confirm-message {
   margin-bottom: 1rem;
   font-size: 0.875rem;
@@ -390,6 +434,39 @@ a {
   margin-bottom: 0.75rem;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid #d1d5db;
+}
+
+.c-card {
+  display: grid;
+  grid-gap: 20px;
+  padding: 20px;
+  grid-template-columns: repeat(1, 1fr);
+}
+@media screen and (min-width: 400px) {
+  .c-card {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (min-width: 768px) {
+  .c-card {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media screen and (min-width: 1000px) {
+  .c-card {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.c-card__item {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.c-card__item:hover {
+  background-color: #f3f4f6;
 }
 
 .c-checkbox {
@@ -923,6 +1000,27 @@ a {
   align-items: center;
   justify-content: space-between;
   margin-top: 1rem;
+}
+
+.p-card__title {
+  font-size: 1rem;
+  border-bottom: 1px solid #d1d5db;
+  margin-top: 1rem;
+}
+
+.p-card__sub-content {
+  font-size: 0.5rem;
+  margin-top: 0.25rem;
+  color: #9ca3af;
+}
+
+.p-card__badge {
+  background-color: #a5b4fc;
+  font-size: 0.75rem;
+  color: white;
+  margin-top: 0.75rem;
+  padding: 0.5rem 1rem;
+  text-align: center;
 }
 
 .p-checkbox {

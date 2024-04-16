@@ -16,15 +16,15 @@ const props = defineProps({
   isChallengeStatus: String,
 });
 
-// isStatusChallengeの状態で画面表示を切り替える
-const isStatusChallenge = ref(props.isChallengeStatus);
+// isChallengeStatusの状態で画面表示を切り替える
+const isChallengeStatus = ref(props.isChallengeStatus);
 
 // 未チャレンジからチャレンジへ変更する処理
 const startChallenge = async () => {
   try {
     const response = await axios.post(route('challenges.start'), { project_id: props.project.id });
     if (response.data.success) {
-      isStatusChallenge.value = 'in_progress';
+      isChallengeStatus.value = 'in_progress';
       console.log('チャレンジへ変更 成功');
     } else {
       console.log('チャレンジへ変更 失敗:', response.data.message);
@@ -39,7 +39,7 @@ const stopChallenge = async () => {
   try {
     const response = await axios.post(route('challenges.stop'), { project_id: props.project.id});
     if (response.data.success) {
-      isStatusChallenge.value = '';
+      isChallengeStatus.value = '';
       console.log('未チャレンジへ変更 成功');
     } else {
       console.log('未チャレンジへ変更 失敗:', response.data.message);

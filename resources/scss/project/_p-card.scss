@@ -1,0 +1,22 @@
+@use '../global' as *;
+
+.p-card__title {
+  font-size: 1rem;
+  border-bottom: 1px solid $color-gray-300;
+  margin-top: 1rem;
+}
+
+.p-card__sub-content {
+  font-size: 0.5rem;
+  margin-top: 0.25rem;
+  color: $color-gray-400;
+}
+
+.p-card__badge {
+  background-color: $color-indigo-300;
+  font-size: 0.75rem;
+  color: white;
+  margin-top: $space-m;
+  padding: 0.5rem 1rem;
+  text-align: center;
+}

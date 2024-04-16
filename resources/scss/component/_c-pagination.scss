@@ -1,0 +1,46 @@
+@use "../global/" as *;
+
+.c-pagination {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.c-pagination__item {
+  margin: 0 5px;
+}
+
+.c-pagination__link {
+  display: block;
+  padding: 8px 12px;
+  text-decoration: none;
+  color: $color-gray-700;
+  border: 1px solid $color-gray-500;
+  border-radius: 5px;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+
+  &:hover {
+    color: #0056b3;
+    background-color: white;
+    border-color: #dee2e6;
+  }
+}
+
+/* アクティブなページネーションリンク */
+.c-pagination__item.active .c-pagination__link {
+  z-index: 1;
+  color: white;
+  background-color: $color-gray-700;
+  border-color: $color-gray-700;
+}
+
+.c-pagination__not-link {
+  display: block;
+  padding: 8px 12px;
+  text-decoration: none;
+  color: $color-gray-700;
+  border: 1px solid $color-gray-500;
+  border-radius: 5px;
+}
