@@ -1,0 +1,11 @@
+@use "../global/" as *;
+
+.u-content__between {
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+}
+
+.u-content__inline-block {
+  display: inline-block;
+}

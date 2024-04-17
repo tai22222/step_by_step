@@ -1,6 +1,6 @@
 @use "../global/" as *;
 
-
+// コンポーネントのプライマリーボタン
 .c-btn__primary {
   display: inline-flex;
   align-items: center;
@@ -32,6 +32,7 @@
   }
 }
 
+// コンポーネントのセカンダリーボタン
 .c-btn__secondary {
   display: inline-flex;
   align-items: center;
@@ -64,6 +65,7 @@
   }
 }
 
+// コンポーネントのデンジャーボタン
 .c-btn__danger {
   display: inline-flex;
   align-items: center;
@@ -121,9 +123,6 @@
 }
 
 // ボタンの固定
-.p-btn__position{
-  position: relative;
-}
 .c-btn__position-fix {
   position: absolute;
   bottom: 25px;

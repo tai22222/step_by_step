@@ -5,7 +5,7 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import DetailProject from "./Partials/DetailProject.vue";
 import StepList from "./Partials/StepList.vue";
 
-import { Head, usePage, useForm} from "@inertiajs/vue3";
+import { Head, Link, usePage, useForm} from "@inertiajs/vue3";
 import { ref, computed } from 'vue';
 import axios from "axios";
 
@@ -60,7 +60,6 @@ const stepsStatus = ref(props.project.steps.map(step => ({
   id: step.id,
   completed: step.challenges.length > 0
 })));
-console.log(stepsStatus);
 
 // 子コンポーネント(StepList)からstepのstatusの変化があった場合にemitされる
 const updateStepStatus = (stepId, completed) => {
@@ -69,6 +68,8 @@ const updateStepStatus = (stepId, completed) => {
     step.completed = completed;
   }
 }
+
+console.log(props.project);
 </script>
 
 <template>
@@ -82,19 +83,27 @@ const updateStepStatus = (stepId, completed) => {
         <div class="u-padding__top-5xl u-padding__bottom-5xl">
             <div class="l-container c-contents">
 
-                <div class="c-contents__inner u-margin__top-lg">
-
-                  <PrimaryButton v-if="!isChallengeStatus"
+                <div class="c-contents__inner u-margin__top-lg ">
+                  <div class="u-content__between">
+                    <PrimaryButton v-if="!isChallengeStatus"
                                  @click.prevent="startChallenge"
-                                 class="u-margin__bottom-lg">
-                    チャレンジする
-                  </PrimaryButton>
-                  <div v-if="isChallengeStatus">
-                    <PrimaryButton @click.prevent="stopChallenge"
-                                   class="u-margin__bottom-lg">
-                    チャレンジを辞める
-                  </PrimaryButton>
-                  進捗:<span>{{ progress }}%</span>
+                                 class="u-margin__bottom-lg u-position__left">
+                      チャレンジする
+                    </PrimaryButton>
+                    <div v-if="isChallengeStatus"
+                         class="u-position__left">
+                      <PrimaryButton @click.prevent="stopChallenge"
+                                    class="u-margin__bottom-lg">
+                        チャレンジを辞める
+                      </PrimaryButton>
+                      進捗:<span>{{ progress }}%</span>
+                    </div>
+
+                    <div v-if="project.user_id === $page.props.auth.user.id"
+                        class="u-content__inline-block">
+                      <Link :href="route('project.edit', { id: project.id} )"
+                            class="p-btn__edit">編集</Link>
+                    </div>
                   </div>
 
                   <header>

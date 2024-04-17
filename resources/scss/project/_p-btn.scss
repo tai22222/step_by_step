@@ -1,0 +1,16 @@
+@use '../global' as *;
+
+.p-btn__position{
+  position: relative;
+}
+
+.p-btn__edit {
+  border-bottom: 1px solid $color-gray-500;
+  font-weight: $bold;
+  padding: $space-xs $space-s;
+  margin-right: $space-s;
+
+  &:hover {
+    border-color: $color-indigo-300 ;
+  }
+}
