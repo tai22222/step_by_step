@@ -11,7 +11,7 @@ import { Link, useForm, usePage } from '@inertiajs/vue3';
 import { Inertia } from '@inertiajs/inertia'
 import { ref } from 'vue';
 
-// バリデーション
+// バリデーションの読み込み
 import {
   isValidEmail,
   isValidMax,
@@ -135,7 +135,8 @@ const validMax = (max, min, column) => {
                 <input type="file" 
                        ref="photoInput"
                        style="display: none;"
-                       @change="updatePhotoPreview">
+                       @change="updatePhotoPreview"
+                />
 
                 <!-- プレビュー画像表示部分(アイコン設定時) -->
                 <div v-if="photoPreview !== null">
@@ -186,6 +187,7 @@ const validMax = (max, min, column) => {
                     />
               </div>
             </div>
+            
             <!-- ユーザネーム -->
             <div class="u-margin__top-lg">
                 <InputLabel for="name" :value="$t('Name')" />
@@ -258,7 +260,7 @@ const validMax = (max, min, column) => {
                 />
                 <!-- カウントアップと500文字を超えたら赤字 -->
                 <div class="u-align__right">
-                 ( <span :class="{ 'c-text__danger': countInput >= 500 }">{{ countInput }}</span> / 500 文字 )
+                 ( <span :class="{ 'c-text__danger': countInput > 500 }">{{ countInput }}</span> / 500 文字 )
                 </div>
                 <!-- Laravel側のエラーメッセージ -->
                 <InputError class="u-margin__top-s" :message="form.errors.introduction" />

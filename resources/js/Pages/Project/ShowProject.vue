@@ -83,24 +83,32 @@ const updateStepStatus = (stepId, completed) => {
 
                 <div class="c-contents__inner u-margin__top-lg ">
                   <div class="u-content__between">
-                    <PrimaryButton v-if="!isChallengeStatus"
-                                 @click.prevent="startChallenge"
-                                 class="u-margin__bottom-lg u-position__left">
+                    <PrimaryButton 
+                        v-if="!isChallengeStatus"
+                        @click.prevent="startChallenge"
+                        class="u-margin__bottom-lg u-position__left">
                       チャレンジする
                     </PrimaryButton>
+
                     <div v-if="isChallengeStatus"
                          class="u-position__left">
-                      <PrimaryButton @click.prevent="stopChallenge"
-                                    class="u-margin__bottom-lg">
+                      <PrimaryButton 
+                          @click.prevent="stopChallenge"
+                          class="u-margin__bottom-lg">
                         チャレンジを辞める
                       </PrimaryButton>
+
                       進捗:<span>{{ progress }}%</span>
                     </div>
 
+                    <!-- 作成者のみ表示 -->
                     <div v-if="project.user_id === $page.props.auth.user.id"
                         class="u-content__inline-block">
-                      <Link :href="route('project.edit', { id: project.id} )"
-                            class="p-btn__edit">編集</Link>
+                      <Link 
+                          :href="route('project.edit', { id: project.id} )"
+                          class="p-btn__edit">
+                        編集
+                      </Link>
                     </div>
                   </div>
 
@@ -118,13 +126,15 @@ const updateStepStatus = (stepId, completed) => {
                   </DetailProject>
                 </div>
 
+                <!-- ステップ詳細コンポーネント -->
                 <div class="c-contents__inner u-margin__top-lg">
                   <div v-for="(step, index) in project.steps" :key="index">
-                    <StepList :step="step" 
-                              :index="index"
-                              :isChallengeStatus="isChallengeStatus"
-                              :stepStatus="step.challenges.length > 0 ? true : false"
-                              @update-status="updateStepStatus">
+                    <StepList 
+                        :step="step" 
+                        :index="index"
+                        :isChallengeStatus="isChallengeStatus"
+                        :stepStatus="step.challenges.length > 0 ? true : false"
+                        @update-status="updateStepStatus">
                     </StepList>
                   </div>
                   

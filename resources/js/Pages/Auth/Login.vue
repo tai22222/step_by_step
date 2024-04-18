@@ -5,9 +5,10 @@ import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
+
 import { Head, Link, useForm } from "@inertiajs/vue3";
 
-// バリデーション
+// バリデーションの読み込み
 import {
   isValidEmail,
   isValidPassword,
@@ -62,14 +63,14 @@ const validPassword = ( ) => {
       <div>
         <InputLabel for="email" :value="$t('Email')" />
         <TextInput
-          id="email"
-          type="email"
-          class="c-text-input__full-width"
-          v-model="form.email"
-          required
-          autofocus
-          autocomplete="username"
-          @input="validEmail"
+            id="email"
+            type="email"
+            class="c-text-input__full-width"
+            v-model="form.email"
+            required
+            autofocus
+            autocomplete="username"
+            @input="validEmail"
         />
         <InputError class="u-margin__top-s" :message="form.errors.email" />
       </div>
@@ -77,37 +78,40 @@ const validPassword = ( ) => {
       <div class="u-margin__top-lg">
         <InputLabel for="password" :value="$t('Password')" />
         <TextInput
-          id="password"
-          type="password"
-          class="c-text-input__full-width"
-          v-model="form.password"
-          required
-          autocomplete="current-password"
-          @input="validEmail"
+            id="password"
+            type="password"
+            class="c-text-input__full-width"
+            v-model="form.password"
+            required
+            autocomplete="current-password"
+            @input="validPassword"
         />
         <InputError class="u-margin__top-s" :message="form.errors.password" />
       </div>
 
       <div class="p-login__checkbox">
         <label class="p-login__checkbox-label">
-          <Checkbox name="remember" v-model:checked="form.remember" />
+          <Checkbox 
+              name="remember" 
+              v-model:checked="form.remember" 
+          />
           <span class="p-login__checkbox-text">{{ $t('Remember me') }} </span>
         </label>
       </div>
 
       <div class="p-form__btn-position-end">
         <Link
-          v-if="canResetPassword"
-          :href="route('password.request')"
-          class="p-link"
+            v-if="canResetPassword"
+            :href="route('password.request')"
+            class="p-link"
         >
           {{ $t('Forgot your password?') }}
         </Link>
 
         <PrimaryButton
-          class="u-margin__left-m"
-          :class="{ 'u-opacity-25': form.processing }"
-          :disabled="form.processing"
+            class="u-margin__left-m"
+            :class="{ 'u-opacity-25': form.processing }"
+            :disabled="form.processing"
         >
           {{ $t('Log in') }}
         </PrimaryButton>

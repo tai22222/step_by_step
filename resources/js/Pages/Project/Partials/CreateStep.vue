@@ -24,7 +24,6 @@ const props = defineProps({
   errors:Object,
 });
 
-
 // 親コンポーネント(Create.vue)への受け渡し
 const emits = defineEmits(['updateStepData', 'addStep', 'removeStep']);
 
@@ -38,9 +37,9 @@ const textCount = () => {
 const selectedUnit = ref('hours'); // 選択された単位
 const estimatedTime = ref(0); // 入力された時間
 
-// 推定時間とその単位が変更された時に親コンポーネントに通知
+// 推定時間とその単位が変更された時に親コンポーネントに通知(時間計算は簡易に)
 const updateEstimatedTime = () => {
-  let timeInHours = estimatedTime.value; // 時間に変換
+  let timeInHours = estimatedTime.value;
   switch (selectedUnit.value) {
     case 'days':
       timeInHours *= 24;
@@ -137,7 +136,7 @@ const validText = (max, min, column, index) => {
                 />
                 <!-- カウントアップと500文字を超えたら赤字 -->
                 <div class="u-align__right">
-                 ( <span :class="{ 'c-text__danger': countInput >= 500 }">{{ countInput }}</span> / 1000 文字 )
+                 ( <span :class="{ 'c-text__danger': countInput > 500 }">{{ countInput }}</span> / 1000 文字 )
                 </div>
                 <InputError class="u-margin__top-s" :message="errors[`steps.${stepIndex}.content`]" />
                 <!-- フロント側のエラーメッセージ -->

@@ -26,7 +26,6 @@ const searchQuery = ref('');
 const sortProject = () => {
   // ソート条件と検索条件を格納
   const params = {};
-
   if (sortOrder.value) {
     params.sort = sortOrder.value;
   }
@@ -36,7 +35,6 @@ const sortProject = () => {
   if (searchQuery.value) {
     params.search = searchQuery.value;
   }
-
   Inertia.get(route('project.index'), params);
 }
 
@@ -91,12 +89,14 @@ console.log(props);
                   v-model="searchQuery" 
                   class="c-text-input c-text-input__sort u-margin__right-s"
                   placeholder="検索...">
-
-            <SecondaryButton @click="sortProject"
-                             class="c-btn__register">検索</SecondaryButton>
+            <SecondaryButton 
+                @click="sortProject"
+                class="c-btn__register">
+              検索
+            </SecondaryButton>
           </div>
           <div v-if="search">
-            検索ワード：{{ search}}
+            検索ワード：{{ search }}
           </div>
         </div>
 

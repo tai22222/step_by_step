@@ -14,9 +14,8 @@ const props = defineProps({
   isChallengeStatus: String,
 });
 
+// 選択したステップを管理し、表示する
 const selectedStep = ref(props.step_id);
-
-// 表示するstepを管理
 const showSelectedStep = (index) => {
   selectedStep.value = index;
 };
@@ -41,8 +40,6 @@ const updateStepStatus = (stepId, completed) => {
     step.completed = completed;
   }
 }
-
-console.log(props);
 </script>
 
 <template>
@@ -60,7 +57,9 @@ console.log(props);
           <div v-if="isChallengeStatus">
             進捗:<span>{{ progress }}</span>%
           </div>
-          <DetailProject class="u-margin__top-lg" :project="project">
+          <DetailProject 
+              class="u-margin__top-lg"
+              :project="project">
           </DetailProject>
         </div>
 
@@ -69,11 +68,11 @@ console.log(props);
 
             <!-- 各ステップ詳細への遷移カード -->
             <span
-              v-for="(step, index) in project.steps"
-              :key="index"
-              class="p-step__card"
-              :class="{ 'p-step__card-current': index + 1 == selectedStep }"
-              @click="showSelectedStep(index+1)"
+                v-for="(step, index) in project.steps"
+                :key="index"
+                class="p-step__card"
+                :class="{ 'p-step__card-current': index + 1 == selectedStep }"
+                @click="showSelectedStep(index+1)"
             >
               Step{{ index + 1 }}
             </span>
@@ -84,11 +83,11 @@ console.log(props);
                  :key="index"
                  v-show="index + 1 == selectedStep">
               <DetailStep
-                :step="step"
-                :index="index"
-                :step_id="selectedStep"
-                :isChallengeStatus="isChallengeStatus"
-                @update-status="updateStepStatus"
+                  :step="step"
+                  :index="index"
+                  :step_id="selectedStep"
+                  :isChallengeStatus="isChallengeStatus"
+                  @update-status="updateStepStatus"
               >
               </DetailStep>
             </div>

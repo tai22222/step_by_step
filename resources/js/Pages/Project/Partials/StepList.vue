@@ -38,7 +38,7 @@ const formattedEstimatedTime = computed(() => {
   return parts.join(' ')
 });
 
-// statusの変更
+// statusの変更(ステップが完了しているかどうかの状態)
 const stepStatus = ref(props.stepStatus);
 const emit = defineEmits(['update-status']);
 const toggleStepStatus = async () => {

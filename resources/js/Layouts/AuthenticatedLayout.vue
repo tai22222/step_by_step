@@ -1,11 +1,12 @@
 <script setup>
-import { ref, onMounted, watch } from "vue";
 import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 import Dropdown from "@/Components/Dropdown.vue";
 import DropdownLink from "@/Components/DropdownLink.vue";
 import NavLink from "@/Components/NavLink.vue";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink.vue";
+
 import { Link, usePage } from "@inertiajs/vue3";
+import { ref, onMounted, watch } from "vue";
 
 const showingNavigationDropdown = ref(false);
 
@@ -24,7 +25,6 @@ const setupFlashMessages = () => {
     successMessage.value = props.flash.success;
     isShowMessage.value = true; // 成功メッセージを表示
   } else {
-
     successMessage.value = '';
   }
 
@@ -33,7 +33,6 @@ const setupFlashMessages = () => {
     errorMessage.value = props.flash.error;
     isShowMessage.value = true; // エラーメッセージを表示
   } else {
-
     errorMessage.value = '';
   }
 
@@ -43,7 +42,7 @@ const setupFlashMessages = () => {
   }, 3000);
 };
 
-// props.flashの変更を監視する
+// props.flashの監視
 watch(() => props.flash, (newVal) => {
   setupFlashMessages(newVal);
 }, { deep: true });
@@ -53,7 +52,6 @@ watch(() => props.flash, (newVal) => {
 <template>
   <div>
     <div class="l-wrapper">
-      <!-- フラッシュメッセージ -->
       <!-- サクセスメッセージ -->
       <transition
         enter-active-class="c-flash__enter-active"
@@ -93,13 +91,19 @@ watch(() => props.flash, (newVal) => {
             <div class="p-nav_left">
               <!-- ロゴ -->
               <div class="p-nav__left-logo">
-                <Link :href="route('dashboard')">
+                <Link :href="route('project.index')">
                   <ApplicationLogo class="c-application_logo" />
                 </Link>
               </div>
 
               <!-- ナビゲーションリンク(スマホは非表示) -->
               <div class="p-nav__left-link">
+                <NavLink
+                  :href="route('project.index')"
+                  :active="route().current('project.index')"
+                >
+                  {{ $t("Index") }}
+                </NavLink>
                 <NavLink
                   :href="route('dashboard')"
                   :active="route().current('dashboard')"
@@ -141,8 +145,8 @@ watch(() => props.flash, (newVal) => {
                   </template>
 
                   <template #content>
-                    <DropdownLink :href="route('profile.edit')">
-                      {{ $t("Profile") }}
+                    <DropdownLink :href="route('dashboard')">
+                      {{ $t("My Page") }}
                     </DropdownLink>
                     <DropdownLink :href="route('project.create')">
                       {{ $t("create steps") }}

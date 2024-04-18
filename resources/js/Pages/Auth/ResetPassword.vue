@@ -4,6 +4,7 @@ import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
+
 import { Head, useForm } from "@inertiajs/vue3";
 
 const props = defineProps({
@@ -32,47 +33,41 @@ const submit = () => {
     <form @submit.prevent="submit">
       <div>
         <InputLabel for="email" value="Email" />
-
         <TextInput
-          id="email"
-          type="email"
-          class="c-text-input__full-width"
-          v-model="form.email"
-          required
-          autofocus
-          autocomplete="username"
+            id="email"
+            type="email"
+            class="c-text-input__full-width"
+            v-model="form.email"
+            required
+            autofocus
+            autocomplete="username"
         />
-
         <InputError class="u-margin__top-s" :message="form.errors.email" />
       </div>
 
       <div class="u-margin__top-lg">
         <InputLabel for="password" value="Password" />
-
         <TextInput
-          id="password"
-          type="password"
-          class="c-text-input__full-width"
-          v-model="form.password"
-          required
-          autocomplete="new-password"
+            id="password"
+            type="password"
+            class="c-text-input__full-width"
+            v-model="form.password"
+            required
+            autocomplete="new-password"
         />
-
         <InputError class="u-margin__top-s" :message="form.errors.password" />
       </div>
 
       <div class="u-margin__top-lg">
         <InputLabel for="password_confirmation" value="Confirm Password" />
-
         <TextInput
-          id="password_confirmation"
-          type="password"
-          class="c-text-input__full-width"
-          v-model="form.password_confirmation"
-          required
-          autocomplete="new-password"
+            id="password_confirmation"
+            type="password"
+            class="c-text-input__full-width"
+            v-model="form.password_confirmation"
+            required
+            autocomplete="new-password"
         />
-
         <InputError
           class="u-margin__top-s"
           :message="form.errors.password_confirmation"
@@ -81,8 +76,8 @@ const submit = () => {
 
       <div class="p-form__btn-position-end u-margin__top-lg">
         <PrimaryButton
-          :class="{ 'u-opacity-25': form.processing }"
-          :disabled="form.processing"
+            :class="{ 'u-opacity-25': form.processing }"
+            :disabled="form.processing"
         >
           {{ $t('Reset Password') }}
         </PrimaryButton>

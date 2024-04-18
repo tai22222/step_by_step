@@ -10,6 +10,7 @@ const props = defineProps({
     },
 });
 
+const open = ref(false);
 const closeOnEscape = (e) => {
     if (open.value && e.key === 'Escape') {
         open.value = false;
@@ -34,8 +35,6 @@ const alignmentClasses = computed(() => {
         return 'c-dropdown__align-else';
     }
 });
-
-const open = ref(false);
 </script>
 
 <template>
@@ -44,7 +43,6 @@ const open = ref(false);
             <slot name="trigger" />
         </div>
 
-        <!-- Full Screen Dropdown Overlay -->
         <div v-show="open" class="c-dropdown__screen" @click="open = false"></div>
 
           <transition

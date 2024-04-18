@@ -3,13 +3,15 @@
 import { computed } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 
-// ページのプロパティ、合計ページ数を受け取る
 const props = defineProps({
   currentPage: Number,
   totalPages: Number,
   pageLinks: Object,
 });
 
+// prevボタンは1ページ目表示時には非表示
+// nextボタンはサウ集ページ表示時には非表示
+// 現在のページと前後2ページ分を表示
 const pagesToShow = computed(() => {
   const pages = []; // 表示するページ番号情報
   const padding = 2; // 現在のページの前後に表示するページ数
@@ -83,6 +85,7 @@ const visitPage = (url) => {
           >&laquo;</a
         >
       </li>
+      
       <!-- ページリンクの数を制限して表示 -->
       <li
         v-for="page in pagesToShow"

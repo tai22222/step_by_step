@@ -6,8 +6,6 @@ import EditProject from "./Partials/EditProject.vue";
 import EditStep from "./Partials/EditStep.vue";
 
 import { Head, usePage, useForm} from "@inertiajs/vue3";
-import { reactive, watch, nextTick } from 'vue';
-import { Inertia } from '@inertiajs/inertia'
 
 const props = defineProps({
   project: Object,
@@ -39,15 +37,7 @@ const updateProjectData = ( data ) => {
 // ステップの追加・削除(todo スクロールの調整)
 const addStep = () => {
   form.steps.push({ title: '', content: '', estimated_time: '' });
-
-  // nextTick().then(() => {
-  //   scrollToBottom();
-  // });
 };
-
-// const scrollToBottom = () => {
-//   window.scrollBy({ top: 3000, behavior: 'smooth' });
-// };
 
 const removeStep = (index) => {
   form.steps.splice(index, 1);
@@ -68,9 +58,6 @@ const updateTotalEstimatedTime = () => {
 
 // CreateProject.vueとCreateStep.vueから受け取ったデータをformにまとめてLaravel側へ送信
 const submitForm = () => {
-  // フロント部分でエラーがあった場合送信をしないように todo
-
-  // 送信に失敗したら値を保持してリダイレクト todo
   form.put(route('project.update', { id: props.project.id }));
 };
 </script>
@@ -88,11 +75,11 @@ const submitForm = () => {
           <!-- プロジェクトの作成部分 -->
           <div class="c-contents__inner">
             <EditProject
-              class="c-contents__width"
-              :errors="form.errors"
-              :categories="$page.props.categories"
-              :projectData="form.project"
-              @updateProjectData="updateProjectData"
+                class="c-contents__width"
+                :errors="form.errors"
+                :categories="$page.props.categories"
+                :projectData="form.project"
+                @updateProjectData="updateProjectData"
             />
           </div>
 
@@ -107,21 +94,22 @@ const submitForm = () => {
             <div class="c-contents__inner u-margin__top-lg"
                v-for="(step, index) in form.steps" :key="index">
               <EditStep 
-                class="c-contents__width"
-                :errors="form.errors"
-                :stepData="step"
-                :stepIndex="index"
-                :lastIndex="form.steps.length"
-                @updateStepData="handleUpdateStep"
-                @addStep="addStep"
-                @removeStep="removeStep"
+                  class="c-contents__width"
+                  :errors="form.errors"
+                  :stepData="step"
+                  :stepIndex="index"
+                  :lastIndex="form.steps.length"
+                  @updateStepData="handleUpdateStep"
+                  @addStep="addStep"
+                  @removeStep="removeStep"
               />
             </div>
           </transition-group>
         </div>
         <div class="l-container p-btn__position c-contents">
-          <PrimaryButton @click.prevent="submitForm"
-                         class="c-btn__position-fix">
+          <PrimaryButton 
+              @click.prevent="submitForm"
+              class="c-btn__position-fix">
             登録する
           </PrimaryButton>
         </div>

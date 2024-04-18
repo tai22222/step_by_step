@@ -27,7 +27,7 @@ const formattedEstimatedTime = computed(() => {
   if (days > 0) {
     parts.push(`${days}日`)
   }
-  if (remainingHours > 0 || parts.length === 0) { // 時間が0でも他がすべて0の場合は表示
+  if (remainingHours > 0 || parts.length === 0) {
     parts.push(`${remainingHours}時間`)
   }
 

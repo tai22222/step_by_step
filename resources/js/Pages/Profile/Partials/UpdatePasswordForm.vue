@@ -3,10 +3,11 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
+
 import { useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
-// バリデーション
+// バリデーションの読み込み
 import {
   isValidPassword,
   doPasswordsMatch,
@@ -21,7 +22,7 @@ const form = useForm({
     password_confirmation: '',
 });
 
-// パスワード変更のメソッド
+// パスワード変更
 const updatePassword = () => {
     form.put(route('password.update'), {
         preserveScroll: true,
@@ -73,7 +74,6 @@ const confirmPassword = () => {
         <form @submit.prevent="updatePassword" class="u-margin__top-2xl u-margin__bottom-2xl">
             <div>
                 <InputLabel for="current_password" :value="$t('Current Password')" />
-
                 <TextInput
                     id="current_password"
                     ref="currentPasswordInput"
@@ -83,13 +83,11 @@ const confirmPassword = () => {
                     autocomplete="current-password"
                     @blur="validPassword('current_password')"
                 />
-
                 <InputError :message="form.errors.current_password" class="u-margin__top-s" />
             </div>
 
             <div class="u-margin__top-lg">
                 <InputLabel for="password" :value="$t('New Password')" />
-
                 <TextInput
                     id="password"
                     ref="passwordInput"
@@ -99,13 +97,11 @@ const confirmPassword = () => {
                     autocomplete="new-password"
                     @blur="validPassword('password')"
                 />
-
                 <InputError :message="form.errors.password" class="u-margin__top-s" />
             </div>
 
             <div class="u-margin__top-lg">
                 <InputLabel for="password_confirmation" :value="$t('Confirm Password')" />
-
                 <TextInput
                     id="password_confirmation"
                     v-model="form.password_confirmation"
@@ -114,7 +110,6 @@ const confirmPassword = () => {
                     autocomplete="new-password"
                     @input="confirmPassword"
                 />
-
                 <InputError :message="form.errors.password_confirmation" class="u-margin__top-s" />
             </div>
 

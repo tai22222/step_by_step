@@ -19,26 +19,7 @@ const props = defineProps({
 
 const user = usePage().props.auth.user;
 
-// // 進捗を計算
-// const progress = computed(() => {
-//   const completedCount = stepsStatus.value.filter(status => status.completed).length;
-//   return props.project.steps.length > 0 ? (completedCount / props.project.steps.length) * 100 : 0;
-// });
-
-// // stepのstatusでchallengesが空ではない配列をリアクティブに管理
-// const stepsStatus = ref(props.project.steps.map(step => ({
-//   id: step.id,
-//   completed: step.challenges.length > 0
-// })));
-
-// // 子コンポーネント(StepList)からstepのstatusの変化があった場合にemitされる
-// const updateStepStatus = (stepId, completed) => {
-//   const step = stepsStatus.value.find(s => s.id === stepId);
-//   if(step) {
-//     step.completed = completed;
-//   }
-// }
-
+// 選択した状態のプロジェクトを表示
 const changeIndex = (status = {status: 'mine'}) => {
   Inertia.get('dashboard', {status: status });
 }

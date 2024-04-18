@@ -23,6 +23,7 @@ const props = defineProps({
   errors:Object,
 });
 
+// 選択されたカテゴリの値を管理
 const selectedCategory = ref(0);
 
 // 親コンポーネント(Create.vueへの受け渡し)
@@ -133,7 +134,7 @@ const validText = (max, min, column) => {
                 />
                 <!-- カウントアップと500文字を超えたら赤字 -->
                 <div class="u-align__right">
-                 ( <span :class="{ 'c-text__danger': countInput >= 500 }">{{ countInput }}</span> / 1000 文字 )
+                 ( <span :class="{ 'c-text__danger': countInput > 500 }">{{ countInput }}</span> / 1000 文字 )
                 </div>
                 <!-- Laravelからのエラーメッセージ -->
                 <InputError class="u-margin__top-s" :message="errors['project.content']" />

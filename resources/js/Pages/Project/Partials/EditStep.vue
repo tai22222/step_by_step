@@ -24,7 +24,6 @@ const props = defineProps({
   errors:Object,
 });
 
-
 // 親コンポーネント(Create.vue)への受け渡し
 const emits = defineEmits(['updateStepData', 'addStep', 'removeStep']);
 
@@ -137,7 +136,7 @@ const validText = (max, min, column, index) => {
                 />
                 <!-- カウントアップと500文字を超えたら赤字 -->
                 <div class="u-align__right">
-                 ( <span :class="{ 'c-text__danger': countInput >= 500 }">{{ countInput }}</span> / 1000 文字 )
+                 ( <span :class="{ 'c-text__danger': countInput > 500 }">{{ countInput }}</span> / 1000 文字 )
                 </div>
                 <InputError class="u-margin__top-s" :message="errors[`steps.${stepIndex}.content`]" />
                 <!-- フロント側のエラーメッセージ -->

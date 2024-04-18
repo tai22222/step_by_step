@@ -5,6 +5,7 @@ import InputLabel from "@/Components/InputLabel.vue";
 import Modal from "@/Components/Modal.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
+
 import { useForm } from "@inertiajs/vue3";
 import { nextTick, ref } from "vue";
 
@@ -32,7 +33,6 @@ const deleteUser = () => {
 
 const closeModal = () => {
   confirmingUserDeletion.value = false;
-
   form.reset();
 };
 </script>
@@ -63,17 +63,15 @@ const closeModal = () => {
 
         <div class="u-margin__top-2xl">
           <InputLabel for="password" value="Password" class="c-modal__position" />
-
           <TextInput
-            id="password"
-            ref="passwordInput"
-            v-model="form.password"
-            type="password"
-            class="c-text-input__3-4"
-            placeholder="Password"
-            @keyup.enter="deleteUser"
+              id="password"
+              ref="passwordInput"
+              v-model="form.password"
+              type="password"
+              class="c-text-input__3-4"
+              placeholder="Password"
+              @keyup.enter="deleteUser"
           />
-
           <InputError :message="form.errors.password" class="u-margin__top-s" />
         </div>
 
@@ -81,10 +79,10 @@ const closeModal = () => {
           <SecondaryButton @click="closeModal"> {{ $t('Cancel') }} </SecondaryButton>
 
           <DangerButton
-            class="u-margin__left-m"
-            :class="{ 'u-opacity-25': form.processing }"
-            :disabled="form.processing"
-            @click="deleteUser"
+              class="u-margin__left-m"
+              :class="{ 'u-opacity-25': form.processing }"
+              :disabled="form.processing"
+              @click="deleteUser"
           >
             {{ $t('Delete Account') }}
           </DangerButton>
