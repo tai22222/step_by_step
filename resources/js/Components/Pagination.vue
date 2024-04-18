@@ -8,7 +8,6 @@ const props = defineProps({
   currentPage: Number,
   totalPages: Number,
   pageLinks: Object,
-  path: String,
 });
 
 const pagesToShow = computed(() => {

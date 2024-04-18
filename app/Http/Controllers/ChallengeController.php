@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Challenge;
+use App\Models\Project;
+
 class ChallengeController extends Controller
 {
     public function start(Request $request) {
@@ -91,7 +93,7 @@ class ChallengeController extends Controller
                              ->where('user_id', $userId)
                              ->where('step_id', $stepId)
                              ->first();
-  
+
       DB::beginTransaction();
       try {
         $stepStatus = null;
@@ -105,10 +107,30 @@ class ChallengeController extends Controller
                   'project_id' => $projectId,
                   'user_id' => $userId,
                   'step_id' => $stepId,
-                  'status' => true // 'true'を設定
+                  'status' => true
               ]);
               $stepStatus = true;
           }
+
+          // プロジェクトのインスタンスを取得
+          $project = Project::with('challenges', 'steps')->find($projectId);
+
+          // プロジェクトの進捗を計算
+          if ($project->progress == 100) {
+            logger('100%');
+              // 全ステップ完了時にcompleted_timeを更新
+              Challenge::where('project_id', $projectId)
+                      ->where('user_id', $userId)
+                      ->whereNull('step_id')
+                      ->update(['completed_time' => now()]);
+          } else {
+            logger('それ以外');
+              Challenge::where('project_id', $projectId)
+                      ->where('user_id', $userId)
+                      ->whereNull('step_id')
+                      ->update(['completed_time' => null]);
+          }
+
           DB::commit();
           return response()->json(['success' => true, 'message' => 'Challenge status toggled successfully.', 'status' => $stepStatus]);
       } catch (\Exception $e) {

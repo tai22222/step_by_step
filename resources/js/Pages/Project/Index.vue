@@ -114,8 +114,7 @@ console.log(props);
         <!-- ページネーション -->
         <Pagination :currentPage="projects.current_page" 
                     :totalPages="projects.last_page"
-                    :pageLinks="projects.links"
-                    :path ="projects.path">
+                    :pageLinks="projects.links">
         </Pagination>
       </div>
     </div>

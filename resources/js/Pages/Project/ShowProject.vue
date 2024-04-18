@@ -68,8 +68,6 @@ const updateStepStatus = (stepId, completed) => {
     step.completed = completed;
   }
 }
-
-console.log(props.project);
 </script>
 
 <template>

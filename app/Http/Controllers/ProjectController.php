@@ -18,7 +18,6 @@ class ProjectController extends Controller
 {
   public function index(Request $request)
   {
-    logger($request);
     $request->validate([
       'page' => 'integer|min:1'
     ]);
@@ -48,7 +47,7 @@ class ProjectController extends Controller
           }]);
       },
     ])
-      ->select('id', 'title', 'category_id', 'content', 'estimated_time', 'user_id');
+    ->select('id', 'title', 'category_id', 'content', 'estimated_time', 'user_id');
 
     // ソート
     if ($request->has('sort')) {

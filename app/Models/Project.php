@@ -41,4 +41,23 @@ class Project extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+
+    // 進捗を計算しフロント側で{{ projects.progress }}でアクセスできるように
+    protected $appends = ['progress'];
+
+    public function getProgressAttribute()
+    {
+        $totalSteps = $this->steps->count();
+        if ($totalSteps === 0) {
+            return 0; // ステップが0の場合は進捗0%とする
+        }
+
+        $completedSteps = $this->steps->filter(function ($step) {
+            return $step->challenges->where('completed_time', null)->isNotEmpty();
+        })->count();
+
+
+        return round(($completedSteps / $totalSteps) * 100, 4);
+    }
 }
