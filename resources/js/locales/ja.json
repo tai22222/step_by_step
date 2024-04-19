@@ -146,7 +146,7 @@
     "Steps": "ステップ一覧",
     "create steps": "ステップ作成",
     "Create Steps": "ステップ作成",
-    "Edit Steps": "ステップ作成",
+    "Edit Steps": "ステップ編集",
     "My Page": "マイページ",
 
     "Create Project": "プロジェクトの作成",
@@ -166,7 +166,13 @@
 
     "Detail Project": "プロジェクト詳細",
     "Detail Steps": "ステップ詳細",
-    "Index": "一覧画面"
+    "Index": "一覧画面",
+    "Edit Profile": "プロフィール編集",
+    "Delete Project": "プロジェクトを削除",
+    "Delete": "削除",
+
+    "Are you sure it is okay to delete the project you created?": "プロフィ作成したプロジェクトを削除して本当に大丈夫ですか？ール編集",
+    "Deleting the project will permanently erase all data. To completely delete the project, please enter your password for confirmation.": "プロジェクトを削除すると、全てのデータが完全に削除されます。完全にプロジェクトを削除するためには、確認のためにパスワードを入力してください。"
 
 
 }

@@ -70,10 +70,9 @@ class ProfileController extends Controller
           });
       } else {
         // 自分が作成したプロジェクトのみを取得
-        $projects = $projects->where('user_id', $userId);
+        $projects = $projects->where('delete_flg', 0)->where('user_id', $userId);
       }
 
-  
       // ソート
       if ($request->has('sort')) {
         switch ($request->sort) {
@@ -211,6 +210,6 @@ class ProfileController extends Controller
       } catch (\Exception $e) {
         DB::rollBack();
         return redirect()->back()->with('error', '退会処理中にエラーが発生しました。');
-       }
+      }
     }
 }

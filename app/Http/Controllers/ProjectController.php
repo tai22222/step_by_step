@@ -16,6 +16,11 @@ use App\Models\Challenge;
 
 class ProjectController extends Controller
 {
+
+  /**
+   * プロジェクトの一覧画面
+   * $requestにはpage,sort,category,search
+   */
   public function index(Request $request)
   {
     $request->validate([
@@ -47,6 +52,7 @@ class ProjectController extends Controller
           }]);
       },
     ])
+    ->where('delete_flg', 0)
     ->select('id', 'title', 'category_id', 'content', 'estimated_time', 'user_id');
 
     // ソート
@@ -95,7 +101,7 @@ class ProjectController extends Controller
     }
 
     // フロント側でページネーション情報を受け取るための処理
-    $projects = $projects->paginate(2)->appends([
+    $projects = $projects->paginate(12)->appends([
       'sort' => $request->input('sort'),
       'category' => $request->input('category'),
       'search' => $request->input('search')
@@ -115,6 +121,9 @@ class ProjectController extends Controller
     ]);
   }
 
+  /**
+   * プロジェクト(ステップ)作成画面
+   */
   public function create()
   {
     $categories = Category::select('id', 'sort_order', 'name')->get();
@@ -124,10 +133,11 @@ class ProjectController extends Controller
     ]);
   }
 
+  /**
+   * プロジェクト(ステップ)作成処理
+   */
   public function store(ProjectUpdateRequest $request)
   {
-    logger('フォームを受け取り完了');
-
     DB::beginTransaction();
     try {
       // Projectモデルのインスタンスを作成
@@ -158,7 +168,10 @@ class ProjectController extends Controller
     }
   }
 
-  // プロジェクト詳細画面表示
+  /**
+   * プロジェクト詳細画面表示
+   * $idはproject_id
+   */
   public function show($id)
   {
     $userId = auth()->user()->id;
@@ -177,8 +190,9 @@ class ProjectController extends Controller
           }]);
       },
     ])
-      ->select('id', 'title', 'category_id', 'content', 'estimated_time', 'user_id')
-      ->findOrFail($id);
+    ->where('delete_flg', 0) 
+    ->select('id', 'title', 'category_id', 'content', 'estimated_time', 'user_id')
+    ->findOrFail($id);
 
     // ユーザがプロジェクトに対してチャレンジ中かどうかを確認
     $isChallenging = Challenge::where('project_id', $id)
@@ -196,7 +210,9 @@ class ProjectController extends Controller
     ]);
   }
 
-  // ステップ詳細画面表示
+  /**
+   * ステップ詳細画面表示
+   */
   public function showDetail($projectId, $stepId)
   {
     $userId = auth()->user()->id;
@@ -214,8 +230,9 @@ class ProjectController extends Controller
           }]);
       },
     ])
-      ->select('id', 'title', 'category_id', 'content', 'estimated_time', 'user_id')
-      ->findOrFail($projectId);
+    ->where('delete_flg', 0) 
+    ->select('id', 'title', 'category_id', 'content', 'estimated_time', 'user_id')
+    ->findOrFail($projectId);
 
     // ユーザがプロジェクトに対してチャレンジ中かどうかを確認
     $isChallenging = Challenge::where('project_id', $projectId)
@@ -232,6 +249,10 @@ class ProjectController extends Controller
     ]);
   }
 
+  /**
+   * プロジェクト(ステップ)編集画面表示
+   * $idはproject_id
+   */
   public function edit($id)
   {
     $categories = Category::select('sort_order', 'name')->get();
@@ -243,10 +264,11 @@ class ProjectController extends Controller
         $query->select('id', 'title', 'content', 'estimated_time', 'project_id');
       }
     ])
-      ->select('id', 'title', 'category_id', 'content', 'estimated_time', 'user_id')
-      ->findOrFail($id);
+    ->where('delete_flg', 0) 
+    ->select('id', 'title', 'category_id', 'content', 'estimated_time', 'user_id')
+    ->findOrFail($id);
 
-    // プロジェクト作成者以外は403エラー
+    // プロジェクト作成者以外は403エラー(フロント部分でも制御済み)
     if ($project->user_id !== auth()->id()) {
       abort(403, 'Unauthorized action.');
     }
@@ -257,12 +279,13 @@ class ProjectController extends Controller
     ]);
   }
 
+  /**
+   * プロジェクト編集処理
+   * $idはproject_id
+   */
   public function update($id, ProjectUpdateRequest $request)
   {
-    logger('アップデート');
-    logger($request);
-
-    $project = Project::findOrFail($id);
+    $project = Project::where('delete_flg', 0)->findOrFail($id);
     if ($project->user_id !== auth()->id()) {
       abort(403, 'Unauthorized action.');
     }
@@ -294,7 +317,7 @@ class ProjectController extends Controller
       }
 
       DB::commit();
-      return Redirect::route('project.show')->with('success', '編集が成功しました。');
+      return Redirect::route('project.show', ['id' => $id])->with('success', '編集が成功しました。');
     } catch (\Exception $e) {
       DB::rollBack();
       logger('DBの挿入失敗');
@@ -303,7 +326,32 @@ class ProjectController extends Controller
     }
   }
 
-  public function destroy()
+  /**
+   * プロジェクト削除処理
+   * 一覧表示とマイページの作成済みは非表示
+   * チャレンジ中と達成したチャレンジでは表示
+   */
+  public function destroy(Request $request, $id)
   {
+    logger('コントローラ');
+    logger('リクエスト');
+    logger($request);
+    logger('リクエスト');
+    $request->validate([
+      'password' => ['required', 'current-password'],
+    ]);
+
+    DB::beginTransaction();
+    try{
+      // 特定のプロジェクトデータ取得
+      $project = Project::where('delete_flg', 0)->findOrFail($id);
+      $project->update(['delete_flg' => 1]);
+
+      DB::commit();
+      return Redirect::to(route('dashboard'));
+    } catch (\Exception $e) {
+      DB::rollBack();
+      return redirect()->back()->with('error', 'プロジェクト削除中にエラーが発生しました。');
+    }
   }
 }

@@ -34,7 +34,7 @@
 
 .p-nav__left-link {
   display: none;
-  @include mq(sm) {
+  @include mq(md) {
     display: flex;
     margin-left: 2.5rem;
     margin-top: -3rem;

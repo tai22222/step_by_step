@@ -148,6 +148,9 @@ watch(() => props.flash, (newVal) => {
                     <DropdownLink :href="route('dashboard')">
                       {{ $t("My Page") }}
                     </DropdownLink>
+                    <DropdownLink :href="route('profile.edit')">
+                      {{ $t("Edit Profile") }}
+                    </DropdownLink>
                     <DropdownLink :href="route('project.create')">
                       {{ $t("create steps") }}
                     </DropdownLink>
@@ -230,10 +233,13 @@ watch(() => props.flash, (newVal) => {
 
             <div class="p-nav__responsible-routing">
               <ResponsiveNavLink :href="route('profile.edit')">
-                {{ $t("Profile") }}
+                {{ $t("Edit Profile") }}
               </ResponsiveNavLink>
               <ResponsiveNavLink :href="route('project.index')">
                 {{ $t("Steps") }}
+              </ResponsiveNavLink>
+              <ResponsiveNavLink :href="route('project.create')">
+                {{ $t("Create Steps") }}
               </ResponsiveNavLink>
               <ResponsiveNavLink
                 :href="route('logout')"
