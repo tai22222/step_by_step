@@ -554,6 +554,15 @@ a {
   width: 47%;
 }
 
+.c-text-input__width {
+  width: 75%;
+}
+@media screen and (min-width: 768px) {
+  .c-text-input__width {
+    width: 85%;
+  }
+}
+
 .c-text-input__textarea {
   border-color: #d1d5db;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -1431,6 +1440,71 @@ a {
   font-size: 12px;
 }
 
+.p-welcome__wrapper {
+  position: relative;
+}
+
+.p-welcome__header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 1.5rem;
+  text-align: right;
+}
+
+.p-welcome__title {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.p-welcome__inner {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+@media screen and (min-width: 400px) {
+  .p-welcome__inner {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+  }
+}
+
+.p-welcome__icon {
+  height: 4rem;
+  width: 4rem;
+  border-radius: 100%;
+  background-color: #4b5563;
+  margin: 0 auto;
+}
+
+.p-welcome__card {
+  background-color: white;
+  border-radius: 0.5rem;
+  display: flex;
+  padding: 1.5rem;
+  box-shadow: 0 10px 15px -3px rgba(156, 163, 175, 0.2);
+  transition: all 0.25s;
+}
+.p-welcome__card:hover {
+  transform: scale(1.01);
+}
+.p-welcome__card:focus {
+  outline: 2px solid red;
+}
+
+.p-welcome__sub-title {
+  margin-top: 1.5rem;
+  font-size: 24px;
+  color: #111827;
+}
+
+.p-welcome__content {
+  margin-top: 1rem;
+  color: #6b7280;
+  font-size: 14px;
+}
+
 .u-margin-xs {
   margin: 0.25rem;
 }
@@ -1493,6 +1567,10 @@ a {
 
 .u-margin__top-4xl {
   margin-top: 2rem;
+}
+
+.u-margin__top-5xl {
+  margin-top: 3rem;
 }
 
 .u-margin__left-xs {
@@ -1836,6 +1914,86 @@ a {
 }
 
 .u-padding__right-4xl {
+  padding-right: 2rem;
+}
+
+.u-padding__y-xs {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.u-padding__y-s {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.u-padding__y-m {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.u-padding__y-lg {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.u-padding__y-xl {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+.u-padding__y-2xl {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.u-padding__y-3xl {
+  padding-top: 1.75rem;
+  padding-bottom: 1.75rem;
+}
+
+.u-padding__y-4xl {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.u-padding__x-xs {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+
+.u-padding__x-s {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.u-padding__x-m {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.u-padding__x-lg {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.u-padding__x-xl {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.u-padding__x-2xl {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.u-padding__x-3xl {
+  padding-left: 1.75rem;
+  padding-right: 1.75rem;
+}
+
+.u-padding__x-4xl {
+  padding-left: 2rem;
   padding-right: 2rem;
 }
 

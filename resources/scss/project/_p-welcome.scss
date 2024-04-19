@@ -1,0 +1,67 @@
+@use '../global' as *;
+
+.p-welcome__wrapper {
+  position: relative;
+}
+
+.p-welcome__header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: $space-2xl;
+  text-align: right;
+}
+
+.p-welcome__title {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.p-welcome__inner {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.5rem;
+
+  @include mq(sm) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+  }
+}
+
+.p-welcome__icon {
+  height: 4rem;
+  width: 4rem;
+  border-radius: 100%;
+  background-color: $color-gray-600;
+  margin: 0 auto;
+}
+
+.p-welcome__card {
+  background-color: white;
+  border-radius: 0.5rem;
+  display: flex;
+  padding: 1.5rem;
+  box-shadow: 0 10px 15px -3px rgba(156, 163, 175, 0.2);
+  transition: all 0.25s;
+
+  &:hover {
+    transform: scale(1.01);
+  }
+
+  &:focus {
+    outline: 2px solid red;
+  }
+}
+
+.p-welcome__sub-title {
+  margin-top: 1.5rem;
+  font-size: $font-size_xl;
+  color: $color-gray-900;
+}
+
+.p-welcome__content {
+  margin-top: 1rem;
+  color: $color-gray-500;
+  font-size: $font-size_m;
+}

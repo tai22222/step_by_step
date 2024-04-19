@@ -25,15 +25,14 @@ const setupFlashMessages = () => {
     successMessage.value = props.flash.success;
     isShowMessage.value = true; // 成功メッセージを表示
   } else {
-    successMessage.value = '';
+    successMessage.value = "";
   }
-
 
   if (props.flash.error) {
     errorMessage.value = props.flash.error;
     isShowMessage.value = true; // エラーメッセージを表示
   } else {
-    errorMessage.value = '';
+    errorMessage.value = "";
   }
 
   // 一定時間後にメッセージを非表示にする
@@ -43,10 +42,13 @@ const setupFlashMessages = () => {
 };
 
 // props.flashの監視
-watch(() => props.flash, (newVal) => {
-  setupFlashMessages(newVal);
-}, { deep: true });
-
+watch(
+  () => props.flash,
+  (newVal) => {
+    setupFlashMessages(newVal);
+  },
+  { deep: true }
+);
 </script>
 
 <template>
@@ -102,7 +104,7 @@ watch(() => props.flash, (newVal) => {
                   :href="route('project.index')"
                   :active="route().current('project.index')"
                 >
-                  {{ $t("Index") }}
+                  {{ $t("Home") }}
                 </NavLink>
                 <NavLink
                   :href="route('dashboard')"

@@ -33,6 +33,14 @@
   width: 47%;
 }
 
+.c-text-input__width {
+  width: 75%;
+
+  @include mq(md) {
+    width: 85%;
+  }
+}
+
 // テキストエリア
 .c-text-input__textarea {
   border-color: $color-gray-300;
