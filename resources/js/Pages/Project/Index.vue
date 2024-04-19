@@ -38,6 +38,21 @@ const sortProject = () => {
   Inertia.get(route('project.index'), params);
 }
 
+// Twitter共有機能
+const shareProject = () => {
+  console.log('共有ボタンクリック');
+
+  let shareUrl = "https://twitter.com/intent/tweet?text=" +
+                 "◯月◯日までに（診断結果で出た本）を読み、感想をツイートします！" +
+                 "%20%23NewSelf" +
+                 "%20%23書籍診断アプリ";
+                //  '&url' = + "https://www.google.com/?hl=ja" ;
+
+                // location.href = shareUrl;
+                window.open(shareUrl, '_blank');
+}
+
+
 console.log(props);
 </script>
 
@@ -105,6 +120,12 @@ console.log(props);
           <div v-for="project in projects.data"
                :key="project.id"
                class="c-card__item">
+            <!-- Twitter共有ボタン -->
+            <button class="c-btn__share" @click="shareProject">
+              <svg class="c-btn__share-icon" viewBox="0 0 20 20">
+                <path d="m11.68 8.62 6.55-7.62h-1.55l-5.69 6.62-4.55-6.62h-5.25l6.88 10.01-6.88 7.99h1.55l6.01-6.99 4.8 6.99h5.24l-7.13-10.38zm-2.13 2.47-.7-1-5.54-7.92h2.39l4.47 6.4.7 1 5.82 8.32h-2.39l-4.75-6.79z"></path>
+              </svg>
+            </button>
             <Link :href="route('project.show', { id: project.id })">
               <ProjectCard :project="project"> </ProjectCard>
             </Link>
