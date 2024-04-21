@@ -41,6 +41,10 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
+        // ソフトデリートされていないユーザーのみを対象にする
+        $credentials = $this->only('email', 'password');
+        $credentials['deleted_at'] = null;
+
         if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
