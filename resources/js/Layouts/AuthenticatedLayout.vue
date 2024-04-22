@@ -6,12 +6,23 @@ import NavLink from "@/Components/NavLink.vue";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink.vue";
 
 import { Link, usePage } from "@inertiajs/vue3";
-import { ref, onMounted, watch } from "vue";
+import { ref, computed, watch } from "vue";
 
 const showingNavigationDropdown = ref(false);
 
 const props = defineProps({
   flash: Object,
+});
+
+const user = usePage().props.auth.user;
+const userName = computed(() => {
+  if (!user) {
+    return 'ゲスト';
+  } else if (user.name.length > 10) {
+    return `${user.name.substring(0, 10)}...`;
+  } else {
+    return user.name;
+  }
 });
 
 // フラッシュメッセージに関する定義
@@ -98,8 +109,8 @@ watch(
                 </Link>
               </div>
 
-              <!-- ナビゲーションリンク(スマホは非表示) -->
-              <div class="p-nav__left-link">
+              <!-- ナビゲーションリンク(スマホは非表示)ログイン状態 -->
+              <div v-if="user" class="p-nav__left-link">
                 <NavLink
                   :href="route('project.index')"
                   :active="route().current('project.index')"
@@ -119,6 +130,26 @@ watch(
                   {{ $t("create steps") }}
                 </NavLink>
               </div>
+
+              <!-- ナビゲーションリンク(スマホは非表示)非ログイン状態 -->
+              <div v-if="!user" class="p-nav__left-link">
+                <NavLink
+                  :href="route('project.index')"
+                  :active="route().current('project.index')"
+                >
+                  {{ $t("Home") }}
+                </NavLink>
+                <NavLink
+                  :href="route('login')"
+                >
+                  {{ $t("Login") }}
+                </NavLink>
+                <NavLink
+                  :href="route('register')"
+                >
+                  {{ $t("Register") }}
+                </NavLink>
+              </div>
             </div>
 
             <!-- ヘッダーライト -->
@@ -129,7 +160,7 @@ watch(
                   <template #trigger>
                     <span class="p-nav__icon">
                       <button type="button" class="p-nav__dropdown-text">
-                        {{ $page.props.auth.user.name }}
+                        {{ userName }}
                         <svg
                           class="p-nav__dropdown-menu"
                           xmlns="http://www.w3.org/2000/svg"
@@ -147,21 +178,35 @@ watch(
                   </template>
 
                   <template #content>
-                    <DropdownLink :href="route('dashboard')">
-                      {{ $t("My Page") }}
-                    </DropdownLink>
-                    <DropdownLink :href="route('profile.edit')">
-                      {{ $t("Edit Profile") }}
-                    </DropdownLink>
-                    <DropdownLink :href="route('project.create')">
-                      {{ $t("create steps") }}
-                    </DropdownLink>
-                    <DropdownLink
-                      :href="route('logout')"
-                      method="post"
-                      as="button"
-                      >{{ $t("Log Out") }}</DropdownLink
-                    >
+                    <div v-if="user">
+                      <DropdownLink :href="route('dashboard')">
+                        {{ $t("My Page") }}
+                      </DropdownLink>
+                      <DropdownLink :href="route('profile.edit')">
+                        {{ $t("Edit Profile") }}
+                      </DropdownLink>
+                      <DropdownLink :href="route('project.create')">
+                        {{ $t("create steps") }}
+                      </DropdownLink>
+                      <DropdownLink
+                        :href="route('logout')"
+                        method="post"
+                        as="button"
+                        >{{ $t("Log Out") }}</DropdownLink
+                      >
+                    </div>
+                    <div v-if="!user">
+                      <DropdownLink :href="route('dashboard')">
+                        {{ $t("My Page") }}
+                      </DropdownLink>
+                      <DropdownLink :href="route('login')">
+                        {{ $t("Login") }}
+                      </DropdownLink>
+                      <DropdownLink :href="route('register')">
+                        {{ $t("Register") }}
+                      </DropdownLink>
+                    </div>
+
                   </template>
                 </Dropdown>
               </div>
@@ -226,19 +271,19 @@ watch(
           <div class="p-nav__responsible-setting">
             <div class="p-nav__responsible-user">
               <div class="p-nav__responsible-user__name">
-                {{ $page.props.auth.user.name }}
+                {{ userName }}
               </div>
-              <div class="p-nav__responsible-user__email">
+              <div v-if="user" class="p-nav__responsible-user__email">
                 {{ $page.props.auth.user.email }}
               </div>
             </div>
 
-            <div class="p-nav__responsible-routing">
+            <div v-if="user" class="p-nav__responsible-routing">
               <ResponsiveNavLink :href="route('profile.edit')">
                 {{ $t("Edit Profile") }}
               </ResponsiveNavLink>
               <ResponsiveNavLink :href="route('project.index')">
-                {{ $t("Steps") }}
+                {{ $t("Home") }}
               </ResponsiveNavLink>
               <ResponsiveNavLink :href="route('project.create')">
                 {{ $t("Create Steps") }}
@@ -249,6 +294,18 @@ watch(
                 as="button"
                 >{{ $t("Log Out") }}</ResponsiveNavLink
               >
+            </div>
+
+            <div v-if="!user" class="p-nav__responsible-routing">
+              <ResponsiveNavLink :href="route('project.index')">
+                {{ $t("Steps") }}
+              </ResponsiveNavLink>
+              <ResponsiveNavLink :href="route('login')">
+                {{ $t("Login") }}
+              </ResponsiveNavLink>
+              <ResponsiveNavLink :href="route('register')">
+                {{ $t("Register") }}
+              </ResponsiveNavLink>
             </div>
           </div>
         </div>

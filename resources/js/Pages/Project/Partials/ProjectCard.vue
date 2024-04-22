@@ -19,7 +19,6 @@ const formattedEstimatedTime = computed(() => {
   return `${years}年 ${months}ヶ月 ${days}日 ${remainingHours}時間`;
 });
 
-console.log(props);
 </script>
 
 <template>
@@ -41,6 +40,9 @@ console.log(props);
             <!-- チャレンジしているかどうかのステータス -->
             <div v-if="project.challenges.length > 0" class="p-card__badge">
               チャレンジ中
+            </div>
+            <div v-else-if="project.progress == 100" class="p-card__badge-done">
+              達成したチャレンジ
             </div>
     </section>
 </template>

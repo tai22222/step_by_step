@@ -60,7 +60,7 @@
   }
   &-enter-from, &-leave-to {
     opacity: 0;
-    transform: translateY(1rem) scale(0.95); // Tailwindのtranslate-y-4とscale-95に相当
+    transform: translateY(1rem) scale(0.95); 
   }
   &-enter-to, &-leave-from {
     opacity: 1;
@@ -69,7 +69,7 @@
 }
 
 // スマホ画面での特定のトランジションスタイル
-@media (min-width: 640px) {
+@include mq(md) {
   .c-modal__transition-base {
     &-enter-from, &-leave-to {
       transform: scale(0.95); // スマホ画面ではY軸移動を無効化

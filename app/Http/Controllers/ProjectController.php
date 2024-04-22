@@ -30,7 +30,7 @@ class ProjectController extends Controller
     // カテゴリ検索の選択肢としてフロントへ渡す
     $categories = Category::select('id', 'sort_order', 'name')->get();
 
-    $userId = auth()->user()->id;
+    $userId = auth()->id();
 
     // プロジェクト内容(クエリの作成)
     $projects = Project::with([
@@ -51,7 +51,14 @@ class ProjectController extends Controller
               ->select('id', 'project_id', 'step_id', 'status');
           }]);
       },
-    ])
+      ])->when($userId, function ($query) use ($userId) {
+        $query->with(['challenges' => function ($query) use ($userId) {
+            $query->where('user_id', $userId)
+                ->whereNull('completed_time')
+                ->whereNull('step_id')
+                ->select('id', 'project_id', 'status');
+        }]);
+      })
     ->where('delete_flg', 0)
     ->select('id', 'title', 'category_id', 'content', 'estimated_time', 'user_id');
 

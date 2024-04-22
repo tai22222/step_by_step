@@ -3,7 +3,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import Pagination from "@/Components/Pagination.vue";
 
-import { Head, Link } from "@inertiajs/vue3";
+import { Head, Link, usePage } from "@inertiajs/vue3";
 import { ref } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 
@@ -16,6 +16,8 @@ const props = defineProps({
   category: String,
   search: String | Number,
 });
+
+const { ziggy } = usePage().props;
 
 // 並べ替えの値
 const sortOrder = ref(props.sort ? props.sort : "newest");
@@ -39,26 +41,23 @@ const sortProject = () => {
 };
 
 // Twitter共有機能
-const shareProject = () => {
+const shareProject = (projectId) => {
   console.log("共有ボタンクリック");
-
-  let shareUrl =
+  console.log(projectId);
+  const projectUrl = `${ziggy.url}/project/${projectId}`;
+  const shareUrl =
     "https://twitter.com/intent/tweet?text=" +
-    "◯月◯日までに（診断結果で出た本）を読み、感想をツイートします！" +
-    "%20%23NewSelf" +
-    "%20%23書籍診断アプリ";
-  //  '&url' = + "https://www.google.com/?hl=ja" ;
-
-  // location.href = shareUrl;
+    "この勉強手順をまねることで、学習期間の短縮ができました！◯ ◯を学んでいる方はぜひ取り入れてみてください！" +
+    "%20%23勉強効率化" +
+    "%20%23時間短縮" +
+    "%20%23効率化アプリ" +
+    '&url=' + encodeURIComponent(projectUrl);
   window.open(shareUrl, "_blank");
 };
-
-console.log(props);
 </script>
 
 <template>
   <Head title="Index" />
-
   <AuthenticatedLayout>
     <template #header>
       <h2 class="c-header__main-title">{{ $t("Home") }}</h2>
@@ -66,8 +65,8 @@ console.log(props);
     <div class="u-padding__top-5xl u-padding__bottom-5xl">
       <div class="l-container">
         <!-- ソート(並び替え): 登録順(新しい・古い)、チャレンジ順 -->
-        <div class="u-font__m u-margin__bottom-s u-margin__left-m">
-          <div>
+        <div class="p-sort">
+          <span class="p-sort__list">
             <label for="sort">並び替え : </label>
             <select
               id="sort"
@@ -79,10 +78,10 @@ console.log(props);
               <option value="oldest">古い順</option>
               <option value="most_challenged">チャレンジ数順</option>
             </select>
-          </div>
+          </span>
 
           <!-- カテゴリ検索 -->
-          <div>
+          <span class="p-sort__list">
             <label for="category">カテゴリ検索 : </label>
             <select
               id="category"
@@ -99,7 +98,7 @@ console.log(props);
                 {{ category.name }}
               </option>
             </select>
-          </div>
+          </span>
 
           <!-- フリーワード検索 -->
           <div>
@@ -124,7 +123,7 @@ console.log(props);
             class="c-card__item"
           >
             <!-- Twitter共有ボタン -->
-            <button class="c-btn__share" @click="shareProject">
+            <button class="c-btn__share" @click="shareProject(project.id)">
               <svg class="c-btn__share-icon" viewBox="0 0 20 20">
                 <path
                   d="m11.68 8.62 6.55-7.62h-1.55l-5.69 6.62-4.55-6.62h-5.25l6.88 10.01-6.88 7.99h1.55l6.01-6.99 4.8 6.99h5.24l-7.13-10.38zm-2.13 2.47-.7-1-5.54-7.92h2.39l4.47 6.4.7 1 5.82 8.32h-2.39l-4.75-6.79z"

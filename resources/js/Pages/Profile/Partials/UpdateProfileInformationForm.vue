@@ -89,7 +89,7 @@ const updateProfileInformation = () => {
 }
 
 // 入力文字のカウント(keyup)
-const initialCountLength = form.introduction.length; // 初期値
+const initialCountLength = form.introduction? form.introduction.length: 0 ; // 初期値
 const countInput = ref(initialCountLength);
 const textCount = () => {
   countInput.value = form.introduction.length;

@@ -527,7 +527,7 @@ a {
   border-radius: 0.375rem;
   border-color: #d1d5db;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  padding: 0.75rem;
+  padding: 0.5rem;
   margin-top: 0.75rem;
 }
 .c-text-input:focus-visible {
@@ -796,7 +796,7 @@ a {
   transform: translateY(0) scale(1);
 }
 
-@media (min-width: 640px) {
+@media screen and (min-width: 768px) {
   .c-modal__transition-base-enter-from, .c-modal__transition-base-leave-to {
     transform: scale(0.95);
   }
@@ -1093,6 +1093,15 @@ a {
   text-align: center;
 }
 
+.p-card__badge-done {
+  background-color: #d1d5db;
+  font-size: 0.75rem;
+  color: white;
+  margin-top: 0.75rem;
+  padding: 0.5rem 1rem;
+  text-align: center;
+}
+
 .p-checkbox {
   margin-right: 1.5rem;
   inline-size: 1.5rem;
@@ -1312,6 +1321,7 @@ a {
   border-radius: 5px;
   padding: 0.5rem;
   margin-top: 0.5rem;
+  min-height: 30px;
 }
 
 .p-transition__btn {
@@ -1362,14 +1372,6 @@ a {
   transform: translateX(0%) scale(1);
 }
 
-@media (min-width: 640px) {
-  .c-modal__transition-base-enter-from, .c-modal__transition-base-leave-to {
-    transform: scale(0.95);
-  }
-  .c-modal__transition-base-enter-to, .c-modal__transition-base-leave-from {
-    transform: scale(1);
-  }
-}
 .p-step__list {
   display: flex;
   align-items: center;
@@ -1386,11 +1388,13 @@ a {
 
 .p-step__container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  padding: 20px;
 }
 
 .p-step__card {
   padding: 10px;
+  font-size: 14px;
   text-align: center;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -1452,10 +1456,17 @@ a {
   text-align: right;
 }
 
-.p-welcome__title {
-  display: flex;
-  justify-content: center;
-  margin-top: 3rem;
+.p-welcome__main-title {
+  text-align: center;
+  margin-top: 5rem;
+  color: #111827;
+  font-size: 18px;
+}
+@media screen and (min-width: 768px) {
+  .p-welcome__main-title {
+    margin-top: 8rem;
+    font-size: 24px;
+  }
 }
 
 .p-welcome__inner {
@@ -1473,8 +1484,6 @@ a {
 .p-welcome__icon {
   height: 4rem;
   width: 4rem;
-  border-radius: 100%;
-  background-color: #4b5563;
   margin: 0 auto;
 }
 
@@ -1493,16 +1502,32 @@ a {
   outline: 2px solid red;
 }
 
-.p-welcome__sub-title {
+.p-welcome__title {
   margin-top: 1.5rem;
   font-size: 24px;
-  color: #111827;
+  color: #374151;
 }
 
 .p-welcome__content {
   margin-top: 1rem;
   color: #6b7280;
   font-size: 14px;
+}
+
+.p-sort {
+  font-size: 14px;
+  margin: 0.5rem 0.75rem;
+}
+
+.p-sort__list {
+  margin-right: 1rem;
+  margin-top: 0.5rem;
+  display: block;
+}
+@media screen and (min-width: 768px) {
+  .p-sort__list {
+    display: inline-block;
+  }
 }
 
 .u-margin-xs {

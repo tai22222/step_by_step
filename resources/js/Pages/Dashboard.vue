@@ -23,8 +23,6 @@ const user = usePage().props.auth.user;
 const changeIndex = (status = {status: 'mine'}) => {
   Inertia.get('dashboard', {status: status });
 }
-
-console.log(props);
 </script>
 
 <template>
@@ -57,8 +55,11 @@ console.log(props);
                           <div class="p-dashboard__user-details">
                             <div>ユーザ名 : {{ user.name }}</div>
                             <div>メールアドレス : {{ user.email }}</div>
-                            <div>自己紹介</div>
-                            <div class="p-dashboard__content">{{ user.introduction }}</div>
+                            <div v-if="user.introduction">
+                              <div>自己紹介</div>
+                              <div class="p-dashboard__content">{{ user.introduction }}</div>
+                            </div>
+                            
                           </div>
                         </div>
                     </div>

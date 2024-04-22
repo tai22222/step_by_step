@@ -12,10 +12,16 @@
   text-align: right;
 }
 
-.p-welcome__title {
-  display: flex;
-  justify-content: center;
-  margin-top: 3rem;
+.p-welcome__main-title {
+  text-align: center;
+  margin-top: 5rem;
+  color: $color-gray-900;
+  font-size: $font-size_l;
+
+  @include mq(md) {
+    margin-top: 8rem;
+    font-size: $font-size_xl;
+  }
 }
 
 .p-welcome__inner {
@@ -32,8 +38,6 @@
 .p-welcome__icon {
   height: 4rem;
   width: 4rem;
-  border-radius: 100%;
-  background-color: $color-gray-600;
   margin: 0 auto;
 }
 
@@ -54,10 +58,10 @@
   }
 }
 
-.p-welcome__sub-title {
+.p-welcome__title {
   margin-top: 1.5rem;
   font-size: $font-size_xl;
-  color: $color-gray-900;
+  color: $color-gray-700;
 }
 
 .p-welcome__content {

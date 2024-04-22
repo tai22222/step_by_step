@@ -46,8 +46,7 @@ Route::middleware('auth')->group(function () {
     // ユーザ削除
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // プロジェクト一覧画面
-    Route::get('/project', [ProjectController::class, 'index'])->name('project.index');
+
     // プロジェクト作成画面
     Route::get('/project/create', [ProjectController::class, 'create'])->name('project.create');
     // プロジェクト作成
@@ -70,5 +69,8 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/challenges/toggleStatus', [ChallengeController::class, 'toggleStatus'])->name('challenges.toggleStatus');
 });
+
+// プロジェクト一覧画面(非ログインユーザも閲覧可能)
+Route::get('/project', [ProjectController::class, 'index'])->name('project.index');
 
 require __DIR__.'/auth.php';

@@ -44,18 +44,6 @@
   }
 }
 
-// スマホ画面での特定のトランジションスタイル
-@media (min-width: 640px) {
-  .c-modal__transition-base {
-    &-enter-from, &-leave-to {
-      transform: scale(0.95); // スマホ画面ではY軸移動を無効化
-    }
-    &-enter-to, &-leave-from {
-      transform: scale(1);
-    }
-  }
-}
-
 .p-step__list {
   display: flex;
   align-items: center;
@@ -73,11 +61,13 @@
 
 .p-step__container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  padding: 20px;
 }
 
 .p-step__card {
   padding: 10px;
+  font-size: $font-size_m;
   text-align: center;
   border: 1px solid #ccc;
   border-radius: 5px;

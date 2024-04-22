@@ -1,0 +1,16 @@
+@use '../global' as *;
+
+.p-sort {
+  font-size: $font-size_m;
+  margin: $space-s $space-m;
+}
+
+.p-sort__list {
+  margin-right: $space-lg;
+  margin-top: $space-s ;
+  display: block;
+
+  @include mq(md) {
+    display: inline-block;
+  }
+}
