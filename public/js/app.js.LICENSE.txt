@@ -1,7 +1,21 @@
 /* NProgress, (c) 2013, 2014 Rico Sta. Cruz - http://ricostacruz.com/nprogress
  * @license MIT */
 
+/*!
+  * shared v9.9.0
+  * (c) 2024 kazuya kawaguchi
+  * Released under the MIT License.
+  */
+
+/*!
+  * vue-i18n v9.9.0
+  * (c) 2024 kazuya kawaguchi
+  * Released under the MIT License.
+  */
+
 /*! #__NO_SIDE_EFFECTS__ */
+
+/*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */
 
 /**
 * @vue/shared v3.4.21

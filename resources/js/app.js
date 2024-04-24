@@ -24,10 +24,16 @@ const i18n = createI18n({
   },
 });
 
+console.log('はいった');
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: name => {
+      console.log('resolve');
       const importPage = pages(`./${name}.vue`);
+      console.log('importPage');
+      console.log(importPage);
+      console.log('importPage.default');
+      console.log(importPage.default);
       return importPage.default;
     }, 
     setup({ el, App, props, plugin }) {

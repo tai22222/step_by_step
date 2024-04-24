@@ -5,7 +5,7 @@ import Pagination from "@/Components/Pagination.vue";
 
 import { Head, Link, usePage } from "@inertiajs/vue3";
 import { ref } from "vue";
-import { Inertia } from "@inertiajs/inertia";
+import { Inertia } from '@inertiajs/inertia';
 
 import ProjectCard from "./Partials/ProjectCard.vue";
 
@@ -37,6 +37,7 @@ const sortProject = () => {
   if (searchQuery.value) {
     params.search = searchQuery.value;
   }
+
   Inertia.get(route("project.index"), params);
 };
 
