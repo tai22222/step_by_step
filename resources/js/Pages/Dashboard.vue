@@ -19,10 +19,14 @@ const props = defineProps({
 
 const user = usePage().props.auth.user;
 
-// 選択した状態のプロジェクトを表示
-const changeIndex = (status = {status: 'mine'}) => {
-  Inertia.get('dashboard', {status: status });
-}
+// クエリパラメータをオブジェクトとして生成
+const createQueryParams = ( status = {status: 'mine'} ) => {
+  const param = {
+    status: status
+  };
+  return param;
+};
+
 </script>
 
 <template>
@@ -70,23 +74,23 @@ const changeIndex = (status = {status: 'mine'}) => {
                       <div class="p-step__container">
 
                         <!-- 各ステップ詳細への遷移カード -->
-                        <span class="p-step__card"
+                        <Link class="p-step__card"
                               :class="{ 'p-step__card-current': status === 'mine' || status === null }"
-                              @click="changeIndex('mine')"
+                              :data="createQueryParams('mine')"
                         >My プロジェクト
-                        </span>
+                        </Link>
 
-                        <span class="p-step__card"
+                        <Link class="p-step__card"
                               :class="{ 'p-step__card-current': status === 'challenging' }"
-                              @click="changeIndex('challenging')"
+                              :data="createQueryParams('challenging')"
                         >チャレンジ中
-                        </span>
+                        </Link>
 
-                        <span class="p-step__card"
+                        <Link class="p-step__card"
                               :class="{ 'p-step__card-current': status === 'completed' }"
-                              @click="changeIndex('completed')"
+                              :data="createQueryParams('completed')"
                         >達成したチャレンジ
-                        </span>
+                        </Link>
                       </div>
 
                       <div class="c-contents__inner c-card">

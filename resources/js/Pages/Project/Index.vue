@@ -4,8 +4,7 @@ import SecondaryButton from "@/Components/SecondaryButton.vue";
 import Pagination from "@/Components/Pagination.vue";
 
 import { Head, Link, usePage } from "@inertiajs/vue3";
-import { ref } from "vue";
-import { Inertia } from '@inertiajs/inertia';
+import { ref, computed } from "vue";
 
 import ProjectCard from "./Partials/ProjectCard.vue";
 
@@ -25,21 +24,14 @@ const sortOrder = ref(props.sort ? props.sort : "newest");
 const selectedCategory = ref(props.category ? Number(props.category) : 0);
 // フリーワード
 const searchQuery = ref("");
-const sortProject = () => {
-  // ソート条件と検索条件を格納
+// クエリパラメータをオブジェクトとして生成
+const createQueryParams = computed(() => {
   const params = {};
-  if (sortOrder.value) {
-    params.sort = sortOrder.value;
-  }
-  if (selectedCategory.value && selectedCategory.value !== "0") {
-    params.category = selectedCategory.value;
-  }
-  if (searchQuery.value) {
-    params.search = searchQuery.value;
-  }
-
-  Inertia.get(route("project.index"), params);
-};
+  if (sortOrder.value) params.sort = sortOrder.value;
+  if (selectedCategory.value && selectedCategory.value !== "0") params.category = selectedCategory.value;
+  if (searchQuery.value) params.search = searchQuery.value;
+  return params;
+});
 
 // Twitter共有機能
 const shareProject = (projectId) => {
@@ -52,7 +44,8 @@ const shareProject = (projectId) => {
     "%20%23勉強効率化" +
     "%20%23時間短縮" +
     "%20%23効率化アプリ" +
-    '&url=' + encodeURIComponent(projectUrl);
+    "&url=" +
+    encodeURIComponent(projectUrl);
   window.open(shareUrl, "_blank");
 };
 </script>
@@ -69,10 +62,9 @@ const shareProject = (projectId) => {
         <div class="p-sort">
           <span class="p-sort__list">
             <label for="sort">並び替え : </label>
-            <select
+              <select
               id="sort"
               v-model="sortOrder"
-              @change="sortProject"
               class="c-text-input c-text-input__sort"
             >
               <option value="newest">新しい順</option>
@@ -87,7 +79,6 @@ const shareProject = (projectId) => {
             <select
               id="category"
               v-model="selectedCategory"
-              @change="sortProject"
               class="c-text-input c-text-input__sort"
             >
               <option value="0">カテゴリ選択</option>
@@ -109,9 +100,16 @@ const shareProject = (projectId) => {
               class="c-text-input c-text-input__sort c-text-input__width u-margin__right-s"
               placeholder="検索..."
             />
-            <SecondaryButton @click="sortProject" class="c-btn__register">
-              検索
-            </SecondaryButton>
+
+            <Link :href="route('project.index')"
+                  :data="createQueryParams" 
+                  method="get" 
+                  preserve-scroll 
+                  preserve-state>
+                    <SecondaryButton @click="sortProject" class="c-btn__register">
+                      検索
+                    </SecondaryButton>
+            </Link>
           </div>
           <div v-if="search">検索ワード：{{ search }}</div>
         </div>

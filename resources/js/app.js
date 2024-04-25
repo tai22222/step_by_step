@@ -2,7 +2,6 @@ import '../scss/style.scss';
 
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
-import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 
@@ -24,16 +23,12 @@ const i18n = createI18n({
   },
 });
 
-console.log('はいった');
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: name => {
-      console.log('resolve');
+
       const importPage = pages(`./${name}.vue`);
-      console.log('importPage');
-      console.log(importPage);
-      console.log('importPage.default');
-      console.log(importPage.default);
+
       return importPage.default;
     }, 
     setup({ el, App, props, plugin }) {

@@ -1,7 +1,7 @@
 
 <script setup>
+import { Link } from "@inertiajs/vue3";
 import { computed } from "vue";
-import { Inertia } from "@inertiajs/inertia";
 
 const props = defineProps({
   currentPage: Number,
@@ -65,25 +65,14 @@ const pageLinks = computed(() => {
     link.label !== "&laquo; 前" && link.label !== "次 &raquo;"
   );
 });
-
-// ページ遷移
-const visitPage = (url) => {
-  Inertia.visit(url);
-};
 </script>
-
 
 <template>
   <nav>
     <ul class="c-pagination">
       <!-- 前のページリンク -->
       <li v-if="currentPage > 1" class="c-pagination__item">
-        <a
-          href="#"
-          @click="visitPage(prevLink.url)"
-          class="c-pagination__link"
-          >&laquo;</a
-        >
+        <Link :href="prevLink.url" class="c-pagination__link">&laquo;</Link>
       </li>
       
       <!-- ページリンクの数を制限して表示 -->
@@ -93,12 +82,11 @@ const visitPage = (url) => {
         :class="{ 'c-pagination__item': true, active: page === currentPage }"
       >
         <!-- pageがnullではなく、pageLinkのindex番号と比較 -->
-        <a
+        <Link
           v-if="page && pageLinks[page - 1]"
-          href="#"
-          @click="visitPage(pageLinks[page - 1].url)"
+          :href="pageLinks[page - 1].url"
           class="c-pagination__link"
-          >{{ page }}</a
+          >{{ page }}</Link
         >
 
         <!-- pageがnullの場合 -->
@@ -107,11 +95,10 @@ const visitPage = (url) => {
 
       <!-- 次のページリンク -->
       <li v-if="currentPage < totalPages" class="c-pagination__item">
-        <a
-          href="#"
-          @click="visitPage(nextLink.url)"
+        <Link
+          :href="nextLink.url"
           class="c-pagination__link"
-          >&raquo;</a
+          >&raquo;</Link
         >
       </li>
     </ul>

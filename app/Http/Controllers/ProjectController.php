@@ -16,7 +16,6 @@ use App\Models\Challenge;
 
 class ProjectController extends Controller
 {
-
   /**
    * プロジェクトの一覧画面
    * $requestにはpage,sort,category,search
@@ -51,16 +50,16 @@ class ProjectController extends Controller
               ->select('id', 'project_id', 'step_id', 'status');
           }]);
       },
-      ])->when($userId, function ($query) use ($userId) {
-        $query->with(['challenges' => function ($query) use ($userId) {
-            $query->where('user_id', $userId)
-                ->whereNull('completed_time')
-                ->whereNull('step_id')
-                ->select('id', 'project_id', 'status');
-        }]);
-      })
-    ->where('delete_flg', 0)
-    ->select('id', 'title', 'category_id', 'content', 'estimated_time', 'user_id');
+    ])->when($userId, function ($query) use ($userId) {
+      $query->with(['challenges' => function ($query) use ($userId) {
+        $query->where('user_id', $userId)
+          ->whereNull('completed_time')
+          ->whereNull('step_id')
+          ->select('id', 'project_id', 'status');
+      }]);
+    })
+      ->where('delete_flg', 0)
+      ->select('id', 'title', 'category_id', 'content', 'estimated_time', 'user_id');
 
     // ソート
     if ($request->has('sort')) {
@@ -119,6 +118,8 @@ class ProjectController extends Controller
       return redirect()->route('project.index', ['page' => $projects->lastPage()]);
     }
 
+try{
+
     return Inertia::render('Project/Index', [
       'projects' => $projects,
       'categories' => $categories,
@@ -126,6 +127,14 @@ class ProjectController extends Controller
       'category' => $request->input('category'),
       'search' => $request->input('search'),
     ]);
+
+  } catch (\Exception $e) {
+    // エラーが発生した場合の処理
+    \Log::error('Error loading the projects index page: ' . $e->getMessage());
+    return Inertia::render('Error', [
+        'message' => 'Failed to load the projects due to a server error.'
+    ])->toResponse($request)->setStatusCode(500);
+}
   }
 
   /**
@@ -197,9 +206,9 @@ class ProjectController extends Controller
           }]);
       },
     ])
-    ->where('delete_flg', 0) 
-    ->select('id', 'title', 'category_id', 'content', 'estimated_time', 'user_id')
-    ->findOrFail($id);
+      ->where('delete_flg', 0)
+      ->select('id', 'title', 'category_id', 'content', 'estimated_time', 'user_id')
+      ->findOrFail($id);
 
     // ユーザがプロジェクトに対してチャレンジ中かどうかを確認
     $isChallenging = Challenge::where('project_id', $id)
@@ -237,9 +246,9 @@ class ProjectController extends Controller
           }]);
       },
     ])
-    ->where('delete_flg', 0) 
-    ->select('id', 'title', 'category_id', 'content', 'estimated_time', 'user_id')
-    ->findOrFail($projectId);
+      ->where('delete_flg', 0)
+      ->select('id', 'title', 'category_id', 'content', 'estimated_time', 'user_id')
+      ->findOrFail($projectId);
 
     // ユーザがプロジェクトに対してチャレンジ中かどうかを確認
     $isChallenging = Challenge::where('project_id', $projectId)
@@ -271,9 +280,9 @@ class ProjectController extends Controller
         $query->select('id', 'title', 'content', 'estimated_time', 'project_id');
       }
     ])
-    ->where('delete_flg', 0) 
-    ->select('id', 'title', 'category_id', 'content', 'estimated_time', 'user_id')
-    ->findOrFail($id);
+      ->where('delete_flg', 0)
+      ->select('id', 'title', 'category_id', 'content', 'estimated_time', 'user_id')
+      ->findOrFail($id);
 
     // プロジェクト作成者以外は403エラー(フロント部分でも制御済み)
     if ($project->user_id !== auth()->id()) {
@@ -349,7 +358,7 @@ class ProjectController extends Controller
     ]);
 
     DB::beginTransaction();
-    try{
+    try {
       // 特定のプロジェクトデータ取得
       $project = Project::where('delete_flg', 0)->findOrFail($id);
       $project->update(['delete_flg' => 1]);
