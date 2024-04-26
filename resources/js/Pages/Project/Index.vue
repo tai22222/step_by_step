@@ -106,7 +106,7 @@ const shareProject = (projectId) => {
                   method="get" 
                   preserve-scroll 
                   preserve-state>
-                    <SecondaryButton @click="sortProject" class="c-btn__register">
+                    <SecondaryButton class="c-btn__register">
                       検索
                     </SecondaryButton>
             </Link>
