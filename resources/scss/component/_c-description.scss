@@ -1,8 +1,8 @@
 @use '../global' as *;
 
 .c-description {
-  font-size: 0.875rem/* 14px */;
-  line-height: 1.25rem/* 20px */;
-  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  margin-bottom: $space-lg;
   color: $color-gray-600;
 }

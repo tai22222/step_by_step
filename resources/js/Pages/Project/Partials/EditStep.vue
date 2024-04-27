@@ -127,7 +127,7 @@ const validText = (max, min, column, index) => {
                 <Textarea
                     id="step-content"
                     type="text"
-                    class="c-text-input__full-width c-text-input__textarea"
+                    class="c-text-input__full-width"
                     v-model="stepData.content"
                     @keyup="textCount"
                     @input="validText(1000, 1, 'content', `${stepIndex}`)"

@@ -1,13 +1,6 @@
 // ==============================
 // カラーパレットの作成
 // ==============================
-$color-primary: #007bff; // プライマリカラー
-$color-secondary: #6c757d; // セカンダリカラー
-$color-success: #28a745; // 成功カラー
-$color-info: #17a2b8; // 情報カラー
-$color-warning: #ffc107; // 警告カラー
-$color-danger: #dc3545; // 危険カラー
-
 // グレースケール
 $color-gray-50: #f9fafb;
 $color-gray-100: #f3f4f6;
@@ -68,17 +61,17 @@ $color-cyan-700: #0a4c5c;
 $color-cyan-800: #083c49;
 $color-cyan-900: #062b3e;
 
-// オレンジ
-$color-orange-50: #fff7ed;
-$color-orange-100: #ffedd5;
-$color-orange-200: #fed7aa;
-$color-orange-300: #fdba74;
-$color-orange-400: #fb923c;
-$color-orange-500: #f97316; // デフォルトのオレンジ
-$color-orange-600: #ea580c;
-$color-orange-700: #c2410c;
-$color-orange-800: #9a3412;
-$color-orange-900: #7c2d12;
+// レッド
+$color-red-50: #ffe5e5;
+$color-red-100: #fcd4d4;
+$color-red-200: #f9a8a8;
+$color-red-300: #f47171;
+$color-red-400: #f04444;
+$color-red-500: #e02424;
+$color-red-600: #c81e1e;
+$color-red-700: #a41313;
+$color-red-800: #800c0c;
+$color-red-900: #650808;
 
 // ライト
 $color-light: #f8f9fa; // デフォルトのライト
@@ -86,8 +79,10 @@ $color-light: #f8f9fa; // デフォルトのライト
 // ダーク
 $color-dark: #343a40; // デフォルトのダーク
 
-// ミュート
-$color-muted: #6c757d; // デフォルトのミュート
-
-
 $font-base-color : $color-gray-600;
+$color-primary: #007bff; // プライマリカラー
+$color-secondary: #6c757d; // セカンダリカラー
+$color-success: #28a745; // 成功カラー
+$color-info: #17a2b8; // 情報カラー
+$color-warning: #ffc107; // 警告カラー
+$color-danger: $color-red-600; // 危険カラー

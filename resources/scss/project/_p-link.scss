@@ -34,8 +34,8 @@
 }
 
 .p-link__text {
-  font-size: 0.875rem/* 14px */;
-  line-height: 1.25rem/* 20px */;
-  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  margin-top: $space-s;
   color: $color-gray-800;
 }

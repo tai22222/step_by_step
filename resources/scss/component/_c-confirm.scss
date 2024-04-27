@@ -1,9 +1,9 @@
 @use '../global' as *;
 
 .c-confirm-message {
-  margin-bottom: 1rem;
-  font-size: 0.875rem/* 14px */;
-  line-height: 1.25rem/* 20px */;
+  margin-bottom: $space-lg;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   font-weight: $medium;
   color: $color-success;
 }

@@ -2,13 +2,13 @@
 
 .p-dashboard {
   @include mq(sm){
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding-left: $space-2xl;
+    padding-right: $space-2xl;
   }
 
   @include mq(lg){
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-left: $space-4xl;
+    padding-right: $space-4xl;
   }
 }
 
@@ -22,7 +22,7 @@
 }
 
 .p-dashboard__inner-text {
-  padding: 1.5rem;
+  padding: $space-2xl;
   color: $color-gray-900;
 }
 
@@ -56,7 +56,7 @@
 .p-dashboard__content {
   border: 1px solid $color-gray-300;
   border-radius: 5px;
-  padding: 0.5rem;
-  margin-top: 0.5rem;
+  padding: $space-s;
+  margin-top: $space-s;
   min-height: 30px;
 }

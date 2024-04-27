@@ -1,8 +1,8 @@
 @use '../global' as *;
 
 .c-form {
-  margin-top: 1.5rem; // mt-6
-  margin-bottom: 1.5rem;
+  margin-top: $space-2xl;
+  margin-bottom: $space-2xl;
 }
 
 .c-form__content-full {
@@ -10,5 +10,5 @@
   border: 1px solid $color-gray-300;
   border-radius: 15px;
   margin-top: $space-m;
-  padding: 1.5rem 1rem;
+  padding: $space-2xl $space-lg;
 }

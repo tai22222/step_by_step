@@ -1,7 +1,6 @@
 <script setup>
 // 各モジュールの読み込み
 import { Link, useForm, usePage, } from '@inertiajs/vue3';
-import { Inertia } from '@inertiajs/inertia'
 import { ref, watch, computed, } from 'vue';
 
 // 親コンポーネントから値の受け取り

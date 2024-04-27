@@ -68,10 +68,10 @@ const updateStepStatus = (stepId, completed) => {
     step.completed = completed;
   }
 }
+console.log(props.project);
 </script>
 
 <template>
-  <!-- todo チャレンジトグル チャレンジ人数、お気に入り人数 -->
     <Head title="Detail Project" />
     <AuthenticatedLayout >
         <template #header>
@@ -98,7 +98,7 @@ const updateStepStatus = (stepId, completed) => {
                         チャレンジを辞める
                       </PrimaryButton>
 
-                      進捗:<span>{{ progress }}%</span>
+                      進捗:<span>{{ project.progress }}%</span>
                     </div>
 
                     <!-- 作成者のみ表示 -->

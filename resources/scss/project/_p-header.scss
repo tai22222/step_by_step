@@ -1,18 +1,18 @@
 @use "../global/" as *;
 
 .p-header {
-  padding: 1rem 0.75rem;
+  padding: $space-lg $space-m;
   box-shadow: 0 1px 4px 0 $color-gray-500;
 }
 
 .p-header__title{
-  padding: 1.5rem 1rem;
+  padding: $space-2xl $space-lg;
 
     @include mq(sm) {
-      padding: 1.5rem 1.5rem;
+      padding: $space-2xl;
     }
     
     @include mq(lg) {
-      padding: 1.5rem 2rem;
+      padding: $space-2xl $space-4xl;
     }
 }

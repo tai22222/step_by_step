@@ -19,7 +19,7 @@
   position: absolute;
   inset: 0;
   background-color: $color-gray-500;
-  opacity: $opacity-75;
+  opacity: 0.75;
 }
 
 .c-modal__show {
@@ -66,16 +66,16 @@
     opacity: 1;
     transform: translateY(0) scale(1);
   }
-}
-
-// スマホ画面での特定のトランジションスタイル
-@include mq(md) {
-  .c-modal__transition-base {
-    &-enter-from, &-leave-to {
-      transform: scale(0.95); // スマホ画面ではY軸移動を無効化
-    }
-    &-enter-to, &-leave-from {
-      transform: scale(1);
+  
+  // スマホ画面での特定のトランジションスタイル
+  @include mq(md) {
+    .c-modal__transition-base {
+      &-enter-from, &-leave-to {
+        transform: scale(0.95); // スマホ画面ではY軸移動を無効化
+      }
+      &-enter-to, &-leave-from {
+        transform: scale(1);
+      }
     }
   }
 }

@@ -26,7 +26,7 @@ const createQueryParams = ( status = {status: 'mine'} ) => {
   };
   return param;
 };
-
+console.log(props.projects);
 </script>
 
 <template>
@@ -35,7 +35,6 @@ const createQueryParams = ( status = {status: 'mine'} ) => {
         <template #header>
             <h2 class="c-header__main-title">{{ $t('My Page') }}</h2>
         </template>
-
         <div class="u-padding__top-5xl u-padding__bottom-5xl">
             <div class="l-container p-dashboard">
 
@@ -76,18 +75,21 @@ const createQueryParams = ( status = {status: 'mine'} ) => {
                         <!-- 各ステップ詳細への遷移カード -->
                         <Link class="p-step__card"
                               :class="{ 'p-step__card-current': status === 'mine' || status === null }"
+                              :href="route('dashboard')"
                               :data="createQueryParams('mine')"
                         >My プロジェクト
                         </Link>
 
                         <Link class="p-step__card"
                               :class="{ 'p-step__card-current': status === 'challenging' }"
+                              :href="route('dashboard')"
                               :data="createQueryParams('challenging')"
                         >チャレンジ中
                         </Link>
 
                         <Link class="p-step__card"
                               :class="{ 'p-step__card-current': status === 'completed' }"
+                              :href="route('dashboard')"
                               :data="createQueryParams('completed')"
                         >達成したチャレンジ
                         </Link>

@@ -6,8 +6,8 @@ const props = defineProps(['href', 'active']);
 
 const classes = computed(() =>
     props.active
-        ? 'is-responsible-nav-link__active'
-        : 'is-responsible-nav-link__inactive'
+        ? 'is-nav-link__responsible-active'
+        : 'is-nav-link__responsible-inactive'
 );
 </script>
 

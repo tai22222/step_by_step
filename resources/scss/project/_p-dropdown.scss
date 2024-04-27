@@ -9,8 +9,8 @@
     transform-origin: top right;
   }
   &__contentClasses {
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
+    padding-top: $space-xs;
+    padding-bottom: $space-xs;
     background-color: white;
   }
 }

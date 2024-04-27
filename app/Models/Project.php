@@ -59,6 +59,6 @@ class Project extends Model
         })->count();
 
 
-        return round(($completedSteps / $totalSteps) * 100, 4);
+        return round(($completedSteps / $totalSteps) * 100, 1);
     }
 }

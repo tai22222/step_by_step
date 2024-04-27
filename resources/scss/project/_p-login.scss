@@ -2,7 +2,7 @@
 
 .p-login__checkbox {
   display: block;
-  margin-top: 1rem;
+  margin-top: $space-lg;
 }
 
 .p-login__checkbox-label {
@@ -11,7 +11,7 @@
 }
 
 .p-login__checkbox-text {
-  margin-left: 0.5rem;
+  margin-left: $space-s;
   font-size: small;
   color: $color-gray-600;
 }

@@ -1,8 +1,7 @@
 <script setup>
 // 各モジュールの読み込み
-import { Link, useForm, usePage, } from '@inertiajs/vue3';
-import { Inertia } from '@inertiajs/inertia'
-import { ref, watch, computed, } from 'vue';
+import { Link } from '@inertiajs/vue3';
+import { ref, computed, } from 'vue';
 
 import axios from "axios";
 
@@ -48,12 +47,9 @@ const toggleStepStatus = async () => {
       stepStatus.value = response.data.status;
       // 親コンポーネントにstepのidとstepの状態をemit
       emit('update-status', props.step.id, stepStatus.value);
-      console.log('Stepの状態変更 成功');
-    } else {
-      console.log('Stepの状態変更 失敗:', response.data.message);
     }
   } catch (error) {
-    console.error('Stepの状態変更時のエラー:', error);
+    console.error('Stepの状態変更時にエラー');
   }
 }
 
@@ -66,7 +62,7 @@ const toggleStepStatus = async () => {
                    type="checkbox"
                    v-model="stepStatus"
                    @change="toggleStepStatus"
-                   class="c-checkbox p-checkbox">
+                   class="c-checkbox p-checkbox" />
 
             <Link :href="route('step.show', {project_id: step.project_id, step_id: index + 1 })"
                   class="p-step__list-link">

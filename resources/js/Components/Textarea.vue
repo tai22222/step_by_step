@@ -18,7 +18,7 @@ defineExpose({ focus: () => input.value.focus() });
 
 <template>
     <textarea
-        class="c-text-input"
+        class="c-text-input c-text-input__textarea"
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
         ref="input"

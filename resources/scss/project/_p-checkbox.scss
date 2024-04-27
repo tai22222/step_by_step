@@ -1,7 +1,7 @@
 @use '../global' as *;
 
 .p-checkbox {
-  margin-right: 1.5rem;
+  margin-right: $space-2xl;
   inline-size: 1.5rem;
   block-size: 1.5rem;
 }

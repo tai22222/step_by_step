@@ -45,7 +45,7 @@
   background-color: white;
   border-radius: 0.5rem;
   display: flex;
-  padding: 1.5rem;
+  padding: $space-2xl;
   box-shadow: 0 10px 15px -3px rgba(156, 163, 175, 0.2);
   transition: all 0.25s;
 
@@ -59,13 +59,13 @@
 }
 
 .p-welcome__title {
-  margin-top: 1.5rem;
+  margin-top: $space-2xl;
   font-size: $font-size_xl;
   color: $color-gray-700;
 }
 
 .p-welcome__content {
-  margin-top: 1rem;
+  margin-top: $space-lg;
   color: $color-gray-500;
   font-size: $font-size_m;
 }

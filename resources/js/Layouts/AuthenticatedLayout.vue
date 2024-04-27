@@ -30,7 +30,7 @@ const successMessage = ref("");
 const errorMessage = ref("");
 const isShowMessage = ref(false);
 
-// フラッシュメッセージをセットアップする関数
+// フラッシュメッセージをセットアップ
 const setupFlashMessages = () => {
   if (props.flash.success) {
     successMessage.value = props.flash.success;
@@ -156,7 +156,9 @@ watch(
             <div class="p-nav__right">
               <!-- ドロップダウン -->
               <div class="p-nav__right-dropdown">
-                <Dropdown align="right" width="48">
+                <Dropdown align="right" 
+                          width="48"
+                >
                   <template #trigger>
                     <span class="p-nav__icon">
                       <button type="button" class="p-nav__dropdown-text">
@@ -206,7 +208,6 @@ watch(
                         {{ $t("Register") }}
                       </DropdownLink>
                     </div>
-
                   </template>
                 </Dropdown>
               </div>
@@ -226,8 +227,8 @@ watch(
                 >
                   <path
                     :class="{
-                      'is-hidden': showingNavigationDropdown,
-                      'is-inline-flex': !showingNavigationDropdown,
+                      'is-display__hidden': showingNavigationDropdown,
+                      'is-display__inline-flex': !showingNavigationDropdown,
                     }"
                     stroke-linecap="round"
                     stroke-linejoin="round"
@@ -236,8 +237,8 @@ watch(
                   />
                   <path
                     :class="{
-                      'is-hidden': !showingNavigationDropdown,
-                      'is-inline-flex': showingNavigationDropdown,
+                      'is-display__hidden': !showingNavigationDropdown,
+                      'is-display__inline-flex': showingNavigationDropdown,
                     }"
                     stroke-linecap="round"
                     stroke-linejoin="round"
@@ -253,8 +254,8 @@ watch(
         <!-- レスポンシブ ナビゲーション メニュー -->
         <div
           :class="{
-            'is-block': showingNavigationDropdown,
-            'is-hidden': !showingNavigationDropdown,
+            'is-display__block': showingNavigationDropdown,
+            'is-display__hidden': !showingNavigationDropdown,
           }"
           class="p-nav__responsible"
         >
@@ -292,8 +293,8 @@ watch(
                 :href="route('logout')"
                 method="post"
                 as="button"
-                >{{ $t("Log Out") }}</ResponsiveNavLink
-              >
+                >{{ $t("Log Out") }}
+              </ResponsiveNavLink>
             </div>
 
             <div v-if="!user" class="p-nav__responsible-routing">

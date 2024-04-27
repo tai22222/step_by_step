@@ -26,6 +26,28 @@ z-index: 40;
   background-color: white;
 }
 
+.c-dropdown__link {
+  display: block;
+  width: 100%;
+  padding: $space-lg $space-s;
+  text-align: left;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: $color-gray-700;
+
+  transition: color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+
+  &:hover {
+    background-color: $color-gray-100;
+  }
+
+  &:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  background-color: $color-gray-100;
+  }
+}
+
 
 // アニメーション
 .c-dropdown__transition-enter-active {
@@ -46,7 +68,8 @@ z-index: 40;
   transform: scale(1);
 }
 
-// vueで親コンポーネントから渡ってきた値で付け替え(scssのjavasctiptに記述しようとしたが記述場所が複数になるため、componentに記述)
+
+
 .c-dropdown__width {
   width: 12rem;
 }

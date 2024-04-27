@@ -8,7 +8,6 @@ import Textarea from '@/Components/Textarea.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 // 各モジュールの読み込み
 import { Link, useForm, usePage } from '@inertiajs/vue3';
-import { Inertia } from '@inertiajs/inertia'
 import { ref } from 'vue';
 
 // バリデーションの読み込み
@@ -26,7 +25,7 @@ const props = defineProps({
 
 const user = usePage().props.auth.user;
 
-// フォームデータの受け取り
+// フォームデータの受け取りと初期値の設定
 const form = useForm({
     name: user.name,
     email: user.email,
@@ -43,9 +42,7 @@ const selectPhoto = () => {
 // アイコン画像のプレビュー表示
 const photoPreview = ref(null);
 const updatePhotoPreview = () => {
-  console.log('updatePreviewに入った');
   const photo = photoInput.value.files[0];
-  console.log('photo:' + photo);
   if(!photo) return;
 
   // サイズのバリデーション
@@ -250,7 +247,7 @@ const validMax = (max, min, column) => {
                 <Textarea
                     id="introduction"
                     type="text"
-                    class="c-text-input__full-width c-text-input__textarea"
+                    class="c-text-input__full-width"
                     v-model="form.introduction"
                     placeholder="例）英語の学習を6年ほど独学でやっています。
 多言語にも共通する勉強方法もあると思うのでぜひチャレンジしてみてください"

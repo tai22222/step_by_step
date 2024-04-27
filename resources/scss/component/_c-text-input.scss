@@ -16,19 +16,19 @@
 
 // 入力欄の横幅定義
 .c-text-input__full-width {
-  margin-top: 0.25rem;
+  margin-top: $space-xs;
   display: block;
   width: 100%;
 }
 
 .c-text-input__3-4 {
-  margin-top: 0.25rem;
+  margin-top: $space-xs;
   display: block;
   width: 75%;
 }
 
 .c-text-input__1-2 {
-  margin-top: 0.25rem;
+  margin-top: $space-xs;
   display: inline-block;
   width: 47%;
 }
@@ -45,27 +45,25 @@
 .c-text-input__textarea {
   border-color: $color-gray-300;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  min-height: 8rem/* 128px */;
+  min-height: 8rem;
   max-height: 12rem;
-  overflow-y: auto; /* スクロールできるように */
-  resize: none; /* ユーザーによるサイズ変更を無効化 */
+  overflow-y: auto;
+  resize: none;
   box-sizing: border-box; 
 }
 
-
-
-
+// エラーメッセージ
 .c-text-input__error-message {
   color: $color-danger;
-  font-size: 0.875rem/* 14px */;
-  line-height: 1.25rem/* 20px */;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 .c-text-input__label {
   display: block;
   font-weight: $medium;
-  font-size: 0.875rem/* 14px */;
-  line-height: 1.25rem/* 20px */;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   color: $color-gray-700;
 }
 .c-text-input__sort {

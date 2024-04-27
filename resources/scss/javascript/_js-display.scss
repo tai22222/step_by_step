@@ -3,14 +3,14 @@
 // ==========================================================================
 @use "../global/" as *;
 
-.is-inline-flex {
+.is-display__inline-flex {
   display: inline-flex;
 }
 
-.is-hidden {
+.is-display__hidden {
   display: none;
 }
 
-.is-block {
+.is-display__block {
   display: block;
 }

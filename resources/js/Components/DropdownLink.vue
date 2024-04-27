@@ -4,7 +4,7 @@ import { Link } from '@inertiajs/vue3';
 
 <template>
     <Link
-        class="c-dropdown_link"
+        class="c-dropdown__link"
     >
         <slot />
     </Link>

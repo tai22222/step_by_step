@@ -18,7 +18,7 @@ module.exports = {
                 test: /\.vue$/,
                 loader: 'vue-loader'
             },
-            // sass,vueのstyleセクションをコンパイル(ファイルやurlは未処理)
+            // sass,vueのstyleセクションをコンパイル
             {
                 test: /\.scss$/,
                 use: [
@@ -63,10 +63,5 @@ module.exports = {
           vue$: 'vue/dist/vue.esm-bundler.js'
         },
         extensions: ['.js', '.vue', '.json']
-    },
-    // ビルドのタイミングを調整
-    watchOptions: {
-      ignored: /node_modules/, // 監視しないディレクトリ
-      poll: 15000 // 監視間隔（ミリ秒）
-  }
+    }
 };

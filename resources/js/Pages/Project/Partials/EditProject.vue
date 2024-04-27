@@ -123,7 +123,7 @@ console.log(props.projectData);
                 <Textarea
                     id="project-content"
                     type="text"
-                    class="c-text-input__full-width c-text-input__textarea"
+                    class="c-text-input__full-width"
                     v-model="projectData.content"
                     @keyup="textCount"
                     @input="validText(1000, 1, 'content')"

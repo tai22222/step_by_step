@@ -1,0 +1,30 @@
+@use "../global/" as *;
+
+.u-max-width__sm {
+  @include mq(sm) {
+    max-width: 24rem;
+  }
+}
+
+.u-max-width__md {
+  @include mq(sm) {
+    max-width: 28rem;
+  }
+}
+
+.u-max-width__lg {
+  @include mq(sm) {
+    max-width: 32rem;
+  }
+}
+.u-max-width__xl {
+  @include mq(sm) {
+    max-width: 36rem;
+  }
+}
+
+.u-max-width__2xl {
+  @include mq(sm) {
+    max-width: 42rem;
+  }
+}

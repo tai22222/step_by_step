@@ -9,7 +9,7 @@ import { InertiaProgress } from '@inertiajs/progress';
 import { createI18n } from 'vue-i18n'
 import ja from './locales/ja.json';
 
-const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
+const appName = window.document.getElementsByTagName('title')[0]?.innerText || '人生のSTEPを共有しよう';
 
 // './Pages' ディレクトリ内のすべての `.vue` ファイルを解決するための関数を定義
 const pages = require.context('./Pages', true, /\.vue$/);
@@ -24,11 +24,9 @@ const i18n = createI18n({
 });
 
 createInertiaApp({
-    title: (title) => `${title} - ${appName}`,
+    title: (title) => `${title} | ${appName}`,
     resolve: name => {
-
       const importPage = pages(`./${name}.vue`);
-
       return importPage.default;
     }, 
     setup({ el, App, props, plugin }) {

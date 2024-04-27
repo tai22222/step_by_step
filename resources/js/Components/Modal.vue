@@ -15,14 +15,13 @@ const props = defineProps({
         default: true,
     },
 });
-console.log('show' + props.show);
+
 const emit = defineEmits(['close']);
 
 watch(
     () => props.show,
     () => {
         if (props.show) {
-          console.log('show2' + props.show);
             document.body.style.overflow = 'hidden';
         } else {
             document.body.style.overflow = null;
@@ -51,11 +50,11 @@ onUnmounted(() => {
 
 const maxWidthClass = computed(() => {
     return {
-        sm: 'p-max-width-sm',
-        md: 'p-max-width-md',
-        lg: 'p-max-width-lg',
-        xl: 'p-max-width-xl',
-        '2xl': 'p-max-width-2xl',
+        sm: 'u-max-width__sm',
+        md: 'u-max-width__md',
+        lg: 'u-max-width__lg',
+        xl: 'u-max-width__xl',
+        '2xl': 'u-max-width__2xl',
     }[props.maxWidth];
 });
 </script>
@@ -72,7 +71,7 @@ const maxWidthClass = computed(() => {
                     leave-from-class="u-opacity-100"
                     leave-to-class="u-opacity-0"
                 >
-                 <!-- ページ全体へのグレー背景 -->
+                    <!-- ページ全体へのグレー背景 -->
                     <div v-show="show" class="c-modal__close" @click="close">
                         <div class="c-modal__close-background" />
                     </div>
