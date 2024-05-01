@@ -220,26 +220,6 @@ const validMax = (max, min, column) => {
                 <!-- フロント側のエラーメッセージ -->
                 <InputError  class="u-margin__top-s" :message="validationErrors['email']" />
             </div>
-            <!-- email認証(mustVerifyEmailがtrueで未認証の場合) -->
-            <!-- <div v-if="props.mustVerifyEmail && user.email_verified_at === null">
-                <p class="p-link__text">
-                    {{ $t('Your email address is unverified.') }}
-                    <Link
-                        :href="route('verification.send')"
-                        method="post"
-                        as="button"
-                        class="p-link__verify-email"
-                    >
-                        {{ $t('Your email address is unverified.') }}
-                    </Link>
-                </p>
-                <div
-                    v-show="props.status === 'verification-link-sent'"
-                    class="c-confirm-message"
-                >
-                    {{ $t('Your email address is unverified.') }}
-                </div>
-            </div> -->
 
             <!-- 自己紹介 -->
             <div class="u-margin__top-lg">

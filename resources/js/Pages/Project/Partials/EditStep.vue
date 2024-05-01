@@ -8,7 +8,6 @@ import Textarea from '@/Components/Textarea.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 // 各モジュールの読み込み
 import { Link, useForm, usePage } from '@inertiajs/vue3';
-import { Inertia } from '@inertiajs/inertia'
 import { ref, watch, reactive,} from 'vue';
 
 // バリデーション

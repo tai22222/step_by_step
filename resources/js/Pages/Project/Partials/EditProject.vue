@@ -8,7 +8,6 @@ import Textarea from '@/Components/Textarea.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 // 各モジュールの読み込み
 import { Link, useForm, usePage, } from '@inertiajs/vue3';
-import { Inertia } from '@inertiajs/inertia'
 import { ref, watch, computed, } from 'vue';
 
 // バリデーション
@@ -22,8 +21,6 @@ const props = defineProps({
   projectData: Object,
   errors:Object,
 });
-
-const selectedCategory = ref(0);
 
 // 親コンポーネント(Create.vueへの受け渡し)
 const emits = defineEmits(['updateProjectData']);
@@ -62,9 +59,6 @@ const validText = (max, min, column) => {
     }
   }
 }
-console.log('EditProject');
-console.log('props.projectData');
-console.log(props.projectData);
 </script>
 
 <template>

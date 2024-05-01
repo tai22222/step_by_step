@@ -2,13 +2,10 @@
 // コンポーネントの読み込み
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import Textarea from '@/Components/Textarea.vue';
-import SecondaryButton from '@/Components/SecondaryButton.vue';
 // 各モジュールの読み込み
 import { Link, useForm, usePage, } from '@inertiajs/vue3';
-import { Inertia } from '@inertiajs/inertia'
 import { ref, watch, computed, } from 'vue';
 
 // バリデーション
@@ -22,9 +19,6 @@ const props = defineProps({
   projectData: Object,
   errors:Object,
 });
-
-// 選択されたカテゴリの値を管理
-const selectedCategory = ref(0);
 
 // 親コンポーネント(Create.vueへの受け渡し)
 const emits = defineEmits(['updateProjectData']);

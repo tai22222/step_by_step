@@ -123,10 +123,10 @@ const shareProject = (projectId) => {
           >
             <!-- Twitter共有ボタン -->
             <button class="c-btn__share" @click="shareProject(project.id)">
-              <svg class="c-btn__share-icon" viewBox="0 0 20 20">
-                <path
-                  d="m11.68 8.62 6.55-7.62h-1.55l-5.69 6.62-4.55-6.62h-5.25l6.88 10.01-6.88 7.99h1.55l6.01-6.99 4.8 6.99h5.24l-7.13-10.38zm-2.13 2.47-.7-1-5.54-7.92h2.39l4.47 6.4.7 1 5.82 8.32h-2.39l-4.75-6.79z"
-                ></path>
+                <svg xmlns="http://www.w3.org/2000/svg" class="c-btn__share-icon icon icon-tabler icon-tabler-brand-x" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
+                <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
               </svg>
             </button>
             <Link :href="route('project.show', { id: project.id })">

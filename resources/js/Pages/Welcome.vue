@@ -86,7 +86,7 @@ defineProps({
 
                             <h2 class="p-welcome__title">学習に取り入れる</h2>
                             <p class="p-welcome__content">
-                                他のユーザが作成した、学習手順を自分の現在取り組んでいる学習に取り入れることで効率よく学習を進めていきましょう！
+                                他のユーザが作成した学習手順を自分の現在取り組んでいる学習に取り入れることで効率よく学習を進めていきましょう！
                             </p>
                         </div>
                     </a>
@@ -105,9 +105,7 @@ defineProps({
 
                             <h2 class="p-welcome__title">プロジェクト</h2>
                             <p class="p-welcome__content">
-                                Laravel News is a community driven portal and newsletter aggregating all of the latest
-                                and most important news in the Laravel ecosystem, including new package releases and
-                                tutorials.
+                                「英語学習」「プログラミング学習」「ビジネススキル」「健康・美容」「スポーツ」などあらゆる場面で知識を学ぶことがあり、そこには不要だった学習工程や、良かった学習手順がそれぞれあると思う。あなたの思う最高のSTEPを共有しよう!
                             </p>
                         </div>
                     </a>
@@ -130,9 +128,7 @@ defineProps({
 
                             <h2 class="p-welcome__title">ステップ</h2>
                             <p class="p-welcome__content">
-                                Laravel News is a community driven portal and newsletter aggregating all of the latest
-                                and most important news in the Laravel ecosystem, including new package releases and
-                                tutorials.
+                                大枠の学習内容を決めたら、それを各STEPに区切って「タイトル」「内容」「達成推定時間」を作成しよう!学習を取り入れたいユーザはチャレンジボタンを押すと進捗を管理できるようになります!
                             </p>
                         </div>
                     </div>
