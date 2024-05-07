@@ -71,7 +71,6 @@ const updatePhotoPreview = () => {
 
 // 画像削除
 const deleteImage = () => {
-  console.log('画像削除');
   form.icon_image = null;
   photoPreview.value = null;
 }

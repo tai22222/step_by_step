@@ -26,7 +26,6 @@ const createQueryParams = ( status = {status: 'mine'} ) => {
   };
   return param;
 };
-console.log(props.projects);
 </script>
 
 <template>

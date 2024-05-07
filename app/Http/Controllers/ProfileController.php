@@ -24,7 +24,6 @@ class ProfileController extends Controller
      */
     public function index(Request $request)
     {
-      logger($request);
       $request->validate([
         'page' => 'integer|min:1'
       ]);

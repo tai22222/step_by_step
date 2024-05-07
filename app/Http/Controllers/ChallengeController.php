@@ -117,14 +117,12 @@ class ChallengeController extends Controller
 
           // プロジェクトの進捗を計算
           if ($project->progress == 100) {
-            logger('100%');
               // 全ステップ完了時にcompleted_timeを更新
               Challenge::where('project_id', $projectId)
                       ->where('user_id', $userId)
                       ->whereNull('step_id')
                       ->update(['completed_time' => now()]);
           } else {
-            logger('それ以外');
               Challenge::where('project_id', $projectId)
                       ->where('user_id', $userId)
                       ->whereNull('step_id')

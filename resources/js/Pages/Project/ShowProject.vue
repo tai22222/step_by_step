@@ -25,7 +25,6 @@ const startChallenge = async () => {
     const response = await axios.post(route('challenges.start'), { project_id: props.project.id });
     if (response.data.success) {
       isChallengeStatus.value = 'in_progress';
-      console.log('チャレンジへ変更 成功');
     } else {
       console.log('チャレンジへ変更 失敗:', response.data.message);
     }

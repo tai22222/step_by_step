@@ -39,7 +39,6 @@ const validText = (max, min) => {
   const { isValid, errorMessage } = isValidText(form.name, max, min);
   if(!isValid){
     form.errors.name = errorMessage;
-    console.log(form);
   } else {
     form.errors.name = "";
   }

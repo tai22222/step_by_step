@@ -47,7 +47,6 @@ const toggleStepStatus = async () => {
       stepStatus.value = response.data.status;
       // 親コンポーネントにstepのidとstepの状態をemit
       emit('update-status', props.step.id, stepStatus.value);
-      console.log('Stepの状態変更 成功');
     } else {
       console.log('Stepの状態変更 失敗:', response.data.message);
     }

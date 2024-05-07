@@ -310,7 +310,6 @@ try{
     try {
       // 特定のprojectを更新
       $project->update($request->project);
-      logger($project);
 
       // stepsのデータをループ処理
       foreach ($request->steps as $stepData) {
@@ -349,10 +348,6 @@ try{
    */
   public function destroy(Request $request, $id)
   {
-    logger('コントローラ');
-    logger('リクエスト');
-    logger($request);
-    logger('リクエスト');
     $request->validate([
       'password' => ['required', 'current-password'],
     ]);

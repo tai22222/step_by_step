@@ -35,8 +35,6 @@ const createQueryParams = computed(() => {
 
 // Twitter共有機能
 const shareProject = (projectId) => {
-  console.log("共有ボタンクリック");
-  console.log(projectId);
   const projectUrl = `${ziggy.url}/project/${projectId}`;
   const shareUrl =
     "https://twitter.com/intent/tweet?text=" +

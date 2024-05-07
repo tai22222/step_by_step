@@ -31,7 +31,6 @@ const stepsStatus = ref(props.project.steps.map(step => ({
   id: step.id,
   completed: step.challenges.length > 0
 })));
-console.log(stepsStatus);
 
 // 子コンポーネント(StepList)からstepのstatusの変化があった場合にemitされる
 const updateStepStatus = (stepId, completed) => {
