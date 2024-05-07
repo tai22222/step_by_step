@@ -30,11 +30,16 @@ const submit = () => {
   });
 };
 
+const hasErrors = () => {
+  return Object.keys(form.errors).length > 0;
+}
+
 // バリデーション
 const validText = (max, min) => {
   const { isValid, errorMessage } = isValidText(form.name, max, min);
   if(!isValid){
     form.errors.name = errorMessage;
+    console.log(form);
   } else {
     form.errors.name = "";
   }
@@ -139,7 +144,7 @@ const confirmPassword = () => {
         <PrimaryButton
             class="u-margin__left-m"
             :class="{ 'u-opacity-25': form.processing }"
-            :disabled="form.processing"
+            :disabled="form.processing  || hasErrors()"
         >
           {{ $t('Register') }}
         </PrimaryButton>

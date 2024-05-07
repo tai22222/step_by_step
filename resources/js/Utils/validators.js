@@ -57,19 +57,6 @@ export const isValidMax = (text, max) => {
       errorMessage: max + "文字以内での入力をしてください。"
     }
   }
-}
-
-// URLのバリデーション
-export const isValidUrl = url => {
-  try {
-    new URL(url);
-    return {isValid: true};
-  } catch (_) {
-    return {
-      isValid: false,
-      errorMessage: "有効なURLを指定してください。"
-    };
-  }
 };
 
 // 数値のバリデーション
