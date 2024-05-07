@@ -77,7 +77,7 @@ const deleteImage = () => {
 
 // プロフィール情報の変更をDB更新
 const updateProfileInformation = () => {
-  if(photoInput.value) {
+  if(photoPreview.value) {
     form.icon_image = photoInput.value.files[0];
   }
   form.post(route('profile.update'));
