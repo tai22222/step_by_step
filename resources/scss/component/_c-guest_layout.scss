@@ -5,7 +5,7 @@ display: flex;
 flex-direction: column;
 align-items: center;
 padding-top: $space-2xl;
-background-color: $color-gray-200;
+background-color: #2967a8;
 
   @include mq(sm) {
     justify-content: center;
@@ -17,7 +17,8 @@ background-color: $color-gray-200;
   width: 100%;
   margin-top: $space-2xl;
   padding: $space-2xl $space-lg;
-  background-color: white;
+  // background-color: white;
+  background-color: rgba(255, 255, 255, 0.2);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   overflow: hidden;
 
@@ -25,4 +26,12 @@ background-color: $color-gray-200;
     max-width: 28rem;
     border-radius: 0.375rem;
   }
+}
+
+.c-guest-layout__title {
+  font-size: 28px;
+  font-weight: bold;
+  color: white;
+  display: flex;
+  justify-content: center;
 }

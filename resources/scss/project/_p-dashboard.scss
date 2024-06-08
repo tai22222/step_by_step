@@ -13,7 +13,16 @@
 }
 
 .p-dashboard__inner {
-  background-color: white;
+  background-color: $color-gray-50;
+  overflow: hidden;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  border-radius: 0.375rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.p-dashboard__contents {
+  background-color: rgba(255, 255, 255, 0);
   overflow: hidden;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   border-radius: 0.375rem;
@@ -22,12 +31,14 @@
 }
 
 .p-dashboard__inner-text {
-  padding: $space-2xl;
   color: $color-gray-900;
 }
 
 .p-dashboard__edit-link {
   text-align: right;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 
 .p-dashboard__user-info {
@@ -43,14 +54,20 @@
 
 .p-dashboard__user-icon {
   flex-shrink: 0;
+  height: 10rem;
 }
 
 .p-dashboard__user-details {
   margin-right: 20px;
+  margin-left: 20px;
   flex-grow: 1;
   word-wrap: break-word;
   overflow-wrap: break-word;
   word-break: break-word;
+
+  @include mq(sm) {
+    margin-left: 0px;
+  }
 }
 
 .p-dashboard__content {
@@ -58,5 +75,10 @@
   border-radius: 5px;
   padding: $space-s;
   margin-top: $space-s;
+  margin-bottom: $space-s;
   min-height: 30px;
+
+  @include mq(md) {
+    margin-left: $space-s;
+  }
 }

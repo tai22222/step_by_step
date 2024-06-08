@@ -14,7 +14,7 @@
 
 .c-contents__inner {
   padding: $space-lg;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.2);
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   @include mq(sm) {
       padding: $space-4xl;

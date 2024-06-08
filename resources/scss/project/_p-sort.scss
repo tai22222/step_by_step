@@ -9,6 +9,7 @@
   margin-right: $space-lg;
   margin-top: $space-s ;
   display: block;
+  color: $color-gray-50;
 
   @include mq(md) {
     display: inline-block;

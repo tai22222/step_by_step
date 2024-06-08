@@ -59,6 +59,7 @@ const validPassword = ( ) => {
       {{ status }}
     </div>
 
+    <div class="c-guest-layout__title">ログイン</div>
     <form @submit.prevent="submit">
       <div>
         <InputLabel for="email" :value="$t('Email')" />

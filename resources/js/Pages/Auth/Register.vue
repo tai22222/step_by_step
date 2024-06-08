@@ -31,6 +31,7 @@ const submit = () => {
 };
 
 const hasErrors = () => {
+  console.log(form.errors);
   return Object.keys(form.errors).length > 0;
 }
 
@@ -76,6 +77,7 @@ const confirmPassword = () => {
   <GuestLayout>
     <Head title="Register" />
 
+    <div class="c-guest-layout__title">新規登録</div>
     <form @submit.prevent="submit">
       <div>
         <InputLabel for="name" :value="$t('Name')" />
@@ -143,7 +145,7 @@ const confirmPassword = () => {
         <PrimaryButton
             class="u-margin__left-m"
             :class="{ 'u-opacity-25': form.processing }"
-            :disabled="form.processing  || hasErrors()"
+            :disabled="form.processing"
         >
           {{ $t('Register') }}
         </PrimaryButton>

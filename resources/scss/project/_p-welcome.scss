@@ -12,11 +12,49 @@
   text-align: right;
 }
 
+// Keyframes
+@keyframes highlight {
+  0% {
+    background-size: 0 100%;
+  }
+  100% {
+    background-size: 100% 100%;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .p-welcome__main-title {
   text-align: center;
   margin-top: 5rem;
   color: $color-gray-900;
   font-size: $font-size_l;
+
+  h1 {
+    display: inline-block;
+    background: linear-gradient(to right, $highlight-color 0%, $highlight-color 100%);
+    border-radius: 5px;
+    background-size: 0 100%;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    color: white;
+    padding: 0.2em 0;
+    animation: highlight 3s ease forwards;
+    margin-bottom: 5px;
+  }
+
+  div {
+    opacity: 0;
+    animation: fadeIn 3s ease forwards;
+    animation-delay: 3s;
+  }
 
   @include mq(md) {
     margin-top: 8rem;

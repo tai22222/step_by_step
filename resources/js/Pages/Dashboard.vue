@@ -67,7 +67,7 @@ const createQueryParams = ( status = {status: 'mine'} ) => {
                     </div>
                 </div>
 
-                <div class="p-dashboard__inner u-margin__top-m">
+                <div class="p-dashboard__contents u-margin__top-m">
                     <div class="p-dashboard__inner-text">
                       <div class="p-step__container">
 

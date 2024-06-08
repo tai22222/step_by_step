@@ -64,7 +64,7 @@ const confirmPassword = () => {
 <template>
     <section>
         <header>
-            <h2 class="c-header__title">{{ $t('Update Password') }}</h2>
+            <h2 class="c-header__title">{{ $t('Update Password') }} </h2>
 
             <p class="c-header__description">
                 {{ $t('Ensure your account is using a long, random password to stay secure.') }}
