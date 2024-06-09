@@ -50,7 +50,7 @@ SNSのように誰でも自分なりの学習手順、内容の最適解を共�
 
 ### AWS構成図
 
-![AWS構成図](path/to/aws-architecture-diagram.png)
+![AWS構成図](https://github.com/tai22222/images/raw/main/infra-aws.png)
 
 ### 技術選定の基準
 
@@ -91,7 +91,7 @@ SNSのように誰でも自分なりの学習手順、内容の最適解を共�
 
 ### ER図
 
-![ER図](path/to/er-diagram.png)
+![ER図](https://github.com/tai22222/images/raw/main/er-diagram.png)
 
 ### 機能一覧
 
