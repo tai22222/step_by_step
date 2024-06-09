@@ -1086,6 +1086,9 @@ a {
   font-size: 1rem;
   border-bottom: 1px solid #d1d5db;
   margin-top: 1rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .p-card__sub-content {
@@ -1387,7 +1390,7 @@ a {
   flex-grow: 1;
 }
 .p-step__list-link:hover {
-  background-color: #e5e7eb;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .p-step__container {

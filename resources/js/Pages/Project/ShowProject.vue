@@ -97,7 +97,7 @@ console.log(props.project);
                         チャレンジを辞める
                       </PrimaryButton>
 
-                      進捗:<span>{{ project.progress }}%</span>
+                      進捗:<span>{{ progress }}%</span>
                     </div>
 
                     <!-- 作成者のみ表示 -->
