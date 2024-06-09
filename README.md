@@ -1,66 +1,121 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# プロジェクト名: 学習管理ツール
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
-## About Laravel
+## プロジェクトの概要
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+最適な学習の「順序」と「内容」の記録管理ツール
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## サイトURL
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+https://own-steps.com/
 
-## Learning Laravel
+## テストアカウント情報
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+| ユーザ名      | パスワード     |
+|---------------|----------------|
+| test@mail     | password       |
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## アプリケーションの制作経緯
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+知人と会話の中で物販を学んだ手順を話し合っていた時に、各々「何をどれくらい学んで実践したか」が明確に異なっており、『早くこの知識を知りたかった』や『先にこれを知りたかった』、『この内容にこんなに時間をかけなくてよかった』など振り返ってみると今だからわかる最適解を出せるのではないかと思ったことから制作しました。
 
-## Laravel Sponsors
+SNSのように誰でも自分なりの学習手順、内容の最適解を共有し、共有されたものに対してチャレンジが可能な機能を実装しています。チャレンジ中の内容はStepごとにチェックを入れることで進捗がわかるようになっています。
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+今後はChatGPTなどと紐づけ、あらかじめ自身の現状などを共有しておくことでチャレンジする内容をその人にカスタマイズした提案ができるような機能を実装していきたいと考えています。
 
-### Premium Partners
+アプリの機能面やUI部分はまだまだなのですが、自身の学習を通してアプリの保守・運用を続けていきたいと思っています。
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+## アプリケーション詳細
 
-## Contributing
+### 考慮した内容
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+1. 現場で使われやすいモダンな技術の使用 (AWS, Vue.js)
+2. 実務を想定し、より複雑なフロントの環境構築 (viteを使用せずにnpmでwebpack + babelを使用)
+3. CSSはフレームワークを使用せずにsassでFLOCSSでの構築
 
-## Code of Conduct
+### 使用イメージ
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+![スクリーンショット1](path/to/screenshot1.png)
+![スクリーンショット2](path/to/screenshot2.png)
+![デモ動画](path/to/demo-video.mp4)
 
-## Security Vulnerabilities
+## 使用技術
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- フロントエンド: Vue.js
+- バックエンド: PHP (Laravel)
+- インフラ環境: AWS
+- CSS: sassでFLOCSS構造
+- フロント開発環境: npmでwebpack + babelを使用
 
-## License
+### AWS構成図
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+![AWS構成図](https://github.com/tai22222/images/raw/main/infra-aws.png)
+
+### 技術選定の基準
+
+#### バックエンドの言語
+
+「長期的に使用していけるか」と「学習教材が豊富」を基準に選定しました。PHP、Rubyが候補となり、案件数の数の伸びや需要の安定からPHPを選択し、その中でもフレームワークは情報量が多く、経験が浅いことを踏まえてLaravelを選択しました。
+
+#### フロントエンド
+
+ページ表示速度の速さからVue.jsとReactのどちらかに絞り、学習教材が豊富という観点から学習コストを考慮してVue.jsを選択しました。
+
+### 使用技術の詳細
+
+#### フロントエンド
+
+- Vue 3.4.21
+- JavaScript
+- HTML / SCSS
+
+#### バックエンド
+
+- PHP 8.0.2
+- Laravel Framework 9.52.16
+
+#### インフラ
+
+- MySQL 8.0.35
+- AWS (EC2, ELB, ACM, RDS, Route53, VPC, EIP, IAM)
+
+#### その他使用ツール
+
+- Intelチップ搭載 MacBook Air / MacOS version 14.2.1（23C71）
+- Visual Studio Code
+- SourceTree
+- GitHub
+- Confluence
+- Figma
+
+### ER図
+
+![ER図](https://github.com/tai22222/images/raw/main/er-diagram.png)
+
+### 機能一覧
+
+- 一般ユーザー登録関連
+  - アカウント新規登録
+  - ログイン、ログアウト機能
+- ページネーション機能
+- ユーザー写真(アイコン画像)投稿
+- チャレンジ機能 (Vue.js / ajax(axios))
+- Twitter共有機能
+- エラーハンドリング (システムエラー、バリデーションエラー、認証エラー、NotFoundエラー)
+
+## 今後の課題
+
+課題は山積みですが、優先して下記の機能を実装しようと思っております。
+
+- ステップ作成の下書き機能
+- ChatGPT連携
+- レビュー機能(評価やコメント)
+- ステップの上下移動機能
+- 足跡機能
+
+まだまだ課題も多いですが、追加機能の希望があれば教えていただきたく思います。
+
+---
+
+プロジェクトの開発期間: 1ヶ月ほど (2024/3末〜2024/5初旬)
