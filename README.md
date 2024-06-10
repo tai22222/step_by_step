@@ -34,12 +34,6 @@ SNSのように誰でも自分なりの学習手順、内容の最適解を共�
 2. 実務を想定し、より複雑なフロントの環境構築 (viteを使用せずにnpmでwebpack + babelを使用)
 3. CSSはフレームワークを使用せずにsassでFLOCSSでの構築
 
-### 使用イメージ
-
-![スクリーンショット1](path/to/screenshot1.png)
-![スクリーンショット2](path/to/screenshot2.png)
-![デモ動画](path/to/demo-video.mp4)
-
 ## 使用技術
 
 - フロントエンド: Vue.js
